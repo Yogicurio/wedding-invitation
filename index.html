@@ -42,14 +42,14 @@
         .field:disabled { cursor:not-allowed; background:#f4eeee; color:#8b8582; }
         .success-card { border:1px solid #e8d7b4; background:linear-gradient(145deg,#fffaf0,#fff5f5); box-shadow:0 12px 30px rgba(107,30,53,.08); }
         .cover-date { display:inline-flex; align-items:center; gap:.45rem; border:1px solid #d6b66e; border-radius:999px; background:linear-gradient(135deg,#fff4d8,#fffbf1); padding:.58rem 1rem; color:#6b1e35; box-shadow:0 5px 16px rgba(107,30,53,.08); }
-        .event-when { margin-top:.65rem; display:flex; flex-wrap:nowrap; gap:.45rem; }
-        .event-date,.event-time { display:inline-flex; align-items:center; justify-content:center; gap:.35rem; border-radius:999px; padding:.4rem .68rem; font-size:.68rem; font-weight:600; line-height:1.3; white-space:nowrap; }
+        .event-when { margin-top:.65rem; display:flex; flex-wrap:wrap; align-items:flex-start; gap:.45rem; }
+        .event-date,.event-time { display:inline-flex; align-items:center; justify-content:center; gap:.35rem; border-radius:999px; padding:.4rem .68rem; font-size:.68rem; font-weight:600; line-height:1.3; }
         .event-date { border:1px solid #8f3247; background:linear-gradient(135deg,#8f3247,#6b1e35); color:#fffaf6; box-shadow:0 3px 9px rgba(107,30,53,.14); }
-        .event-time { border:1px solid #d9bd7a; background:linear-gradient(135deg,#fff1ce,#fff9e9); color:#634818; }
-        .calendar-date { width:10.75rem; flex:0 0 10.75rem; cursor:pointer; font:inherit; text-align:center; transition:filter .2s ease,transform .2s ease; }
+        .event-time { border:1px solid #d9bd7a; background:linear-gradient(135deg,#fff1ce,#fff9e9); color:#634818; white-space:nowrap; }
+        .calendar-date { width:14rem; max-width:100%; flex:0 1 14rem; min-width:0; cursor:pointer; font:inherit; text-align:center; overflow-wrap:anywhere; transition:filter .2s ease,transform .2s ease; }
         .calendar-date:hover { filter:brightness(1.08); transform:translateY(-1px); }
         .calendar-date:focus-visible { outline:3px solid #d6b66e; outline-offset:3px; }
-        @media(max-width:480px) { body{padding-bottom:env(safe-area-inset-bottom)} .glass-card{border-radius:24px} .field{font-size:16px} .event-date,.event-time{padding:.38rem .55rem;font-size:.62rem}.calendar-date{width:9.65rem;flex-basis:9.65rem} }
+        @media(max-width:480px) { body{padding-bottom:env(safe-area-inset-bottom)} .glass-card{border-radius:24px} .field{font-size:16px} .event-date,.event-time{padding:.38rem .55rem;font-size:.62rem} .calendar-date{width:13rem;flex-basis:13rem} }
         @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important} .petal{display:none} .reveal,.reveal-card,.reveal-message,.name-ampersand,.gold-divider{opacity:1;transform:none;transition:none;} }
     </style>
 </head>
@@ -153,126 +153,31 @@
     <script>
         const cover=document.getElementById('coverScreen');
         const main=document.getElementById('mainContent');
-
         let audioContext=null,musicTimer=null,isPlaying=false,step=0;
         const melody=[261.63,329.63,392,329.63,293.66,349.23,440,349.23];
-
-        function setMusicButton(playing){
-            const button=document.getElementById('audioBtn');
-            const text=document.getElementById('audioText');
-            const icon=document.getElementById('audioIcon');
-            text.textContent=playing?'Mute':'Unmute';
-            icon.textContent=playing?'♪':'♫';
-            button.setAttribute('aria-label',playing?'Mute music':'Unmute music');
-            button.setAttribute('aria-pressed',playing?'true':'false');
-        }
-
+        function setMusicButton(playing){const button=document.getElementById('audioBtn');const text=document.getElementById('audioText');const icon=document.getElementById('audioIcon');text.textContent=playing?'Mute':'Unmute';icon.textContent=playing?'♪':'♫';button.setAttribute('aria-label',playing?'Mute music':'Unmute music');button.setAttribute('aria-pressed',playing?'true':'false');}
         function playNote(frequency,startTime){const oscillator=audioContext.createOscillator(),gain=audioContext.createGain();oscillator.type='sine';oscillator.frequency.setValueAtTime(frequency,startTime);gain.gain.setValueAtTime(.0001,startTime);gain.gain.exponentialRampToValueAtTime(.05,startTime+.12);gain.gain.exponentialRampToValueAtTime(.0001,startTime+2);oscillator.connect(gain);gain.connect(audioContext.destination);oscillator.start(startTime);oscillator.stop(startTime+2.1);oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();};}
         function playMelodyStep(){if(!audioContext||audioContext.state!=='running')return;const now=audioContext.currentTime;playNote(melody[step%melody.length],now);if(step%2===0)playNote(melody[(step+2)%melody.length]/2,now+.08);step++;}
-
-        async function startMusic(){
-            try{
-                const AudioContextClass=window.AudioContext||window.webkitAudioContext;
-                if(!AudioContextClass)throw new Error('Audio unavailable');
-                if(!audioContext)audioContext=new AudioContextClass();
-                await audioContext.resume();
-                isPlaying=true;
-                setMusicButton(true);
-                playMelodyStep();
-                clearInterval(musicTimer);
-                musicTimer=setInterval(playMelodyStep,2400);
-            }catch{
-                isPlaying=false;
-                setMusicButton(false);
-                showToast('Tap the music button to enable sound.');
-            }
-        }
-
-        async function toggleAudio(){
-            if(isPlaying){
-                clearInterval(musicTimer);
-                if(audioContext)await audioContext.suspend();
-                isPlaying=false;
-                setMusicButton(false);
-            }else{
-                await startMusic();
-            }
-        }
-
-        document.getElementById('openInvitation').addEventListener('click',async()=>{
-            window.scrollTo({top:0,left:0,behavior:'auto'});
-            cover.classList.add('pointer-events-none','opacity-0');
-            main.classList.remove('pointer-events-none','opacity-0');
-            main.setAttribute('aria-hidden','false');
-            await startMusic();
-            setTimeout(()=>{cover.hidden=true;window.scrollTo({top:0,left:0,behavior:'auto'});},1100);
-        });
-
+        async function startMusic(){try{const AudioContextClass=window.AudioContext||window.webkitAudioContext;if(!AudioContextClass)throw new Error('Audio unavailable');if(!audioContext)audioContext=new AudioContextClass();await audioContext.resume();isPlaying=true;setMusicButton(true);playMelodyStep();clearInterval(musicTimer);musicTimer=setInterval(playMelodyStep,2400);}catch{isPlaying=false;setMusicButton(false);showToast('Tap the music button to enable sound.');}}
+        async function toggleAudio(){if(isPlaying){clearInterval(musicTimer);if(audioContext)await audioContext.suspend();isPlaying=false;setMusicButton(false);}else{await startMusic();}}
+        document.getElementById('openInvitation').addEventListener('click',async()=>{window.scrollTo({top:0,left:0,behavior:'auto'});cover.classList.add('pointer-events-none','opacity-0');main.classList.remove('pointer-events-none','opacity-0');main.setAttribute('aria-hidden','false');await startMusic();setTimeout(()=>{cover.hidden=true;window.scrollTo({top:0,left:0,behavior:'auto'});},1100);});
         document.getElementById('audioBtn').addEventListener('click',toggleAudio);
-
         const revealEls=[...document.querySelectorAll('.reveal, .gold-divider, .reveal-card')];
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            revealEls.forEach(el => el.classList.add('is-visible'));
-        } else {
-            requestAnimationFrame(() => revealEls.forEach(el => requestAnimationFrame(() => el.classList.add('is-visible'))));
-        }
-
-        const revealObserver=new IntersectionObserver((entries)=>{
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.reveal-card').forEach(card => revealObserver.observe(card));
-
+        if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){revealEls.forEach(el=>el.classList.add('is-visible'));}else{requestAnimationFrame(()=>revealEls.forEach(el=>requestAnimationFrame(()=>el.classList.add('is-visible'))));}
+        const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target);}});},{threshold:0.15});
+        document.querySelectorAll('.reveal-card').forEach(card=>revealObserver.observe(card));
         function escapeCalendarText(value){return value.replace(/\\/g,'\\\\').replace(/,/g,'\\,').replace(/;/g,'\\;').replace(/\r?\n/g,'\\n');}
-        function downloadCalendarEvent(eventType){
-            const event=eventType==='wedding'?{
-                uid:'ahalya-yogisha-wedding-20261206',
-                summary:'Wedding Muhurta — Ahalya & Yogisha',
-                start:'DTSTART;TZID=Asia/Kolkata:20261206T110000',
-                end:'DTEND;TZID=Asia/Kolkata:20261206T120000',
-                location:'Vishweshwara Sabhagruha, Thrasi, Kammara Kodlu, Kundapura',
-                filename:'ahalya-yogisha-wedding.ics'
-            }:{
-                uid:'ahalya-yogisha-reception-20261209',
-                summary:'Wedding Reception — Ahalya & Yogisha',
-                start:'DTSTART;VALUE=DATE:20261209',
-                end:'DTEND;VALUE=DATE:20261210',
-                location:'Sri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud',
-                filename:'ahalya-yogisha-reception.ics'
-            };
-            const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ahalya and Yogisha//Wedding Invitation//EN','CALSCALE:GREGORIAN','BEGIN:VEVENT','UID:'+event.uid,'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'')+'Z',event.start,event.end,'SUMMARY:'+escapeCalendarText(event.summary),'LOCATION:'+escapeCalendarText(event.location),'DESCRIPTION:'+escapeCalendarText('With the blessings of our families. View the invitation: https://yogicurio.github.io/wedding-invitation/'),'END:VEVENT','END:VCALENDAR'];
-            const blob=new Blob([lines.join('\r\n')+'\r\n'],{type:'text/calendar;charset=utf-8'});
-            const url=URL.createObjectURL(blob);
-            const link=document.createElement('a');link.href=url;link.download=event.filename;document.body.appendChild(link);link.click();link.remove();
-            setTimeout(()=>URL.revokeObjectURL(url),1000);
-            showToast('Calendar event downloaded. Open it to add to your calendar.');
-        }
+        function downloadCalendarEvent(eventType){const event=eventType==='wedding'?{uid:'ahalya-yogisha-wedding-20261206',summary:'Wedding Muhurta — Ahalya & Yogisha',start:'DTSTART;TZID=Asia/Kolkata:20261206T110000',end:'DTEND;TZID=Asia/Kolkata:20261206T120000',location:'Vishweshwara Sabhagruha, Thrasi, Kammara Kodlu, Kundapura',filename:'ahalya-yogisha-wedding.ics'}:{uid:'ahalya-yogisha-reception-20261209',summary:'Wedding Reception — Ahalya & Yogisha',start:'DTSTART;VALUE=DATE:20261209',end:'DTEND;VALUE=DATE:20261210',location:'Sri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud',filename:'ahalya-yogisha-reception.ics'};const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ahalya and Yogisha//Wedding Invitation//EN','CALSCALE:GREGORIAN','BEGIN:VEVENT','UID:'+event.uid,'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'')+'Z',event.start,event.end,'SUMMARY:'+escapeCalendarText(event.summary),'LOCATION:'+escapeCalendarText(event.location),'DESCRIPTION:'+escapeCalendarText('With the blessings of our families. View the invitation: https://yogicurio.github.io/wedding-invitation/'),'END:VEVENT','END:VCALENDAR'];const blob=new Blob([lines.join('\r\n')+'\r\n'],{type:'text/calendar;charset=utf-8'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download=event.filename;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('Calendar event downloaded. Open it to add to your calendar.');}
         document.querySelectorAll('[data-calendar-event]').forEach(button=>button.addEventListener('click',()=>downloadCalendarEvent(button.dataset.calendarEvent)));
-
         const weddingTime=new Date('2026-12-06T11:00:00+05:30').getTime();
-        function updateCountdown(){const diff=Math.max(0,weddingTime-Date.now());document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
+        function updateCountdown(){const diff=Math.max(0,weddingTime-Date.now());document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor(diff%60000/1000).padStart(2,'0'));}
         updateCountdown();setInterval(updateCountdown,1000);
-
         function invitationText(){return 'With the blessings of our families, we joyfully invite you to celebrate the wedding of Ahalya & Yogisha.\n\nView the invitation and kindly RSVP:\nhttps://yogicurio.github.io/wedding-invitation/';}
         document.getElementById('shareButton').addEventListener('click',()=>window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(invitationText()),'_blank','noopener,noreferrer'));
         document.getElementById('copyButton').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(invitationText());showToast('Invitation copied to clipboard.')}catch{showToast('Clipboard access is unavailable in this browser.')}});
-
-        const form=document.getElementById('rsvpForm');
-        const attendance=document.getElementById('attendance');
-        const eventField=document.getElementById('event');
-        const guestsField=document.getElementById('guests');
-        const eventGroup=document.getElementById('eventGroup');
-        const guestGroup=document.getElementById('guestGroup');
-        const rsvpMessage=document.getElementById('rsvpMessage');
-        const rsvpMessageText=document.getElementById('rsvpMessageText');
-        const rsvpSubmit=document.getElementById('rsvpSubmit');
+        const form=document.getElementById('rsvpForm');const attendance=document.getElementById('attendance');const eventField=document.getElementById('event');const guestsField=document.getElementById('guests');const eventGroup=document.getElementById('eventGroup');const guestGroup=document.getElementById('guestGroup');const rsvpMessage=document.getElementById('rsvpMessage');const rsvpMessageText=document.getElementById('rsvpMessageText');const rsvpSubmit=document.getElementById('rsvpSubmit');
         attendance.addEventListener('change',()=>{const isAttending=attendance.value==='Attending';eventField.disabled=!isAttending;guestsField.disabled=!isAttending;eventField.required=isAttending;guestsField.required=isAttending;if(!isAttending){eventField.value='';guestsField.value='';}eventGroup.classList.toggle('opacity-50',!isAttending);guestGroup.classList.toggle('opacity-50',!isAttending);});
-        form.addEventListener('submit',async event=>{event.preventPrevent();rsvpSubmit.disabled=true;rsvpSubmit.textContent='Sending your RSVP…';rsvpMessage.classList.add('hidden');rsvpMessage.classList.remove('is-visible');try{const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(!response.ok)throw new Error('Form submission failed');rsvpMessageText.textContent=attendance.value==='Not attending'?'Thank you for letting us know. We will miss you, and we send our warmest wishes.':'Thank you for letting us know. We can’t wait to celebrate with you!';form.classList.add('hidden');rsvpMessage.classList.remove('hidden');requestAnimationFrame(()=>rsvpMessage.classList.add('is-visible'));rsvpMessage.scrollIntoView({behavior:'smooth',block:'center'});}catch(error){rsvpMessageText.textContent='We could not send your RSVP just now. Please check your connection and try again.';rsvpMessage.classList.remove('hidden');requestAnimationFrame(()=>rsvpMessage.classList.add('is-visible'));rsvpSubmit.disabled=false;rsvpSubmit.textContent='Send RSVP';}});
-
+        form.addEventListener('submit',async event=>{event.preventDefault();rsvpSubmit.disabled=true;rsvpSubmit.textContent='Sending your RSVP…';rsvpMessage.classList.add('hidden');rsvpMessage.classList.remove('is-visible');try{const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(!response.ok)throw new Error('Form submission failed');rsvpMessageText.textContent=attendance.value==='Not attending'?'Thank you for letting us know. We will miss you, and we send our warmest wishes.':'Thank you for letting us know. We can’t wait to celebrate with you!';form.classList.add('hidden');rsvpMessage.classList.remove('hidden');requestAnimationFrame(()=>rsvpMessage.classList.add('is-visible'));rsvpMessage.scrollIntoView({behavior:'smooth',block:'center'});}catch(error){rsvpMessageText.textContent='We could not send your RSVP just now. Please check your connection and try again.';rsvpMessage.classList.remove('hidden');requestAnimationFrame(()=>rsvpMessage.classList.add('is-visible'));rsvpSubmit.disabled=false;rsvpSubmit.textContent='Send RSVP';}});
         let toastTimer;function showToast(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.remove('opacity-0');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.add('opacity-0'),3000);}
     </script>
 </body>
