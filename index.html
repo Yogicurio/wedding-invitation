@@ -1,213 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#fdf2f4">
-    <meta name="description" content="Celebrate the wedding of Ahalya and Yogisha. Find wedding and reception details and send your wishes.">
-    <title>Ahalya &amp; Yogisha Wedding Invitation</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdf2f4; overflow-x: hidden; }
-        .font-script { font-family: 'Great Vibes', cursive; }
-        .font-serif { font-family: 'Playfair Display', serif; }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-        }
-        @keyframes float {
-            0% { transform: translateY(0vh) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.8; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
-        .petal {
-            position: fixed;
-            top: -10vh;
-            background: radial-gradient(circle, #f472b6 0%, #db2777 100%);
-            border-radius: 150% 0 150% 0;
-            animation: float linear infinite;
-            z-index: 10;
-            pointer-events: none;
-        }
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-            .petal { display: none; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#4b101b">
+<meta name="description" content="Ahalya and Yogisha joyfully invite you to celebrate their wedding on December 6, 2026, and reception on December 9, 2026.">
+<meta property="og:title" content="Ahalya & Yogisha | Wedding Invitation">
+<meta property="og:description" content="Two hearts, one beautiful journey. Join Ahalya and Yogisha for their wedding and reception celebrations.">
+<meta property="og:type" content="website">
+<title>Ahalya &amp; Yogisha | Wedding Invitation</title>
+<style>
+:root{--wine:#4b101b;--wine2:#6d1b2a;--gold:#d8b56d;--cream:#fff8ec;--ink:#3d2524;--muted:#745f52;--paper:#fffdf7;--line:#dfc48e}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+a,button,input{font:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #b78637;outline-offset:3px}
+.skip-link{position:absolute;left:12px;top:-60px;z-index:20;background:#fff;padding:10px 14px;color:var(--wine)}
+.skip-link:focus{top:12px}
+.hero{min-height:88vh;display:grid;place-items:center;text-align:center;padding:56px 20px;color:#fff8ec;background:radial-gradient(ellipse at center,rgba(111,35,48,.82),rgba(48,7,18,.97)),linear-gradient(135deg,#4b101b,#21070d);position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"✦";position:absolute;color:rgba(216,181,109,.3);font-size:clamp(150px,30vw,330px);line-height:1;pointer-events:none}
+.hero:before{top:-60px;left:-40px}.hero:after{bottom:-100px;right:-25px}
+.hero-inner{position:relative;z-index:1;max-width:760px;border:1px solid rgba(216,181,109,.7);padding:clamp(28px,6vw,64px);outline:1px solid rgba(216,181,109,.25);outline-offset:8px}
+.eyebrow{letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font:12px Arial,sans-serif}
+h1{font-size:clamp(48px,10vw,92px);font-weight:normal;line-height:1.02;margin:20px 0 8px;color:#fff4df}
+.amp{color:var(--gold);font-style:italic}.hero p{font-size:clamp(17px,3vw,22px);line-height:1.6}
+.hero-date{margin-top:28px;color:var(--gold);font-size:19px;letter-spacing:.12em}
+nav{position:sticky;top:0;z-index:5;background:rgba(59,12,22,.96);display:flex;justify-content:center;gap:clamp(12px,4vw,38px);padding:15px 10px;flex-wrap:wrap}
+nav a{color:#fff4df;text-decoration:none;font:12px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+nav a:hover{color:var(--gold)}
+section{padding:76px 20px;max-width:1000px;margin:auto}
+.section-kicker{text-align:center;color:#9a6d32;letter-spacing:.22em;text-transform:uppercase;font:11px Arial,sans-serif}
+h2{text-align:center;color:var(--wine);font-size:clamp(30px,6vw,44px);font-weight:normal;margin:12px 0 28px}
+.intro{text-align:center;max-width:700px;margin:0 auto;font-size:18px;line-height:1.8}
+.ornament{text-align:center;color:var(--gold);font-size:24px;margin:18px}
+.countdown{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px}
+.count{background:var(--paper);border:1px solid #e7d4ad;min-width:82px;padding:15px 12px;text-align:center}
+.count strong{display:block;color:var(--wine);font-size:30px;font-weight:normal}.count span{font:10px Arial,sans-serif;letter-spacing:.13em;color:#8a6a43}
+.events{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:22px;margin-top:28px}
+.event{background:var(--paper);border:1px solid var(--line);padding:30px 25px;text-align:center;box-shadow:0 12px 30px #4b101b0d}
+.event .symbol{font-size:32px;color:#a67c39}.event h3{font-size:27px;font-weight:normal;color:var(--wine);margin:12px 0}
+.event .date{color:#946a30;letter-spacing:.08em;font:12px/1.6 Arial,sans-serif;text-transform:uppercase}
+.event p{line-height:1.7;margin:10px 0;overflow-wrap:anywhere}
+.maplink,.button{display:inline-block;margin:10px 4px 0;padding:12px 18px;background:var(--wine);color:#fff8ec;text-decoration:none;border:1px solid var(--gold);font:12px Arial,sans-serif;letter-spacing:.06em;cursor:pointer}
+.maplink:hover,.button:hover{background:var(--wine2)}
+.gallery-note{text-align:center;line-height:1.7;color:var(--muted)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:25px}
+.photo{min-height:240px;background:linear-gradient(145deg,#ead9b7,#f9f1e3);border:1px dashed #b89453;display:grid;place-items:center;overflow:hidden;color:#74542e;text-align:center;padding:12px}
+.photo img{width:100%;height:100%;min-height:240px;object-fit:cover}
+.controls{text-align:center;margin-top:18px;line-height:2}
+input[type=file]{max-width:100%;font:13px Arial,sans-serif}
+.music{background:#f3ead8;border-top:1px solid #e5d2ad;border-bottom:1px solid #e5d2ad;text-align:center;padding:42px 18px}
+.music p{line-height:1.6;color:var(--muted)}
+.action-row{text-align:center}
+.notice{max-width:720px;margin:18px auto 0;font:12px/1.6 Arial,sans-serif;color:var(--muted)}
+footer{background:var(--wine);color:#fff4df;text-align:center;padding:48px 20px}
+footer h2{color:var(--gold);margin-bottom:10px}
+.small{font:11px Arial,sans-serif;color:#c9b79a;line-height:1.6}
+@media(max-width:520px){nav{gap:12px}nav a{font-size:10px}.hero-inner{padding:34px 18px}section{padding:58px 18px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
 </head>
-<body class="min-h-screen text-stone-800 py-8 px-4 flex justify-center items-center relative">
-    <script>
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            for (let i = 0; i < 15; i++) {
-                const petal = document.createElement('div');
-                petal.className = 'petal';
-                petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.width = (Math.random() * 15 + 10) + 'px';
-                petal.style.height = petal.style.width;
-                petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
-                petal.style.animationDelay = (Math.random() * 5) + 's';
-                document.body.appendChild(petal);
-            }
-        }
-    </script>
+<body>
+<a class="skip-link" href="#story">Skip to invitation details</a>
+<header class="hero" id="home">
+ <div class="hero-inner">
+  <div class="eyebrow">With the blessings of our families</div>
+  <h1>Ahalya <span class="amp">&amp;</span><br>Yogisha</h1>
+  <p>Two hearts, one beautiful journey.<br>We joyfully invite you to celebrate our wedding.</p>
+  <div class="hero-date">06 DECEMBER 2026</div>
+  <div class="ornament" aria-hidden="true">❦ ✧ ❦</div>
+  <a class="button" href="#wedding">View Invitation</a>
+ </div>
+</header>
+<nav aria-label="Main navigation">
+ <a href="#home">Home</a><a href="#story">Our Celebration</a><a href="#wedding">Wedding</a><a href="#reception">Reception</a><a href="#photos">Photos</a>
+</nav>
+<main>
+<section id="story">
+ <div class="section-kicker">A new beginning</div>
+ <h2>Save Our Dates</h2>
+ <p class="intro">With the love and blessings of our family and friends, we are beginning a new chapter together. Your presence will make our special days even more memorable.</p>
+ <div class="ornament" aria-hidden="true">❧</div>
+ <div class="countdown" id="countdown" aria-label="Countdown to the wedding">
+  <div class="count"><strong id="days">--</strong><span>DAYS</span></div>
+  <div class="count"><strong id="hours">--</strong><span>HOURS</span></div>
+  <div class="count"><strong id="minutes">--</strong><span>MINUTES</span></div>
+  <div class="count"><strong id="seconds">--</strong><span>SECONDS</span></div>
+ </div>
+</section>
+<section id="wedding">
+ <div class="section-kicker">The wedding ceremony</div>
+ <h2>Wedding Muhurta</h2>
+ <div class="events">
+  <article class="event">
+   <div class="symbol" aria-hidden="true">❀</div><div class="date">Sunday · 06 December 2026</div>
+   <h3>Wedding</h3>
+   <p><strong>Muhurta</strong><br>11:00 AM – 12:00 PM</p>
+   <p><strong>Venue</strong><br>Vishweshwara Sabhagraha<br>Thrasi, Kundapura</p>
+   <a class="maplink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&amp;query=Vishweshwara+Sabhagraha%2C+Thrasi%2C+Kundapura%2C+Karnataka">Open Wedding Location ↗</a>
+  </article>
+ </div>
+</section>
+<section id="reception">
+ <div class="section-kicker">Let us celebrate together</div>
+ <h2>Wedding Reception</h2>
+ <div class="events">
+  <article class="event">
+   <div class="symbol" aria-hidden="true">❀</div><div class="date">Wednesday · 09 December 2026</div>
+   <h3>Reception</h3>
+   <p><strong>Time</strong><br>12:00 PM onwards</p>
+   <p><strong>Venue</strong><br>Sri Kamalamma Gurumallappa Kalyana Mantapa<br>Hullahalli Road, Nanjangud</p>
+   <a class="maplink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&amp;query=Sri+Kamalamma+Gurumallappa+Kalyana+Mantapa%2C+Hullahalli+Road%2C+Nanjangud%2C+Karnataka">Open Reception Location ↗</a>
+  </article>
+ </div>
+</section>
+<section id="photos">
+ <div class="section-kicker">Our memories</div><h2>A Glimpse of Us</h2>
+ <p class="gallery-note">Choose up to three couple photographs to preview them in this browser.</p>
+ <div class="gallery">
+  <div class="photo" id="photo1">Your photo 1</div><div class="photo" id="photo2">Your photo 2</div><div class="photo" id="photo3">Your photo 3</div>
+ </div>
+ <div class="controls"><label for="photosInput">Choose couple photos: </label><input id="photosInput" type="file" accept="image/*" multiple></div>
+ <p class="notice">Photo previews are temporary and visible only in your browser. To show photos to all guests, add the image files to the website and update the page to reference them.</p>
+</section>
+<section class="music" id="music">
+ <div class="section-kicker">A musical welcome</div>
+ <h2>Let the Celebration Begin</h2>
+ <p>Choose a Carnatic song or your own recording. Browsers require a tap before music can start.</p>
+ <label for="musicInput">Choose an audio file: </label><input id="musicInput" type="file" accept="audio/*" aria-label="Choose a music file">
+ <div class="action-row"><button class="button" id="playMusic" type="button">Play Music</button><button class="button" id="stopMusic" type="button">Pause Music</button></div>
+ <p class="notice">Music files are selected locally and are not uploaded or saved on the website.</p>
+ <audio id="audio" loop></audio>
+</section>
+<section aria-label="Share the invitation">
+ <div class="section-kicker">Celebrate with us</div><h2>Share Our Invitation</h2>
+ <p class="intro">We look forward to celebrating with you!</p>
+ <div class="action-row">
+  <button class="button" id="shareButton" type="button">Share on WhatsApp</button>
+  <button class="button" id="copyButton" type="button">Copy Invitation Text</button>
+ </div>
+</section>
+</main>
+<footer>
+ <div class="ornament" aria-hidden="true">✧ ❦ ✧</div>
+ <h2>Ahalya &amp; Yogisha</h2>
+ <p>We look forward to celebrating with you!</p>
+ <p class="small">With love and warm regards,<br>Our Families</p>
+</footer>
+<script>
+const wedding = new Date('2026-12-06T11:00:00+05:30').getTime();
+function tick(){
+ const diff=Math.max(0,wedding-Date.now());
+ document.getElementById('days').textContent=Math.floor(diff/86400000);
+ document.getElementById('hours').textContent=Math.floor(diff%86400000/3600000);
+ document.getElementById('minutes').textContent=Math.floor(diff%3600000/60000);
+ document.getElementById('seconds').textContent=Math.floor(diff%60000/1000);
+}
+tick();setInterval(tick,1000);
 
-    <main class="max-w-md w-full glass-card rounded-3xl shadow-2xl overflow-hidden p-6 sm:p-8 relative z-20">
-        <div class="flex justify-between items-center mb-4">
-            <span class="text-xs uppercase tracking-[0.2em] text-amber-700 font-semibold">Wedding Celebration</span>
-            <button type="button" onclick="toggleMusic()" id="musicBtn" class="bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs px-3 py-1.5 rounded-full font-medium transition flex items-center gap-1 shadow-sm">
-                🎵 Play Music
-            </button>
-        </div>
+const photoUrls=[];
+document.getElementById('photosInput').addEventListener('change',e=>{
+ photoUrls.forEach(URL.revokeObjectURL);photoUrls.length=0;
+ const files=[...e.target.files].slice(0,3);
+ for(let i=0;i<3;i++){
+  const box=document.getElementById('photo'+(i+1));
+  box.replaceChildren();
+  if(!files[i]){box.textContent='Your photo '+(i+1);continue;}
+  const url=URL.createObjectURL(files[i]);photoUrls.push(url);
+  const img=document.createElement('img');img.src=url;img.alt='Couple photograph '+(i+1);box.appendChild(img);
+ }
+});
 
-        <header class="text-center mb-6">
-            <h1 class="font-script text-6xl text-rose-800 mt-2">Ahalya &amp; Yogisha</h1>
-            <p class="font-serif italic text-stone-600 text-sm mt-1">A harmonious fusion of hearts</p>
-        </header>
+const audio=document.getElementById('audio');
+let audioUrl='';
+document.getElementById('musicInput').addEventListener('change',e=>{
+ if(audioUrl)URL.revokeObjectURL(audioUrl);
+ if(e.target.files[0]){audioUrl=URL.createObjectURL(e.target.files[0]);audio.src=audioUrl;audio.load();}
+});
+document.getElementById('playMusic').addEventListener('click',()=>{
+ if(!audio.src){alert('Please choose an audio file first.');return;}
+ audio.play().catch(()=>alert('Please tap Play Music again to start audio.'));
+});
+document.getElementById('stopMusic').addEventListener('click',()=>audio.pause());
 
-        <div class="relative rounded-2xl overflow-hidden shadow-md mb-6 border-2 border-amber-200">
-            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Ahalya and Yogisha" class="w-full h-60 object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-4">
-                <span class="text-white text-xs tracking-wider uppercase font-medium">Our eternity begins here</span>
-            </div>
-        </div>
-
-        <section aria-label="Countdown to the wedding" class="grid grid-cols-4 gap-2 text-center mb-6 bg-white/70 p-3 rounded-2xl border border-rose-100 shadow-sm">
-            <div><span id="days" class="font-serif text-lg font-bold text-rose-900">00</span><p class="text-[10px] uppercase text-stone-500 tracking-wider">Days</p></div>
-            <div><span id="hours" class="font-serif text-lg font-bold text-rose-900">00</span><p class="text-[10px] uppercase text-stone-500 tracking-wider">Hours</p></div>
-            <div><span id="mins" class="font-serif text-lg font-bold text-rose-900">00</span><p class="text-[10px] uppercase text-stone-500 tracking-wider">Mins</p></div>
-            <div><span id="secs" class="font-serif text-lg font-bold text-rose-900">00</span><p class="text-[10px] uppercase text-stone-500 tracking-wider">Secs</p></div>
-        </section>
-
-        <section aria-label="Wedding events" class="space-y-4 mb-6">
-            <article class="bg-white/85 border border-rose-100 rounded-xl p-4 shadow-sm hover:shadow-md transition">
-                <div class="flex justify-between items-start gap-3">
-                    <div>
-                        <h2 class="font-serif font-bold text-rose-900 text-base">Wedding</h2>
-                        <p class="text-xs text-stone-500 mt-0.5">Sunday, 06-12-2026 | 11:00 AM to 12:00 PM</p>
-                        <p class="text-xs font-medium text-stone-700 mt-2">Vishweshwara Sabhagruha, Thrasi, Kammara Kodlu, Kundapura</p>
-                    </div>
-                    <a href="https://maps.google.com/?q=Vishweshwara+Sabhagruha+Thrasi+Kundapura" target="_blank" rel="noopener noreferrer" class="shrink-0 bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs px-3 py-1.5 rounded-full font-medium transition shadow-sm">Map</a>
-                </div>
-            </article>
-
-            <article class="bg-white/85 border border-rose-100 rounded-xl p-4 shadow-sm hover:shadow-md transition">
-                <div class="flex justify-between items-start gap-3">
-                    <div>
-                        <h2 class="font-serif font-bold text-rose-900 text-base">Reception</h2>
-                        <p class="text-xs text-stone-500 mt-0.5">Wednesday, 09-12-2026 | 12:00 PM Onwards</p>
-                        <p class="text-xs font-medium text-stone-700 mt-2">Sri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud</p>
-                    </div>
-                    <a href="https://maps.google.com/?q=Sri+Kamalamma+Gurumallappa+Kalyana+Mantapa+Nanjangud" target="_blank" rel="noopener noreferrer" class="shrink-0 bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs px-3 py-1.5 rounded-full font-medium transition shadow-sm">Map</a>
-                </div>
-            </article>
-        </section>
-
-        <section aria-labelledby="rsvp-heading" class="bg-white/80 border border-rose-100 rounded-xl p-4 mb-6 shadow-sm">
-            <h2 id="rsvp-heading" class="font-serif font-bold text-rose-900 text-sm mb-2 text-center">Send Your Wishes &amp; RSVP</h2>
-            <div class="space-y-2">
-                <label class="sr-only" for="guestName">Your name and family</label>
-                <input type="text" id="guestName" placeholder="Your Name &amp; Family" class="w-full text-xs px-3 py-2 rounded-lg border border-stone-200 focus:outline-none focus:border-rose-400 bg-white/90">
-                <label class="sr-only" for="guestWish">Write your blessing</label>
-                <textarea id="guestWish" placeholder="Write your blessing..." rows="2" class="w-full text-xs px-3 py-2 rounded-lg border border-stone-200 focus:outline-none focus:border-rose-400 bg-white/90"></textarea>
-                <button type="button" onclick="submitWish()" class="w-full bg-rose-700 hover:bg-rose-800 text-white text-xs py-2 rounded-lg font-medium transition shadow">Send Blessing</button>
-            </div>
-            <div id="wishesContainer" aria-live="polite" class="mt-3 max-h-24 overflow-y-auto space-y-1 text-xs text-stone-600">
-                <p class="italic text-stone-400 text-center">Be the first to leave a blessing!</p>
-            </div>
-        </section>
-
-        <div class="space-y-3">
-            <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                Share on WhatsApp
-            </button>
-            <button type="button" onclick="copyInviteText()" class="w-full bg-amber-100 hover:bg-amber-200 text-amber-900 font-medium py-2.5 px-4 rounded-xl transition text-sm shadow-sm">Copy Invite Message Text</button>
-        </div>
-
-        <footer class="text-center mt-6">
-            <span class="font-script text-2xl text-rose-700">#AhalyaWedsYogisha</span>
-        </footer>
-    </main>
-
-    <audio id="bgMusic" loop>
-        <source src="https://actions.google.com/sounds/v1/ambiences/romantic_music_box.ogg" type="audio/ogg">
-    </audio>
-
-    <script>
-        // Wedding is at 11:00 AM local time on December 6, 2026.
-        const weddingDate = new Date(2026, 11, 6, 11, 0, 0).getTime();
-        function updateCountdown() {
-            const diff = weddingDate - Date.now();
-            if (diff <= 0) {
-                ['days', 'hours', 'mins', 'secs'].forEach(id => document.getElementById(id).innerText = '00');
-                return;
-            }
-            document.getElementById('days').innerText = Math.floor(diff / 86400000);
-            document.getElementById('hours').innerText = Math.floor((diff % 86400000) / 3600000);
-            document.getElementById('mins').innerText = Math.floor((diff % 3600000) / 60000);
-            document.getElementById('secs').innerText = Math.floor((diff % 60000) / 1000);
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        let isPlaying = false;
-        async function toggleMusic() {
-            const audio = document.getElementById('bgMusic');
-            const btn = document.getElementById('musicBtn');
-            if (isPlaying) {
-                audio.pause();
-                btn.innerText = '🎵 Play Music';
-                isPlaying = false;
-                return;
-            }
-            try {
-                await audio.play();
-                btn.innerText = '🔇 Pause Music';
-                isPlaying = true;
-            } catch (error) {
-                console.warn('Audio could not be played.', error);
-            }
-        }
-
-        function submitWish() {
-            const name = document.getElementById('guestName').value.trim();
-            const wish = document.getElementById('guestWish').value.trim();
-            if (!name || !wish) {
-                alert('Please enter both your name and blessing.');
-                return;
-            }
-            const container = document.getElementById('wishesContainer');
-            if (container.querySelector('.italic')) container.replaceChildren();
-            const div = document.createElement('div');
-            div.className = 'bg-white/90 p-2 rounded border border-rose-50';
-            const strong = document.createElement('strong');
-            strong.textContent = name + ': ';
-            div.append(strong, document.createTextNode(wish));
-            container.prepend(div);
-            document.getElementById('guestName').value = '';
-            document.getElementById('guestWish').value = '';
-        }
-
-        function getInviteText(includePersonalNote = false) {
-            const personalNote = includePersonalNote ? '\n\nPlease treat this as our personal invite and bless us on our special day!' : '\n\nYour presence and blessing will be cherished forever!';
-            return 'A moment fills a lifetime, our eternity begins here! 💍✨\n\nWe cordially invite you to the wedding of Ahalya & Yogisha:\n\n📅 Wedding: Sunday, 06-12-2026 (11:00 AM - 12:00 PM) at Vishweshwara Sabhagruha, Thrasi, Kammara Kodlu, Kundapura.\n📅 Reception: Wednesday, 09-12-2026 (12:00 PM onwards) at Sri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud.' + personalNote;
-        }
-
-        function shareOnWhatsApp() {
-            const text = getInviteText();
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
-        }
-
-        async function copyInviteText() {
-            try {
-                await navigator.clipboard.writeText(getInviteText(true));
-                alert('Invitation message copied to clipboard! You can now paste it directly into any WhatsApp chat.');
-            } catch (error) {
-                alert('Could not access the clipboard. Please copy the invitation text manually.');
-            }
-        }
-    </script>
+const inviteText='With the blessings of our families, we joyfully invite you to celebrate the wedding of Ahalya & Yogisha.\n\nWedding: Sunday, 06 December 2026, 11:00 AM–12:00 PM\nVishweshwara Sabhagraha, Thrasi, Kundapura\n\nReception: Wednesday, 09 December 2026, 12:00 PM onwards\nSri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud\n\nYour presence will make our special days even more memorable!';
+document.getElementById('shareButton').addEventListener('click',()=>{
+ window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(inviteText),'_blank','noopener,noreferrer');
+});
+document.getElementById('copyButton').addEventListener('click',async()=>{
+ try{await navigator.clipboard.writeText(inviteText);alert('Invitation text copied to clipboard.');}
+ catch(error){alert('Could not access the clipboard. Please use Share on WhatsApp or copy the invitation text manually.');}
+});
+</script>
 </body>
 </html>
