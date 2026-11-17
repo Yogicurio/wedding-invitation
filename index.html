@@ -18,7 +18,15 @@
         .font-script { font-family:'Great Vibes',cursive; }
         .font-serif { font-family:'Playfair Display',serif; }
         .couple-names { font-family:'Bodoni Moda','Playfair Display',serif; font-weight:600; letter-spacing:-.045em; line-height:1.08; }
-        .name-ampersand { display:inline-block; padding:0 .12em; color:#b88a43; font-family:'Great Vibes',cursive; font-weight:400; }
+        .name-ampersand { display:inline-block; padding:0 .12em; color:#b88a43; font-family:'Great Vibes',cursive; font-weight:400; opacity:0; transform:translateY(12px); transition:opacity .8s ease .7s, transform .8s ease .7s; }
+        .reveal, .reveal-card, .reveal-message { opacity:0; transform:translateY(18px); transition:opacity .9s ease, transform .9s ease; }
+        .reveal-delay-1 { transition-delay:.18s; }
+        .reveal-delay-2 { transition-delay:.35s; }
+        .reveal-delay-3 { transition-delay:.52s; }
+        .reveal.is-visible, .reveal-card.is-visible, .reveal-message.is-visible { opacity:1; transform:translateY(0); }
+        .cover-shell .reveal.is-visible .name-ampersand, .couple-names.is-visible .name-ampersand, .reveal-card.is-visible .name-ampersand { opacity:1; transform:translateY(0); }
+        .gold-divider { width:72px; height:2px; background:linear-gradient(90deg,transparent,#d5b06a,transparent); margin:1rem auto 0; opacity:0; transform:scaleX(.5); transition:opacity .8s ease .7s, transform .8s ease .7s; }
+        .gold-divider.is-visible { opacity:1; transform:scaleX(1); }
         .glass-card { background:rgba(255,255,255,.82); border:1px solid rgba(212,175,55,.42); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 18px 45px rgba(110,24,41,.08); }
         .petal { position:fixed; top:-10vh; z-index:3; pointer-events:none; border-radius:150% 0 150% 0; background:radial-gradient(circle at 30% 30%,#f4d2d8,#e7a8b6 35%,#d7839f 100%); opacity:.7; animation:drift linear infinite; }
         @keyframes drift { 0%{transform:translateY(-15vh) translateX(0) rotate(0);opacity:0} 15%{opacity:.8} 100%{transform:translateY(110vh) translateX(24px) rotate(360deg);opacity:0} }
@@ -39,7 +47,7 @@
         .event-date { border:1px solid #8f3247; background:linear-gradient(135deg,#8f3247,#6b1e35); color:#fffaf6; box-shadow:0 3px 9px rgba(107,30,53,.14); }
         .event-time { border:1px solid #d9bd7a; background:linear-gradient(135deg,#fff1ce,#fff9e9); color:#634818; }
         @media(max-width:480px) { body{padding-bottom:env(safe-area-inset-bottom)} .glass-card{border-radius:24px} .field{font-size:16px} }
-        @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important} .petal{display:none} }
+        @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important} .petal{display:none} .reveal,.reveal-card,.reveal-message,.name-ampersand,.gold-divider{opacity:1;transform:none;transition:none;} }
     </style>
 </head>
 <body class="min-h-screen text-stone-800">
@@ -63,11 +71,11 @@
         <div class="cover-card relative w-full max-w-md overflow-hidden rounded-[28px] p-8 text-center sm:p-10">
             <div class="ornament absolute -left-3 -top-7 text-7xl" aria-hidden="true">✦</div>
             <div class="ornament absolute -right-4 -bottom-8 text-7xl" aria-hidden="true">❦</div>
-            <p class="mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-amber-700">With the blessings of our families</p>
-            <h1 class="couple-names text-5xl text-rose-900 sm:text-6xl">Ahalya <span class="name-ampersand">&amp;</span> Yogisha</h1>
-            <p class="font-serif mt-3 text-sm italic text-stone-600">A harmonious fusion of hearts</p>
-            <div class="mx-auto my-6 h-px w-16 bg-amber-400/80"></div>
-            <p class="cover-date text-[11px] font-semibold uppercase tracking-[0.16em]"><span aria-hidden="true">✧</span> Sunday · 06 December 2026</p>
+            <p class="reveal reveal-delay-1 mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-amber-700">With the blessings of our families</p>
+            <h1 class="couple-names reveal reveal-delay-2 text-5xl text-rose-900 sm:text-6xl">Ahalya <span class="name-ampersand">&amp;</span> Yogisha</h1>
+            <p class="reveal reveal-delay-3 font-serif mt-3 text-sm italic text-stone-600">A harmonious fusion of hearts</p>
+            <div class="gold-divider reveal-delay-3"></div>
+            <p class="cover-date reveal reveal-delay-3 mt-6 text-[11px] font-semibold uppercase tracking-[0.16em]"><span aria-hidden="true">✧</span> Sunday · 06 December 2026</p>
             <button id="openInvitation" type="button" class="primary-btn mt-7 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl px-5 py-4 text-[11px] font-bold uppercase tracking-[0.14em]"><span aria-hidden="true">✉</span>Open Invitation</button>
             <p class="mt-4 text-[10px] leading-relaxed text-stone-500">A wedding celebration filled with love, blessings, and joy.</p>
         </div>
@@ -76,9 +84,10 @@
     <main id="mainContent" aria-hidden="true" class="pointer-events-none relative z-20 flex min-h-screen items-center justify-center px-3 py-6 opacity-0 transition-opacity duration-1000 sm:px-4 sm:py-12">
         <article class="glass-card relative w-full max-w-md overflow-hidden rounded-[24px] p-4 sm:rounded-[28px] sm:p-8">
             <header class="mb-6 text-center">
-                <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-700">Wedding Celebration</p>
-                <h1 class="couple-names mt-2 text-4xl text-rose-900 sm:text-5xl">Ahalya <span class="name-ampersand">&amp;</span> Yogisha</h1>
-                <p class="font-serif mt-2 text-sm italic text-stone-600">Together forever</p>
+                <p class="reveal reveal-delay-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-700">Wedding Celebration</p>
+                <h1 class="couple-names reveal reveal-delay-2 mt-2 text-4xl text-rose-900 sm:text-5xl">Ahalya <span class="name-ampersand">&amp;</span> Yogisha</h1>
+                <p class="reveal reveal-delay-3 font-serif mt-2 text-sm italic text-stone-600">Together forever</p>
+                <div class="gold-divider reveal-delay-3"></div>
             </header>
 
             <div class="relative mb-6 overflow-hidden rounded-2xl border-2 border-amber-200 shadow-md">
@@ -96,7 +105,7 @@
             </section>
 
             <section aria-label="Wedding events" class="mb-6 space-y-4">
-                <article class="rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm">
+                <article class="reveal-card rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm">
                     <div class="flex items-start justify-between gap-3">
                         <div class="min-w-0"><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Wedding Ceremony</span><h2 class="font-serif mt-1 text-base font-bold text-rose-900">Wedding Muhurta</h2>
                             <div class="event-when"><span class="event-date"><span aria-hidden="true">▣</span>Sunday · 06 December 2026</span><span class="event-time"><span aria-hidden="true">◷</span>11:00 AM – 12:00 PM</span></div>
@@ -105,7 +114,7 @@
                         <a href="https://www.google.com/maps/search/?api=1&amp;query=Vishweshwara+Sabhagraha%2C+Thrasi%2C+Kammara+Kodlu%2C+Kundapura" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100 px-3 py-2 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a>
                     </div>
                 </article>
-                <article class="rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm">
+                <article class="reveal-card rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm">
                     <div class="flex items-start justify-between gap-3">
                         <div class="min-w-0"><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Celebrate Together</span><h2 class="font-serif mt-1 text-base font-bold text-rose-900">Wedding Reception</h2>
                             <div class="event-when"><span class="event-date"><span aria-hidden="true">▣</span>Wednesday · 09 December 2026</span><span class="event-time"><span aria-hidden="true">◷</span>12:00 PM onwards</span></div>
@@ -128,7 +137,7 @@
                     <div><label for="blessing" class="mb-1.5 block text-xs font-semibold text-stone-700">Blessing or message <span class="font-normal text-stone-500">(optional)</span></label><textarea id="blessing" name="blessing" rows="3" maxlength="500" placeholder="Share a blessing for the couple..." class="field"></textarea></div>
                     <button id="rsvpSubmit" type="submit" class="primary-btn min-h-12 w-full rounded-xl px-4 py-3 text-sm font-semibold tracking-wide text-white">Send RSVP</button>
                 </form>
-                <div id="rsvpMessage" role="status" aria-live="polite" class="success-card mt-4 hidden rounded-2xl p-5 text-center"><span class="mx-auto mb-2 flex h-11 w-11 items-center justify-center rounded-full bg-rose-100 text-xl text-rose-800" aria-hidden="true">♥</span><p class="font-serif text-xl text-rose-900">Thank you!</p><p id="rsvpMessageText" class="mt-1 text-sm leading-relaxed text-stone-600"></p></div>
+                <div id="rsvpMessage" role="status" aria-live="polite" class="reveal-message success-card mt-4 hidden rounded-2xl p-5 text-center"><span class="mx-auto mb-2 flex h-11 w-11 items-center justify-center rounded-full bg-rose-100 text-xl text-rose-800" aria-hidden="true">♥</span><p class="font-serif text-xl text-rose-900">Thank you!</p><p id="rsvpMessageText" class="mt-1 text-sm leading-relaxed text-stone-600"></p></div>
             </section>
 
             <div class="space-y-3"><button id="shareButton" type="button" class="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-emerald-700">Share on WhatsApp</button><button id="copyButton" type="button" class="min-h-11 w-full rounded-xl bg-amber-100 px-4 py-2.5 text-sm font-medium text-amber-900 shadow-sm transition hover:bg-amber-200">Copy Invite Message</button></div>
@@ -142,6 +151,27 @@
         const cover=document.getElementById('coverScreen');
         const main=document.getElementById('mainContent');
         document.getElementById('openInvitation').addEventListener('click',()=>{cover.classList.add('pointer-events-none','opacity-0');main.classList.remove('pointer-events-none','opacity-0');main.setAttribute('aria-hidden','false');setTimeout(()=>cover.hidden=true,1100)});
+
+        const revealEls=[...document.querySelectorAll('.reveal, .gold-divider, .reveal-card')];
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            revealEls.forEach(el => { el.classList.add('is-visible'); if (el.classList.contains('name-ampersand')) el.style.opacity='1'; });
+        } else {
+            requestAnimationFrame(() => {
+                revealEls.forEach(el => {
+                    requestAnimationFrame(() => el.classList.add('is-visible'));
+                });
+            });
+        }
+
+        const revealObserver=new IntersectionObserver((entries)=>{
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal-card').forEach(card => revealObserver.observe(card));
 
         let audioContext=null,musicTimer=null,isPlaying=false,step=0;
         const melody=[261.63,329.63,392,329.63,293.66,349.23,440,349.23];
@@ -168,7 +198,7 @@
         const rsvpMessageText=document.getElementById('rsvpMessageText');
         const rsvpSubmit=document.getElementById('rsvpSubmit');
         attendance.addEventListener('change',()=>{const isAttending=attendance.value==='Attending';eventField.disabled=!isAttending;guestsField.disabled=!isAttending;eventField.required=isAttending;guestsField.required=isAttending;if(!isAttending){eventField.value='';guestsField.value='';}eventGroup.classList.toggle('opacity-50',!isAttending);guestGroup.classList.toggle('opacity-50',!isAttending);});
-        form.addEventListener('submit',async event=>{event.preventDefault();rsvpSubmit.disabled=true;rsvpSubmit.textContent='Sending your RSVP…';rsvpMessage.classList.add('hidden');try{const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(!response.ok)throw new Error('Form submission failed');rsvpMessageText.textContent=attendance.value==='Not attending'?'We appreciate you letting us know. You will be missed, and we send our warmest wishes.':'Your response has been received. We look forward to celebrating with you!';form.classList.add('hidden');rsvpMessage.classList.remove('hidden');rsvpMessage.scrollIntoView({behavior:'smooth',block:'center'});}catch(error){rsvpMessageText.textContent='We could not send your RSVP just now. Please check your connection and try again.';rsvpMessage.classList.remove('hidden');rsvpSubmit.disabled=false;rsvpSubmit.textContent='Send RSVP';}});
+        form.addEventListener('submit',async event=>{event.preventDefault();rsvpSubmit.disabled=true;rsvpSubmit.textContent='Sending your RSVP…';rsvpMessage.classList.add('hidden');rsvpMessage.classList.remove('is-visible');try{const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(!response.ok)throw new Error('Form submission failed');rsvpMessageText.textContent=attendance.value==='Not attending'?'Thank you for letting us know. We will miss you, and we send our warmest wishes.':'Thank you for letting us know. We can’t wait to celebrate with you!';form.classList.add('hidden');rsvpMessage.classList.remove('hidden');requestAnimationFrame(()=>rsvpMessage.classList.add('is-visible'));rsvpMessage.scrollIntoView({behavior:'smooth',block:'center'});}catch(error){rsvpMessageText.textContent='We could not send your RSVP just now. Please check your connection and try again.';rsvpMessage.classList.remove('hidden');requestAnimationFrame(()=>rsvpMessage.classList.add('is-visible'));rsvpSubmit.disabled=false;rsvpSubmit.textContent='Send RSVP';}});
 
         let toastTimer;function showToast(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.remove('opacity-0');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.add('opacity-0'),3000);}
     </script>
