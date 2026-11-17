@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#fdf2f4">
     <meta name="description" content="Celebrate the wedding of Ahalya and Yogisha on December 6, 2026, and their reception on December 9, 2026.">
     <meta property="og:title" content="Ahalya & Yogisha Wedding Invitation">
-    <meta property="og:description" content="With the blessings of our families, join us for our wedding and reception celebrations.">
+    <meta property="og:description" content="With the blessings of our families, join us in celebrating our wedding and reception.">
     <title>Ahalya &amp; Yogisha Wedding Invitation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -25,8 +25,8 @@
         .ornament { color:rgba(148,92,54,.38); }
         .primary-btn { background:linear-gradient(135deg,var(--rose-700),var(--rose-800)); color:white; transition:transform .2s ease,box-shadow .2s ease; box-shadow:0 12px 30px rgba(107,30,53,.2); }
         .primary-btn:hover { transform:translateY(-1px); box-shadow:0 14px 34px rgba(107,30,53,.26); }
-        .rsvp-frame { display:block; width:100%; height:1331px; border:0; background:white; }
-        @media(max-width:480px) { .rsvp-frame { height:1450px; } }
+        .field { width:100%; border:1px solid #dcc4ca; border-radius:0.9rem; background:#fffafb; padding:0.7rem 0.85rem; font-size:0.78rem; color:#3d3937; }
+        .field:focus { border-color:#d4af62; outline:none; box-shadow:0 0 0 3px rgba(212,175,98,.15); }
         @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important} .petal{display:none} }
     </style>
 </head>
@@ -66,7 +66,7 @@
             <header class="mb-6 text-center">
                 <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-700">Wedding Celebration</p>
                 <h1 class="font-script mt-2 text-6xl text-rose-800">Ahalya &amp; Yogisha</h1>
-                <p class="font-serif mt-1 text-sm italic text-stone-600">A harmonious fusion of hearts</p>
+                <p class="font-serif mt-1 text-sm italic text-stone-600">Together forever</p>
             </header>
 
             <div class="relative mb-6 overflow-hidden rounded-2xl border-2 border-amber-200 shadow-md">
@@ -88,10 +88,41 @@
                 <article class="rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm"><div class="flex items-start justify-between gap-3"><div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Celebrate Together</span><h2 class="font-serif mt-1 text-base font-bold text-rose-900">Wedding Reception</h2><p class="mt-1 text-xs text-stone-500">Wednesday | 09 December 2026</p><p class="text-xs text-stone-600">12:00 PM onwards</p><p class="mt-2 text-xs font-medium leading-relaxed text-stone-700">Sri Kamalamma Gurumallappa Kalyana Mantapa<br>Hullahalli Road, Nanjangud</p></div><a href="https://www.google.com/maps/search/?api=1&amp;query=Sri+Kamalamma+Gurumallappa+Kalyana+Mantapa%2C+Hullahalli+Road%2C+Nanjangud" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100 px-3 py-1.5 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a></div></article>
             </section>
 
-            <section aria-labelledby="rsvpHeading" class="mb-6 overflow-hidden rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm">
-                <h2 id="rsvpHeading" class="font-serif mb-2 text-center text-base font-bold text-rose-900">RSVP &amp; Blessings</h2>
-                <p class="mb-3 text-center text-xs text-stone-600">Please share your response using the form below.</p>
-                <iframe class="rsvp-frame rounded-xl" src="https://docs.google.com/forms/d/e/1FAIpQLSemElQffMmUBWSacrk47yNCNn0qMBa2YbOuKvrRbxZG54fWEg/viewform?embedded=true" title="Ahalya and Yogisha wedding RSVP form" loading="lazy">Loading…</iframe>
+            <section aria-labelledby="rsvpHeading" class="mb-6 rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm">
+                <h2 id="rsvpHeading" class="font-serif mb-3 text-center text-base font-bold text-rose-900">RSVP</h2>
+                <form id="rsvpForm" action="https://formspree.io/f/xbgoozgg" method="POST" class="space-y-3">
+                    <div>
+                        <label for="name" class="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-600">Name</label>
+                        <input id="name" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Your name" class="field" />
+                    </div>
+
+                    <div>
+                        <label for="event" class="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-600">Event</label>
+                        <select id="event" name="event" class="field" required>
+                            <option value="Wedding">Wedding</option>
+                            <option value="Reception">Reception</option>
+                            <option value="Both Wedding and Reception">Both Wedding and Reception</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="guests" class="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-600">Guests</label>
+                        <select id="guests" name="guests" class="field" required>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5 Guests</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="blessing" class="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-600">Blessing (optional)</label>
+                        <textarea id="blessing" name="blessing" rows="3" maxlength="500" placeholder="Write your blessing or message..." class="field"></textarea>
+                    </div>
+
+                    <button type="submit" class="primary-btn w-full rounded-xl px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">Send RSVP</button>
+                </form>
             </section>
 
             <div class="space-y-3">
@@ -111,19 +142,23 @@
 
         let audioContext=null,musicTimer=null,isPlaying=false,step=0;
         const melody=[261.63,329.63,392,329.63,293.66,349.23,440,349.23];
-        function playNote(frequency,startTime){const oscillator=audioContext.createOscillator(),gain=audioContext.createGain();oscillator.type='sine';oscillator.frequency.setValueAtTime(frequency,startTime);gain.gain.setValueAtTime(.0001,startTime);gain.gain.exponentialRampToValueAtTime(.05,startTime+.12);gain.gain.exponentialRampToValueAtTime(.0001,startTime+2);oscillator.connect(gain);gain.connect(audioContext.destination);oscillator.start(startTime);oscillator.stop(startTime+2.1);oscillator.onended=()=>{oscillator.disconnect();gain.disconnect()}}
-        function playMelodyStep(){if(!audioContext||audioContext.state!=='running')return;const now=audioContext.currentTime;playNote(melody[step%melody.length],now);if(step%2===0)playNote(melody[(step+2)%melody.length]/2,now+.08);step++}
+        function playNote(frequency,startTime){const oscillator=audioContext.createOscillator(),gain=audioContext.createGain();oscillator.type='sine';oscillator.frequency.setValueAtTime(frequency,startTime);gain.gain.setValueAtTime(.0001,startTime);gain.gain.exponentialRampToValueAtTime(.05,startTime+.12);gain.gain.exponentialRampToValueAtTime(.0001,startTime+2);oscillator.connect(gain);gain.connect(audioContext.destination);oscillator.start(startTime);oscillator.stop(startTime+2.1);oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();}}
+        function playMelodyStep(){if(!audioContext||audioContext.state!=='running')return;const now=audioContext.currentTime;playNote(melody[step%melody.length],now);if(step%2===0)playNote(melody[(step+2)%melody.length]/2,now+.08);step++;}
         async function toggleAudio(){const button=document.getElementById('audioBtn'),text=document.getElementById('audioText'),icon=document.getElementById('audioIcon');if(isPlaying){clearInterval(musicTimer);if(audioContext)await audioContext.suspend();isPlaying=false;text.textContent='Play Music';icon.textContent='♫';button.setAttribute('aria-pressed','false');return}try{const AudioContextClass=window.AudioContext||window.webkitAudioContext;if(!AudioContextClass)throw new Error('Audio unavailable');if(!audioContext)audioContext=new AudioContextClass();await audioContext.resume();isPlaying=true;text.textContent='Pause Music';icon.textContent='❚❚';button.setAttribute('aria-pressed','true');playMelodyStep();musicTimer=setInterval(playMelodyStep,2400)}catch{showToast('Music could not start in this browser.')}}
         document.getElementById('audioBtn').addEventListener('click',toggleAudio);
 
         const weddingTime=new Date('2026-12-06T11:00:00+05:30').getTime();
-        function updateCountdown(){const diff=Math.max(0,weddingTime-Date.now());document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0')}
+        function updateCountdown(){const diff=Math.max(0,weddingTime-Date.now());document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
         updateCountdown();setInterval(updateCountdown,1000);
 
-        function invitationText(){return 'With the blessings of our families, we joyfully invite you to celebrate the wedding of Ahalya & Yogisha.\n\nWedding Muhurta: Sunday, 06 December 2026, 11:00 AM to 12:00 PM\nVishweshwara Sabhagruha, Thrasi, Kammara Kodlu, Kundapura\n\nReception: Wednesday, 09 December 2026, 12:00 PM onwards\nSri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud\n\nYour presence and blessings will make our day truly special!\n\nhttps://yogicurio.github.io/wedding-invitation/'}
+        function invitationText(){return 'With the blessings of our families, we joyfully invite you to celebrate the wedding of Ahalya & Yogisha.\n\nWedding Muhurta: Sunday, 06 December 2026, 11:00 AM to 12:00 PM\nVishweshwara Sabhagruha, Thrasi, Kammara Kodlu, Kundapura\n\nReception: Wednesday, 09 December 2026, 12:00 PM onwards\nSri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud\n\nYour presence and blessings will make our day truly special!\n\nhttps://yogicurio.github.io/wedding-invitation/';}
         document.getElementById('shareButton').addEventListener('click',()=>window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(invitationText()),'_blank','noopener,noreferrer'));
         document.getElementById('copyButton').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(invitationText());showToast('Invitation copied to clipboard.')}catch{showToast('Clipboard access is unavailable in this browser.')}});
-        let toastTimer;function showToast(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.remove('opacity-0');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.add('opacity-0'),3000)}
+
+        const form=document.getElementById('rsvpForm');
+        form.addEventListener('submit',()=>{showToast('Your RSVP is being sent...');});
+
+        let toastTimer; function showToast(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.remove('opacity-0');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.add('opacity-0'),3000);}
     </script>
 </body>
 </html>
