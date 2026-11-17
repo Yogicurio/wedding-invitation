@@ -9,7 +9,7 @@
     <meta property="og:description" content="With the blessings of our families, join us in celebrating our wedding and reception.">
     <title>Ahalya &amp; Yogisha Wedding Invitation</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root { --rose-50:#fff7f5; --rose-100:#fdf2f4; --rose-200:#f7dfe3; --rose-700:#8f3247; --rose-800:#6b1e35; --rose-900:#4f1528; --stone-600:#5e5a56; --stone-700:#3d3937; }
         * { box-sizing:border-box; }
@@ -63,8 +63,8 @@
         }
     </script>
 
-    <button id="audioBtn" type="button" aria-pressed="false" class="fixed right-4 top-4 z-50 flex min-h-11 items-center gap-2 rounded-full border border-amber-300 bg-white/90 px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-900 shadow-lg backdrop-blur transition hover:bg-white">
-        <span id="audioIcon" aria-hidden="true">♫</span><span id="audioText">Play Music</span>
+    <button id="audioBtn" type="button" aria-pressed="false" class="fixed right-4 top-4 z-50 flex min-h-11 items-center gap-2 rounded-full border border-amber-300 bg-white/90 px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-900 shadow-lg backdrop-blur transition hover:bg-white" aria-label="Unmute music">
+        <span id="audioIcon" aria-hidden="true">♫</span><span id="audioText">Unmute</span>
     </button>
 
     <section id="coverScreen" class="cover-shell fixed inset-0 z-50 flex items-center justify-center p-5 text-rose-900 transition-opacity duration-1000" aria-label="Wedding invitation cover">
@@ -150,7 +150,63 @@
     <script>
         const cover=document.getElementById('coverScreen');
         const main=document.getElementById('mainContent');
-        document.getElementById('openInvitation').addEventListener('click',()=>{cover.classList.add('pointer-events-none','opacity-0');main.classList.remove('pointer-events-none','opacity-0');main.setAttribute('aria-hidden','false');setTimeout(()=>cover.hidden=true,1100)});
+
+        let audioContext=null,musicTimer=null,isPlaying=false,step=0;
+        const melody=[261.63,329.63,392,329.63,293.66,349.23,440,349.23];
+
+        function setMusicButton(playing){
+            const button=document.getElementById('audioBtn');
+            const text=document.getElementById('audioText');
+            const icon=document.getElementById('audioIcon');
+            text.textContent=playing?'Mute':'Unmute';
+            icon.textContent=playing?'♪':'♫';
+            button.setAttribute('aria-label',playing?'Mute music':'Unmute music');
+            button.setAttribute('aria-pressed',playing?'true':'false');
+        }
+
+        function playNote(frequency,startTime){const oscillator=audioContext.createOscillator(),gain=audioContext.createGain();oscillator.type='sine';oscillator.frequency.setValueAtTime(frequency,startTime);gain.gain.setValueAtTime(.0001,startTime);gain.gain.exponentialRampToValueAtTime(.05,startTime+.12);gain.gain.exponentialRampToValueAtTime(.0001,startTime+2);oscillator.connect(gain);gain.connect(audioContext.destination);oscillator.start(startTime);oscillator.stop(startTime+2.1);oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();};}
+        function playMelodyStep(){if(!audioContext||audioContext.state!=='running')return;const now=audioContext.currentTime;playNote(melody[step%melody.length],now);if(step%2===0)playNote(melody[(step+2)%melody.length]/2,now+.08);step++;}
+
+        async function startMusic(){
+            const button=document.getElementById('audioBtn');
+            try{
+                const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+                if(!AudioContextClass)throw new Error('Audio unavailable');
+                if(!audioContext)audioContext=new AudioContextClass();
+                await audioContext.resume();
+                isPlaying=true;
+                setMusicButton(true);
+                playMelodyStep();
+                clearInterval(musicTimer);
+                musicTimer=setInterval(playMelodyStep,2400);
+            }catch{
+                isPlaying=false;
+                setMusicButton(false);
+                showToast('Tap the music button to enable sound.');
+            }
+        }
+
+        async function toggleAudio(){
+            if(isPlaying){
+                clearInterval(musicTimer);
+                if(audioContext)await audioContext.suspend();
+                isPlaying=false;
+                setMusicButton(false);
+            }else{
+                await startMusic();
+            }
+        }
+
+        document.getElementById('openInvitation').addEventListener('click',async()=>{
+            window.scrollTo({top:0,left:0,behavior:'auto'});
+            cover.classList.add('pointer-events-none','opacity-0');
+            main.classList.remove('pointer-events-none','opacity-0');
+            main.setAttribute('aria-hidden','false');
+            await startMusic();
+            setTimeout(()=>{cover.hidden=true;window.scrollTo({top:0,left:0,behavior:'auto'});},1100);
+        });
+
+        document.getElementById('audioBtn').addEventListener('click',toggleAudio);
 
         const revealEls=[...document.querySelectorAll('.reveal, .gold-divider, .reveal-card')];
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -168,13 +224,6 @@
             });
         }, { threshold: 0.15 });
         document.querySelectorAll('.reveal-card').forEach(card => revealObserver.observe(card));
-
-        let audioContext=null,musicTimer=null,isPlaying=false,step=0;
-        const melody=[261.63,329.63,392,329.63,293.66,349.23,440,349.23];
-        function playNote(frequency,startTime){const oscillator=audioContext.createOscillator(),gain=audioContext.createGain();oscillator.type='sine';oscillator.frequency.setValueAtTime(frequency,startTime);gain.gain.setValueAtTime(.0001,startTime);gain.gain.exponentialRampToValueAtTime(.05,startTime+.12);gain.gain.exponentialRampToValueAtTime(.0001,startTime+2);oscillator.connect(gain);gain.connect(audioContext.destination);oscillator.start(startTime);oscillator.stop(startTime+2.1);oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();};}
-        function playMelodyStep(){if(!audioContext||audioContext.state!=='running')return;const now=audioContext.currentTime;playNote(melody[step%melody.length],now);if(step%2===0)playNote(melody[(step+2)%melody.length]/2,now+.08);step++;}
-        async function toggleAudio(){const button=document.getElementById('audioBtn'),text=document.getElementById('audioText'),icon=document.getElementById('audioIcon');if(isPlaying){clearInterval(musicTimer);if(audioContext)await audioContext.suspend();isPlaying=false;text.textContent='Play Music';icon.textContent='♫';button.setAttribute('aria-pressed','false');return}try{const AudioContextClass=window.AudioContext||window.webkitAudioContext;if(!AudioContextClass)throw new Error('Audio unavailable');if(!audioContext)audioContext=new AudioContextClass();await audioContext.resume();isPlaying=true;text.textContent='Pause Music';icon.textContent='❚❚';button.setAttribute('aria-pressed','true');playMelodyStep();musicTimer=setInterval(playMelodyStep,2400)}catch{showToast('Music could not start in this browser.')}}
-        document.getElementById('audioBtn').addEventListener('click',toggleAudio);
 
         const weddingTime=new Date('2026-12-06T11:00:00+05:30').getTime();
         function updateCountdown(){const diff=Math.max(0,weddingTime-Date.now());document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
