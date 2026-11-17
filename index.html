@@ -4,169 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fdf2f4">
-    <meta name="description" content="Celebrate the wedding of Ahalya and Yogisha. Find event details, RSVP, and share your blessings.">
-    <meta property="og:title" content="Ahalya & Yogisha | Wedding Invitation">
-    <meta property="og:description" content="With the blessings of our families, join us in celebrating our wedding and reception.">
-    <title>Ahalya &amp; Yogisha | Wedding Invitation</title>
+    <meta name="description" content="Celebrate the wedding of Ahalya and Yogisha on December 6, 2026, and their reception on December 9, 2026.">
+    <meta property="og:title" content="Ahalya & Yogisha Wedding Invitation">
+    <meta property="og:description" content="With the blessings of our families, join us for our wedding and reception celebrations.">
+    <title>Ahalya &amp; Yogisha Wedding Invitation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --rose-50: #fff7f5;
-            --rose-100: #fdf2f4;
-            --rose-200: #f7dfe3;
-            --rose-300: #eebac0;
-            --rose-700: #8f3247;
-            --rose-800: #6b1e35;
-            --rose-900: #4f1528;
-            --gold-300: #e9d6a2;
-            --gold-500: #d4af62;
-            --stone-600: #5e5a56;
-            --stone-700: #3d3937;
-            --ivory: #fffaf6;
-        }
-
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            margin: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: linear-gradient(180deg, #fff8f7 0%, #fff3f1 100%);
-            color: var(--stone-700);
-            overflow-x: hidden;
-        }
-
-        .font-script { font-family: 'Great Vibes', cursive; }
-        .font-serif { font-family: 'Playfair Display', serif; }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.82);
-            border: 1px solid rgba(212, 175, 55, 0.42);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 18px 45px rgba(110, 24, 41, 0.08);
-        }
-
-        .petal {
-            position: fixed;
-            top: -10vh;
-            z-index: 3;
-            pointer-events: none;
-            border-radius: 150% 0 150% 0;
-            background: radial-gradient(circle at 30% 30%, #f4d2d8, #e7a8b6 35%, #d7839f 100%);
-            opacity: 0.7;
-            animation: drift linear infinite;
-        }
-
-        @keyframes drift {
-            0% { transform: translateY(-15vh) translateX(0) rotate(0deg); opacity: 0; }
-            15% { opacity: 0.8; }
-            100% { transform: translateY(110vh) translateX(24px) rotate(360deg); opacity: 0; }
-        }
-
-        .cover-shell {
-            background:
-                radial-gradient(circle at 50% 15%, rgba(255,255,255,0.55), transparent 28%),
-                linear-gradient(135deg, rgba(255,248,237,0.98), rgba(255,240,244,0.96));
-        }
-
-        .cover-card {
-            background: rgba(255,255,255,0.76);
-            border: 1px solid rgba(212,175,55,0.48);
-            box-shadow: 0 30px 80px rgba(87, 19, 35, 0.15);
-        }
-
-        .ornament {
-            color: rgba(148, 92, 54, 0.38);
-        }
-
-        .tagline {
-            letter-spacing: 0.28em;
-        }
-
-        .primary-btn {
-            background: linear-gradient(135deg, var(--rose-700), var(--rose-800));
-            color: white;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 12px 30px rgba(107, 30, 53, 0.2);
-        }
-
-        .primary-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 14px 34px rgba(107, 30, 53, 0.26);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            .petal { display: none; }
-        }
+        :root { --rose-50:#fff7f5; --rose-100:#fdf2f4; --rose-200:#f7dfe3; --rose-700:#8f3247; --rose-800:#6b1e35; --rose-900:#4f1528; --stone-600:#5e5a56; --stone-700:#3d3937; }
+        * { box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { margin:0; font-family:'Plus Jakarta Sans',sans-serif; background:linear-gradient(180deg,#fff8f7 0%,#fff3f1 100%); color:var(--stone-700); overflow-x:hidden; }
+        .font-script { font-family:'Great Vibes',cursive; }
+        .font-serif { font-family:'Playfair Display',serif; }
+        .glass-card { background:rgba(255,255,255,.82); border:1px solid rgba(212,175,55,.42); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 18px 45px rgba(110,24,41,.08); }
+        .petal { position:fixed; top:-10vh; z-index:3; pointer-events:none; border-radius:150% 0 150% 0; background:radial-gradient(circle at 30% 30%,#f4d2d8,#e7a8b6 35%,#d7839f 100%); opacity:.7; animation:drift linear infinite; }
+        @keyframes drift { 0%{transform:translateY(-15vh) translateX(0) rotate(0);opacity:0} 15%{opacity:.8} 100%{transform:translateY(110vh) translateX(24px) rotate(360deg);opacity:0} }
+        .cover-shell { background:radial-gradient(circle at 50% 15%,rgba(255,255,255,.55),transparent 28%),linear-gradient(135deg,#fff8ed,#fff0f4); }
+        .cover-card { background:rgba(255,255,255,.76); border:1px solid rgba(212,175,55,.48); box-shadow:0 30px 80px rgba(87,19,35,.15); }
+        .ornament { color:rgba(148,92,54,.38); }
+        .primary-btn { background:linear-gradient(135deg,var(--rose-700),var(--rose-800)); color:white; transition:transform .2s ease,box-shadow .2s ease; box-shadow:0 12px 30px rgba(107,30,53,.2); }
+        .primary-btn:hover { transform:translateY(-1px); box-shadow:0 14px 34px rgba(107,30,53,.26); }
+        .rsvp-frame { display:block; width:100%; height:1331px; border:0; background:white; }
+        @media(max-width:480px) { .rsvp-frame { height:1450px; } }
+        @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important} .petal{display:none} }
     </style>
 </head>
 <body class="min-h-screen text-stone-800">
     <script>
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            for (let i = 0; i < 14; i++) {
-                const petal = document.createElement('span');
-                petal.className = 'petal';
-                const size = (Math.random() * 16) + 10;
-                petal.style.left = (Math.random() * 100) + 'vw';
-                petal.style.width = size + 'px';
-                petal.style.height = (size * 1.4) + 'px';
-                petal.style.animationDuration = (Math.random() * 5 + 7) + 's';
-                petal.style.animationDelay = (Math.random() * 5) + 's';
+            for (let i=0;i<14;i++) {
+                const petal=document.createElement('span'); petal.className='petal';
+                const size=Math.random()*16+10;
+                petal.style.left=Math.random()*100+'vw'; petal.style.width=size+'px'; petal.style.height=size*1.4+'px';
+                petal.style.animationDuration=(Math.random()*5+7)+'s'; petal.style.animationDelay=Math.random()*5+'s';
                 document.body.appendChild(petal);
             }
         }
     </script>
 
     <button id="audioBtn" type="button" aria-pressed="false" class="fixed right-4 top-4 z-50 flex items-center gap-2 rounded-full border border-amber-300 bg-white/90 px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-900 shadow-lg backdrop-blur transition hover:bg-white">
-        <span id="audioIcon" aria-hidden="true">♫</span>
-        <span id="audioText">Play Music</span>
+        <span id="audioIcon" aria-hidden="true">♫</span><span id="audioText">Play Music</span>
     </button>
 
-    <section id="coverScreen" class="cover-shell fixed inset-0 z-50 flex items-center justify-center p-5 text-rose-900 transition-opacity duration-1000">
+    <section id="coverScreen" class="cover-shell fixed inset-0 z-50 flex items-center justify-center p-5 text-rose-900 transition-opacity duration-1000" aria-label="Wedding invitation cover">
         <div class="cover-card relative w-full max-w-md overflow-hidden rounded-[28px] p-8 text-center sm:p-10">
             <div class="ornament absolute -left-3 -top-7 text-7xl" aria-hidden="true">✦</div>
             <div class="ornament absolute -right-4 -bottom-8 text-7xl" aria-hidden="true">❦</div>
-
-            <p class="tagline mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-amber-700">With the blessings of our families</p>
+            <p class="mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-amber-700">With the blessings of our families</p>
             <h1 class="font-script text-6xl leading-none text-rose-800 sm:text-7xl">Ahalya &amp; Yogisha</h1>
-            <p class="font-serif mt-3 text-sm italic text-stone-600">Together forever</p>
-
+            <p class="font-serif mt-3 text-sm italic text-stone-600">A harmonious fusion of hearts</p>
             <div class="mx-auto my-6 h-px w-16 bg-amber-400/80"></div>
             <p class="text-[11px] font-semibold uppercase tracking-[0.26em] text-rose-800">06 December 2026</p>
-
-            <button id="openInvitation" type="button" class="primary-btn mt-7 flex w-full items-center justify-center gap-2 rounded-2xl px-5 py-4 text-[11px] font-bold uppercase tracking-[0.14em]">
-                <span aria-hidden="true">✉</span>
-                Open Invitation
-            </button>
+            <button id="openInvitation" type="button" class="primary-btn mt-7 flex w-full items-center justify-center gap-2 rounded-2xl px-5 py-4 text-[11px] font-bold uppercase tracking-[0.14em]"><span aria-hidden="true">✉</span>Open Invitation</button>
             <p class="mt-4 text-[10px] leading-relaxed text-stone-500">A wedding celebration filled with love, blessings, and joy.</p>
         </div>
     </section>
 
     <main id="mainContent" aria-hidden="true" class="pointer-events-none relative z-20 flex min-h-screen items-center justify-center px-4 py-12 opacity-0 transition-opacity duration-1000">
         <article class="glass-card relative w-full max-w-md overflow-hidden rounded-[28px] p-6 sm:p-8">
-            <div class="mb-6 text-center">
+            <header class="mb-6 text-center">
                 <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-700">Wedding Celebration</p>
                 <h1 class="font-script mt-2 text-6xl text-rose-800">Ahalya &amp; Yogisha</h1>
-                <p class="font-serif mt-1 text-sm italic text-stone-600">Together forever</p>
-            </div>
+                <p class="font-serif mt-1 text-sm italic text-stone-600">A harmonious fusion of hearts</p>
+            </header>
 
             <div class="relative mb-6 overflow-hidden rounded-2xl border-2 border-amber-200 shadow-md">
-                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Ahalya and Yogisha" class="h-60 w-full object-cover">
-                <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/50 via-transparent to-transparent p-4">
-                    <span class="text-[10px] font-medium uppercase tracking-[0.18em] text-white">With the grace of Almighty &amp; families</span>
-                </div>
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Wedding celebration" class="h-60 w-full object-cover">
+                <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/50 via-transparent to-transparent p-4"><span class="text-[10px] font-medium uppercase tracking-[0.18em] text-white">With the grace of Almighty &amp; families</span></div>
             </div>
 
-            <p class="font-serif mb-6 text-center text-sm leading-relaxed text-stone-600">
-                We joyfully invite you to celebrate the beginning of our lifelong journey together. Your presence and blessings will make this day even more special.
-            </p>
+            <p class="font-serif mb-6 text-center text-sm leading-relaxed text-stone-600">We joyfully invite you to celebrate the beginning of our lifelong journey together. Your presence and blessings will make this day even more special.</p>
 
             <section aria-label="Countdown to the wedding" class="mb-6 grid grid-cols-4 gap-2 rounded-2xl border border-rose-100 bg-white/70 p-3 text-center shadow-sm">
                 <div><span id="days" class="font-serif block text-xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Days</span></div>
@@ -176,197 +84,46 @@
             </section>
 
             <section aria-label="Wedding events" class="mb-6 space-y-4">
-                <article class="rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm">
-                    <div class="flex items-start justify-between gap-3">
-                        <div>
-                            <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Wedding Ceremony</span>
-                            <h2 class="font-serif mt-1 text-base font-bold text-rose-900">Wedding Muhurta</h2>
-                            <p class="mt-1 text-xs text-stone-500">Sunday | 06 December 2026</p>
-                            <p class="text-xs text-stone-600">11:00 AM – 12:00 PM</p>
-                            <p class="mt-2 text-xs font-medium leading-relaxed text-stone-700">Vishweshwara Sabhagraha<br>Thrasi, Kammara Kodlu, Kundapura</p>
-                        </div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Vishweshwara+Sabhagraha%2C+Thrasi%2C+Kammara+Kodlu%2C+Kundapura" target="_blank" rel="noopener noreferrer" class="rounded-full bg-rose-100 px-3 py-1.5 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a>
-                    </div>
-                </article>
-
-                <article class="rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm">
-                    <div class="flex items-start justify-between gap-3">
-                        <div>
-                            <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Celebrate Together</span>
-                            <h2 class="font-serif mt-1 text-base font-bold text-rose-900">Wedding Reception</h2>
-                            <p class="mt-1 text-xs text-stone-500">Wednesday | 09 December 2026</p>
-                            <p class="text-xs text-stone-600">12:00 PM onwards</p>
-                            <p class="mt-2 text-xs font-medium leading-relaxed text-stone-700">Sri Kamalamma Gurumallappa Kalyana Mantapa<br>Hullahalli Road, Nanjangud</p>
-                        </div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Sri+Kamalamma+Gurumallappa+Kalyana+Mantapa%2C+Hullahalli+Road%2C+Nanjangud" target="_blank" rel="noopener noreferrer" class="rounded-full bg-rose-100 px-3 py-1.5 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a>
-                    </div>
-                </article>
+                <article class="rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm"><div class="flex items-start justify-between gap-3"><div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Wedding Ceremony</span><h2 class="font-serif mt-1 text-base font-bold text-rose-900">Wedding Muhurta</h2><p class="mt-1 text-xs text-stone-500">Sunday | 06 December 2026</p><p class="text-xs text-stone-600">11:00 AM – 12:00 PM</p><p class="mt-2 text-xs font-medium leading-relaxed text-stone-700">Vishweshwara Sabhagruha<br>Thrasi, Kammara Kodlu, Kundapura</p></div><a href="https://www.google.com/maps/search/?api=1&amp;query=Vishweshwara+Sabhagraha%2C+Thrasi%2C+Kammara+Kodlu%2C+Kundapura" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100 px-3 py-1.5 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a></div></article>
+                <article class="rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm"><div class="flex items-start justify-between gap-3"><div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Celebrate Together</span><h2 class="font-serif mt-1 text-base font-bold text-rose-900">Wedding Reception</h2><p class="mt-1 text-xs text-stone-500">Wednesday | 09 December 2026</p><p class="text-xs text-stone-600">12:00 PM onwards</p><p class="mt-2 text-xs font-medium leading-relaxed text-stone-700">Sri Kamalamma Gurumallappa Kalyana Mantapa<br>Hullahalli Road, Nanjangud</p></div><a href="https://www.google.com/maps/search/?api=1&amp;query=Sri+Kamalamma+Gurumallappa+Kalyana+Mantapa%2C+Hullahalli+Road%2C+Nanjangud" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100 px-3 py-1.5 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a></div></article>
             </section>
 
-            <section aria-labelledby="rsvpHeading" class="mb-6 rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm">
-                <h2 id="rsvpHeading" class="font-serif mb-3 text-center text-base font-bold text-rose-900">Send Your Wishes &amp; RSVP</h2>
-                <form id="rsvpForm" class="space-y-3">
-                    <label class="sr-only" for="guestName">Your name</label>
-                    <input id="guestName" name="name" required maxlength="80" autocomplete="name" placeholder="Your Name &amp; Family" class="w-full rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-xs focus:border-rose-400 focus:outline-none">
-
-                    <div class="grid grid-cols-2 gap-2">
-                        <label class="sr-only" for="guestStatus">Response</label>
-                        <select id="guestStatus" class="w-full rounded-xl border border-stone-200 bg-stone-50 px-2 py-2 text-xs focus:outline-none">
-                            <option value="Attending">Attending</option>
-                            <option value="Regretfully Declining">Regretfully Declining</option>
-                        </select>
-                        <label class="sr-only" for="guestCount">Guests</label>
-                        <select id="guestCount" class="w-full rounded-xl border border-stone-200 bg-stone-50 px-2 py-2 text-xs focus:outline-none">
-                            <option value="1 Guest">1 Guest</option>
-                            <option value="2 Guests">2 Guests</option>
-                            <option value="3+ Guests">3+ Guests</option>
-                        </select>
-                    </div>
-
-                    <label class="sr-only" for="guestWish">Your blessing</label>
-                    <textarea id="guestWish" rows="2" required maxlength="500" placeholder="Write your blessing..." class="w-full rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-xs focus:border-rose-400 focus:outline-none"></textarea>
-
-                    <button type="submit" class="w-full rounded-xl bg-rose-800 py-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-rose-900">Submit RSVP</button>
-                </form>
-            </section>
-
-            <section aria-label="Guest blessings" class="mb-6">
-                <h2 class="font-serif mb-3 text-center text-sm font-bold text-stone-800">Blessings from Loved Ones</h2>
-                <div id="wishesContainer" aria-live="polite" class="max-h-48 space-y-2 overflow-y-auto pr-1"></div>
+            <section aria-labelledby="rsvpHeading" class="mb-6 overflow-hidden rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm">
+                <h2 id="rsvpHeading" class="font-serif mb-2 text-center text-base font-bold text-rose-900">RSVP &amp; Blessings</h2>
+                <p class="mb-3 text-center text-xs text-stone-600">Please share your response using the form below.</p>
+                <iframe class="rsvp-frame rounded-xl" src="https://docs.google.com/forms/d/e/1FAIpQLSemElQffMmUBWSacrk47yNCNn0qMBa2YbOuKvrRbxZG54fWEg/viewform?embedded=true" title="Ahalya and Yogisha wedding RSVP form" loading="lazy">Loading…</iframe>
             </section>
 
             <div class="space-y-3">
                 <button id="shareButton" type="button" class="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-emerald-700">Share on WhatsApp</button>
                 <button id="copyButton" type="button" class="w-full rounded-xl bg-amber-100 px-4 py-2.5 text-sm font-medium text-amber-900 shadow-sm transition hover:bg-amber-200">Copy Invite Message</button>
             </div>
-
-            <footer class="mt-6 text-center">
-                <span class="font-script text-2xl text-rose-700">#AhalyaWedsYogisha</span>
-            </footer>
+            <footer class="mt-6 text-center"><span class="font-script text-2xl text-rose-700">#AhalyaWedsYogisha</span></footer>
         </article>
     </main>
 
-    <div id="toast" role="status" aria-live="polite" class="pointer-events-none fixed bottom-6 left-1/2 z-[60] -translate-x-1/2 rounded-xl bg-[#2d1d20] px-4 py-2 text-[11px] font-medium text-white opacity-0 shadow-xl transition-opacity duration-300">Saved</div>
+    <div id="toast" role="status" aria-live="polite" class="pointer-events-none fixed bottom-6 left-1/2 z-[60] -translate-x-1/2 rounded-xl bg-[#2d1d20] px-4 py-2 text-[11px] font-medium text-white opacity-0 shadow-xl transition-opacity duration-300">Notice</div>
 
     <script>
-        const cover = document.getElementById('coverScreen');
-        const main = document.getElementById('mainContent');
+        const cover=document.getElementById('coverScreen');
+        const main=document.getElementById('mainContent');
+        document.getElementById('openInvitation').addEventListener('click',()=>{cover.classList.add('pointer-events-none','opacity-0');main.classList.remove('pointer-events-none','opacity-0');main.setAttribute('aria-hidden','false');setTimeout(()=>cover.hidden=true,1100)});
 
-        document.getElementById('openInvitation').addEventListener('click', () => {
-            cover.classList.add('pointer-events-none', 'opacity-0');
-            main.classList.remove('pointer-events-none', 'opacity-0');
-            main.setAttribute('aria-hidden', 'false');
-            setTimeout(() => cover.hidden = true, 1100);
-        });
+        let audioContext=null,musicTimer=null,isPlaying=false,step=0;
+        const melody=[261.63,329.63,392,329.63,293.66,349.23,440,349.23];
+        function playNote(frequency,startTime){const oscillator=audioContext.createOscillator(),gain=audioContext.createGain();oscillator.type='sine';oscillator.frequency.setValueAtTime(frequency,startTime);gain.gain.setValueAtTime(.0001,startTime);gain.gain.exponentialRampToValueAtTime(.05,startTime+.12);gain.gain.exponentialRampToValueAtTime(.0001,startTime+2);oscillator.connect(gain);gain.connect(audioContext.destination);oscillator.start(startTime);oscillator.stop(startTime+2.1);oscillator.onended=()=>{oscillator.disconnect();gain.disconnect()}}
+        function playMelodyStep(){if(!audioContext||audioContext.state!=='running')return;const now=audioContext.currentTime;playNote(melody[step%melody.length],now);if(step%2===0)playNote(melody[(step+2)%melody.length]/2,now+.08);step++}
+        async function toggleAudio(){const button=document.getElementById('audioBtn'),text=document.getElementById('audioText'),icon=document.getElementById('audioIcon');if(isPlaying){clearInterval(musicTimer);if(audioContext)await audioContext.suspend();isPlaying=false;text.textContent='Play Music';icon.textContent='♫';button.setAttribute('aria-pressed','false');return}try{const AudioContextClass=window.AudioContext||window.webkitAudioContext;if(!AudioContextClass)throw new Error('Audio unavailable');if(!audioContext)audioContext=new AudioContextClass();await audioContext.resume();isPlaying=true;text.textContent='Pause Music';icon.textContent='❚❚';button.setAttribute('aria-pressed','true');playMelodyStep();musicTimer=setInterval(playMelodyStep,2400)}catch{showToast('Music could not start in this browser.')}}
+        document.getElementById('audioBtn').addEventListener('click',toggleAudio);
 
-        const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSemElQffMmUBWSacrk47yNCNn0qMBa2YbOuKvrRbxZG54fWEg/viewform';
+        const weddingTime=new Date('2026-12-06T11:00:00+05:30').getTime();
+        function updateCountdown(){const diff=Math.max(0,weddingTime-Date.now());document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0')}
+        updateCountdown();setInterval(updateCountdown,1000);
 
-        document.getElementById('rsvpForm').addEventListener('submit', (event) => {
-            event.preventDefault();
-            window.open(googleFormUrl, '_blank', 'noopener,noreferrer');
-            showToast('Opening RSVP form...');
-        });
-
-        // Ambient music using WebAudio with no external file needed.
-        let audioContext = null;
-        let musicTimer = null;
-        let isPlaying = false;
-        let step = 0;
-        const melody = [261.63, 329.63, 392.00, 329.63, 293.66, 349.23, 440.00, 349.23];
-
-        function playNote(frequency, startTime) {
-            const oscillator = audioContext.createOscillator();
-            const gain = audioContext.createGain();
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(frequency, startTime);
-            gain.gain.setValueAtTime(0.0001, startTime);
-            gain.gain.exponentialRampToValueAtTime(0.05, startTime + 0.12);
-            gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 2.0);
-            oscillator.connect(gain);
-            gain.connect(audioContext.destination);
-            oscillator.start(startTime);
-            oscillator.stop(startTime + 2.1);
-        }
-
-        function playMelodyStep() {
-            if (!audioContext || audioContext.state !== 'running') return;
-            const now = audioContext.currentTime;
-            playNote(melody[step % melody.length], now);
-            if (step % 2 === 0) {
-                playNote(melody[(step + 2) % melody.length] / 2, now + 0.08);
-            }
-            step += 1;
-        }
-
-        async function toggleAudio() {
-            const button = document.getElementById('audioBtn');
-            const text = document.getElementById('audioText');
-            const icon = document.getElementById('audioIcon');
-
-            if (isPlaying) {
-                clearInterval(musicTimer);
-                if (audioContext) await audioContext.suspend();
-                isPlaying = false;
-                text.textContent = 'Play Music';
-                icon.textContent = '♫';
-                button.setAttribute('aria-pressed', 'false');
-                return;
-            }
-
-            try {
-                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-                if (!AudioContextClass) throw new Error('Audio API not available');
-                if (!audioContext) audioContext = new AudioContextClass();
-                await audioContext.resume();
-                isPlaying = true;
-                text.textContent = 'Pause Music';
-                icon.textContent = '❚❚';
-                button.setAttribute('aria-pressed', 'true');
-                playMelodyStep();
-                musicTimer = setInterval(playMelodyStep, 2400);
-            } catch (error) {
-                showToast('Music could not start in this browser.');
-            }
-        }
-
-        document.getElementById('audioBtn').addEventListener('click', toggleAudio);
-
-        const weddingTime = new Date('2026-12-06T11:00:00+05:30').getTime();
-        function updateCountdown() {
-            const diff = Math.max(0, weddingTime - Date.now());
-            document.getElementById('days').textContent = String(Math.floor(diff / 86400000)).padStart(2, '0');
-            document.getElementById('hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        function invitationText() {
-            return 'With the blessings of our families, we joyfully invite you to celebrate the wedding of Ahalya & Yogisha.\n\nWedding Muhurta: Sunday, 06 December 2026, 11:00 AM – 12:00 PM\nVishweshwara Sabhagraha, Thrasi, Kammara Kodlu, Kundapura\n\nReception: Wednesday, 09 December 2026, 12:00 PM onwards\nSri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud\n\nYour presence and blessings will make our day truly special.\n\nhttps://yogicurio.github.io/wedding-invitation/';
-        }
-
-        document.getElementById('shareButton').addEventListener('click', () => {
-            window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(invitationText()), '_blank', 'noopener,noreferrer');
-        });
-
-        document.getElementById('copyButton').addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(invitationText());
-                showToast('Invitation copied to clipboard.');
-            } catch (error) {
-                showToast('Clipboard access not available here.');
-            }
-        });
-
-        let toastTimer;
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.remove('opacity-0');
-            clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => toast.classList.add('opacity-0'), 3000);
-        }
+        function invitationText(){return 'With the blessings of our families, we joyfully invite you to celebrate the wedding of Ahalya & Yogisha.\n\nWedding Muhurta: Sunday, 06 December 2026, 11:00 AM to 12:00 PM\nVishweshwara Sabhagruha, Thrasi, Kammara Kodlu, Kundapura\n\nReception: Wednesday, 09 December 2026, 12:00 PM onwards\nSri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud\n\nYour presence and blessings will make our day truly special!\n\nhttps://yogicurio.github.io/wedding-invitation/'}
+        document.getElementById('shareButton').addEventListener('click',()=>window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(invitationText()),'_blank','noopener,noreferrer'));
+        document.getElementById('copyButton').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(invitationText());showToast('Invitation copied to clipboard.')}catch{showToast('Clipboard access is unavailable in this browser.')}});
+        let toastTimer;function showToast(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.remove('opacity-0');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.add('opacity-0'),3000)}
     </script>
 </body>
 </html>
