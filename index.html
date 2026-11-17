@@ -24,9 +24,18 @@
         .cover-card { background:rgba(255,255,255,.76); border:1px solid rgba(212,175,55,.48); box-shadow:0 30px 80px rgba(87,19,35,.15); }
         .ornament { color:rgba(148,92,54,.38); }
         .primary-btn { background:linear-gradient(135deg,var(--rose-700),var(--rose-800)); color:white; transition:transform .2s ease,box-shadow .2s ease; box-shadow:0 12px 30px rgba(107,30,53,.2); }
-        .primary-btn:hover { transform:translateY(-1px); box-shadow:0 14px 34px rgba(107,30,53,.26); }
-        .field { width:100%; border:1px solid #dcc4ca; border-radius:.9rem; background:#fffafb; padding:.7rem .85rem; font-size:.78rem; color:#3d3937; }
-        .field:focus { border-color:#d4af62; outline:none; box-shadow:0 0 0 3px rgba(212,175,98,.15); }
+        .primary-btn:hover:not(:disabled) { transform:translateY(-1px); box-shadow:0 14px 34px rgba(107,30,53,.26); }
+        .primary-btn:disabled { cursor:wait; opacity:.72; }
+        .field { display:block; width:100%; min-height:48px; border:1px solid #dcc4ca; border-radius:.9rem; background:#fffafb; padding:.75rem .9rem; font-size:16px; line-height:1.4; color:#3d3937; }
+        textarea.field { min-height:104px; resize:vertical; }
+        .field:focus { border-color:#d4af62; outline:none; box-shadow:0 0 0 3px rgba(212,175,98,.18); }
+        .field:disabled { cursor:not-allowed; background:#f4eeee; color:#8b8582; }
+        .success-card { border:1px solid #e8d7b4; background:linear-gradient(145deg,#fffaf0,#fff5f5); box-shadow:0 12px 30px rgba(107,30,53,.08); }
+        @media(max-width:480px) {
+            body { padding-bottom:env(safe-area-inset-bottom); }
+            .glass-card { border-radius:24px; }
+            .field { font-size:16px; }
+        }
         @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important} .petal{display:none} }
     </style>
 </head>
@@ -43,7 +52,7 @@
         }
     </script>
 
-    <button id="audioBtn" type="button" aria-pressed="false" class="fixed right-4 top-4 z-50 flex items-center gap-2 rounded-full border border-amber-300 bg-white/90 px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-900 shadow-lg backdrop-blur transition hover:bg-white">
+    <button id="audioBtn" type="button" aria-pressed="false" class="fixed right-4 top-4 z-50 flex min-h-11 items-center gap-2 rounded-full border border-amber-300 bg-white/90 px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-900 shadow-lg backdrop-blur transition hover:bg-white">
         <span id="audioIcon" aria-hidden="true">♫</span><span id="audioText">Play Music</span>
     </button>
 
@@ -56,13 +65,13 @@
             <p class="font-serif mt-3 text-sm italic text-stone-600">A harmonious fusion of hearts</p>
             <div class="mx-auto my-6 h-px w-16 bg-amber-400/80"></div>
             <p class="text-[11px] font-semibold uppercase tracking-[0.26em] text-rose-800">06 December 2026</p>
-            <button id="openInvitation" type="button" class="primary-btn mt-7 flex w-full items-center justify-center gap-2 rounded-2xl px-5 py-4 text-[11px] font-bold uppercase tracking-[0.14em]"><span aria-hidden="true">✉</span>Open Invitation</button>
+            <button id="openInvitation" type="button" class="primary-btn mt-7 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl px-5 py-4 text-[11px] font-bold uppercase tracking-[0.14em]"><span aria-hidden="true">✉</span>Open Invitation</button>
             <p class="mt-4 text-[10px] leading-relaxed text-stone-500">A wedding celebration filled with love, blessings, and joy.</p>
         </div>
     </section>
 
-    <main id="mainContent" aria-hidden="true" class="pointer-events-none relative z-20 flex min-h-screen items-center justify-center px-4 py-12 opacity-0 transition-opacity duration-1000">
-        <article class="glass-card relative w-full max-w-md overflow-hidden rounded-[28px] p-6 sm:p-8">
+    <main id="mainContent" aria-hidden="true" class="pointer-events-none relative z-20 flex min-h-screen items-center justify-center px-3 py-6 opacity-0 transition-opacity duration-1000 sm:px-4 sm:py-12">
+        <article class="glass-card relative w-full max-w-md overflow-hidden rounded-[24px] p-4 sm:rounded-[28px] sm:p-8">
             <header class="mb-6 text-center">
                 <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-700">Wedding Celebration</p>
                 <h1 class="font-script mt-2 text-6xl text-rose-800">Ahalya &amp; Yogisha</h1>
@@ -70,7 +79,7 @@
             </header>
 
             <div class="relative mb-6 overflow-hidden rounded-2xl border-2 border-amber-200 shadow-md">
-                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Wedding celebration" class="h-60 w-full object-cover">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Wedding celebration" class="h-48 w-full object-cover sm:h-60">
                 <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/50 via-transparent to-transparent p-4"><span class="text-[10px] font-medium uppercase tracking-[0.18em] text-white">With the grace of Almighty &amp; families</span></div>
             </div>
 
@@ -84,41 +93,56 @@
             </section>
 
             <section aria-label="Wedding events" class="mb-6 space-y-4">
-                <article class="rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm"><div class="flex items-start justify-between gap-3"><div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Wedding Ceremony</span><h2 class="font-serif mt-1 text-base font-bold text-rose-900">Wedding Muhurta</h2><p class="mt-1 text-xs text-stone-500">Sunday | 06 December 2026</p><p class="text-xs text-stone-600">11:00 AM – 12:00 PM</p><p class="mt-2 text-xs font-medium leading-relaxed text-stone-700">Vishweshwara Sabhagruha<br>Thrasi, Kammara Kodlu, Kundapura</p></div><a href="https://www.google.com/maps/search/?api=1&amp;query=Vishweshwara+Sabhagraha%2C+Thrasi%2C+Kammara+Kodlu%2C+Kundapura" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100 px-3 py-1.5 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a></div></article>
-                <article class="rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm"><div class="flex items-start justify-between gap-3"><div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Celebrate Together</span><h2 class="font-serif mt-1 text-base font-bold text-rose-900">Wedding Reception</h2><p class="mt-1 text-xs text-stone-500">Wednesday | 09 December 2026</p><p class="text-xs text-stone-600">12:00 PM onwards</p><p class="mt-2 text-xs font-medium leading-relaxed text-stone-700">Sri Kamalamma Gurumallappa Kalyana Mantapa<br>Hullahalli Road, Nanjangud</p></div><a href="https://www.google.com/maps/search/?api=1&amp;query=Sri+Kamalamma+Gurumallappa+Kalyana+Mantapa%2C+Hullahalli+Road%2C+Nanjangud" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100 px-3 py-1.5 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a></div></article>
+                <article class="rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm"><div class="flex items-start justify-between gap-3"><div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Wedding Ceremony</span><h2 class="font-serif mt-1 text-base font-bold text-rose-900">Wedding Muhurta</h2><p class="mt-1 text-xs text-stone-500">Sunday | 06 December 2026</p><p class="text-xs text-stone-600">11:00 AM – 12:00 PM</p><p class="mt-2 text-xs font-medium leading-relaxed text-stone-700">Vishweshwara Sabhagruha<br>Thrasi, Kammara Kodlu, Kundapura</p></div><a href="https://www.google.com/maps/search/?api=1&amp;query=Vishweshwara+Sabhagraha%2C+Thrasi%2C+Kammara+Kodlu%2C+Kundapura" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100 px-3 py-2 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a></div></article>
+                <article class="rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm"><div class="flex items-start justify-between gap-3"><div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Celebrate Together</span><h2 class="font-serif mt-1 text-base font-bold text-rose-900">Wedding Reception</h2><p class="mt-1 text-xs text-stone-500">Wednesday | 09 December 2026</p><p class="text-xs text-stone-600">12:00 PM onwards</p><p class="mt-2 text-xs font-medium leading-relaxed text-stone-700">Sri Kamalamma Gurumallappa Kalyana Mantapa<br>Hullahalli Road, Nanjangud</p></div><a href="https://www.google.com/maps/search/?api=1&amp;query=Sri+Kamalamma+Gurumallappa+Kalyana+Mantapa%2C+Hullahalli+Road%2C+Nanjangud" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100 px-3 py-2 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a></div></article>
             </section>
 
-            <section aria-labelledby="rsvpHeading" class="mb-6 rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm">
-                <h2 id="rsvpHeading" class="font-serif mb-3 text-center text-base font-bold text-rose-900">RSVP</h2>
-                <form id="rsvpForm" action="https://formspree.io/f/xbgoozgg" method="POST" class="space-y-3">
+            <section aria-labelledby="rsvpHeading" class="mb-6 rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm sm:p-5">
+                <h2 id="rsvpHeading" class="font-serif mb-1 text-center text-lg font-bold text-rose-900">Kindly RSVP</h2>
+                <p class="mb-4 text-center text-xs leading-relaxed text-stone-600">Please let us know which celebration you can attend.</p>
+                <form id="rsvpForm" action="https://formspree.io/f/xbgoozgg" method="POST" class="space-y-4">
+                    <input type="hidden" name="_subject" value="Wedding RSVP — Ahalya & Yogisha">
                     <div>
-                        <label for="name" class="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-600">Name</label>
-                        <input id="name" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Your name" class="field">
+                        <label for="name" class="mb-1.5 block text-xs font-semibold text-stone-700">Your name</label>
+                        <input id="name" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Enter your name" class="field">
                     </div>
                     <div>
-                        <label for="event" class="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-600">Event</label>
-                        <select id="event" name="event" class="field" required>
-                            <option value="Wedding">Wedding</option>
-                            <option value="Reception">Reception</option>
-                            <option value="Both Wedding and Reception">Both Wedding and Reception</option>
+                        <label for="attendance" class="mb-1.5 block text-xs font-semibold text-stone-700">Will you be attending?</label>
+                        <select id="attendance" name="attendance" class="field" required>
+                            <option value="" disabled selected>Please choose</option>
+                            <option value="Attending">Attending</option>
+                            <option value="Not attending">Not attending</option>
                         </select>
                     </div>
-                    <div>
-                        <label for="guests" class="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-600">Number of guests</label>
+                    <div id="eventGroup">
+                        <label for="event" class="mb-1.5 block text-xs font-semibold text-stone-700">Which event will you attend?</label>
+                        <select id="event" name="event" class="field" required>
+                            <option value="" disabled selected>Please choose an event</option>
+                            <option value="Wedding">Wedding</option>
+                            <option value="Reception">Reception</option>
+                            <option value="Wedding and Reception">Wedding and Reception</option>
+                        </select>
+                    </div>
+                    <div id="guestGroup">
+                        <label for="guests" class="mb-1.5 block text-xs font-semibold text-stone-700">Number of guests</label>
                         <input id="guests" name="guests" type="number" min="1" step="1" required inputmode="numeric" placeholder="Enter number of guests" class="field">
                     </div>
                     <div>
-                        <label for="blessing" class="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-600">Blessing (optional)</label>
-                        <textarea id="blessing" name="blessing" rows="3" maxlength="500" placeholder="Write your blessing or message..." class="field"></textarea>
+                        <label for="blessing" class="mb-1.5 block text-xs font-semibold text-stone-700">Blessing or message <span class="font-normal text-stone-500">(optional)</span></label>
+                        <textarea id="blessing" name="blessing" rows="3" maxlength="500" placeholder="Share a blessing for the couple..." class="field"></textarea>
                     </div>
-                    <button id="rsvpSubmit" type="submit" class="primary-btn w-full rounded-xl px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">Send RSVP</button>
+                    <button id="rsvpSubmit" type="submit" class="primary-btn min-h-12 w-full rounded-xl px-4 py-3 text-sm font-semibold tracking-wide text-white">Send RSVP</button>
                 </form>
-                <p id="rsvpMessage" role="status" aria-live="polite" class="mt-3 hidden rounded-xl bg-rose-50 p-3 text-center text-sm text-rose-900"></p>
+                <div id="rsvpMessage" role="status" aria-live="polite" class="success-card mt-4 hidden rounded-2xl p-5 text-center">
+                    <span class="mx-auto mb-2 flex h-11 w-11 items-center justify-center rounded-full bg-rose-100 text-xl text-rose-800" aria-hidden="true">♥</span>
+                    <p class="font-serif text-xl text-rose-900">Thank you!</p>
+                    <p id="rsvpMessageText" class="mt-1 text-sm leading-relaxed text-stone-600"></p>
+                </div>
             </section>
 
             <div class="space-y-3">
-                <button id="shareButton" type="button" class="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-emerald-700">Share on WhatsApp</button>
-                <button id="copyButton" type="button" class="w-full rounded-xl bg-amber-100 px-4 py-2.5 text-sm font-medium text-amber-900 shadow-sm transition hover:bg-amber-200">Copy Invite Message</button>
+                <button id="shareButton" type="button" class="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-emerald-700">Share on WhatsApp</button>
+                <button id="copyButton" type="button" class="min-h-11 w-full rounded-xl bg-amber-100 px-4 py-2.5 text-sm font-medium text-amber-900 shadow-sm transition hover:bg-amber-200">Copy Invite Message</button>
             </div>
             <footer class="mt-6 text-center"><span class="font-script text-2xl text-rose-700">#AhalyaWedsYogisha</span></footer>
         </article>
@@ -147,21 +171,40 @@
         document.getElementById('copyButton').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(invitationText());showToast('Invitation copied to clipboard.')}catch{showToast('Clipboard access is unavailable in this browser.')}});
 
         const form=document.getElementById('rsvpForm');
+        const attendance=document.getElementById('attendance');
+        const eventField=document.getElementById('event');
+        const guestsField=document.getElementById('guests');
+        const eventGroup=document.getElementById('eventGroup');
+        const guestGroup=document.getElementById('guestGroup');
         const rsvpMessage=document.getElementById('rsvpMessage');
+        const rsvpMessageText=document.getElementById('rsvpMessageText');
         const rsvpSubmit=document.getElementById('rsvpSubmit');
+
+        attendance.addEventListener('change',()=>{
+            const isAttending=attendance.value==='Attending';
+            eventField.disabled=!isAttending;
+            guestsField.disabled=!isAttending;
+            eventField.required=isAttending;
+            guestsField.required=isAttending;
+            if(!isAttending){eventField.value='';guestsField.value='';}
+            eventGroup.classList.toggle('opacity-50',!isAttending);
+            guestGroup.classList.toggle('opacity-50',!isAttending);
+        });
+
         form.addEventListener('submit',async event=>{
             event.preventDefault();
             rsvpSubmit.disabled=true;
-            rsvpSubmit.textContent='Sending...';
+            rsvpSubmit.textContent='Sending your RSVP…';
             rsvpMessage.classList.add('hidden');
             try {
                 const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
                 if(!response.ok) throw new Error('Form submission failed');
+                rsvpMessageText.textContent=attendance.value==='Not attending'?'We appreciate you letting us know. You will be missed, and we send our warmest wishes.':'Your response has been received. We look forward to celebrating with you!';
                 form.classList.add('hidden');
-                rsvpMessage.textContent='Thank you! Your RSVP has been received.';
                 rsvpMessage.classList.remove('hidden');
+                rsvpMessage.scrollIntoView({behavior:'smooth',block:'center'});
             } catch(error) {
-                rsvpMessage.textContent='Sorry, we could not send your RSVP. Please check your connection and try again.';
+                rsvpMessageText.textContent='We could not send your RSVP just now. Please check your connection and try again.';
                 rsvpMessage.classList.remove('hidden');
                 rsvpSubmit.disabled=false;
                 rsvpSubmit.textContent='Send RSVP';
