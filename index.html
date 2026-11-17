@@ -96,11 +96,6 @@
             box-shadow: 0 14px 34px rgba(107, 30, 53, 0.26);
         }
 
-        .secondary-btn {
-            background: rgba(255,255,255,0.75);
-            border: 1px solid rgba(212,175,55,0.35);
-        }
-
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             *, *::before, *::after {
@@ -231,7 +226,7 @@
                     <label class="sr-only" for="guestWish">Your blessing</label>
                     <textarea id="guestWish" rows="2" required maxlength="500" placeholder="Write your blessing..." class="w-full rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-xs focus:border-rose-400 focus:outline-none"></textarea>
 
-                    <button type="submit" class="w-full rounded-xl bg-rose-800 py-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-rose-900">Send Blessing</button>
+                    <button type="submit" class="w-full rounded-xl bg-rose-800 py-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-rose-900">Submit RSVP</button>
                 </form>
             </section>
 
@@ -262,6 +257,14 @@
             main.classList.remove('pointer-events-none', 'opacity-0');
             main.setAttribute('aria-hidden', 'false');
             setTimeout(() => cover.hidden = true, 1100);
+        });
+
+        const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSemElQffMmUBWSacrk47yNCNn0qMBa2YbOuKvrRbxZG54fWEg/viewform';
+
+        document.getElementById('rsvpForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            window.open(googleFormUrl, '_blank', 'noopener,noreferrer');
+            showToast('Opening RSVP form...');
         });
 
         // Ambient music using WebAudio with no external file needed.
@@ -338,83 +341,6 @@
         }
         updateCountdown();
         setInterval(updateCountdown, 1000);
-
-        const storageKey = 'wedding_wishes_ahalya_yogisha';
-
-        function getWishes() {
-            try {
-                return JSON.parse(localStorage.getItem(storageKey) || '[]');
-            } catch {
-                return [];
-            }
-        }
-
-        function renderWishes() {
-            const container = document.getElementById('wishesContainer');
-            container.replaceChildren();
-
-            const wishes = getWishes();
-            if (!wishes.length) {
-                const empty = document.createElement('p');
-                empty.className = 'py-3 text-center text-xs italic text-stone-400';
-                empty.textContent = 'Be the first to leave a blessing!';
-                container.appendChild(empty);
-                return;
-            }
-
-            wishes.slice(0, 20).forEach((item) => {
-                const card = document.createElement('article');
-                card.className = 'rounded-xl border border-rose-100 bg-white/90 p-3 text-xs shadow-sm';
-
-                const head = document.createElement('div');
-                head.className = 'mb-1 flex items-center justify-between gap-2';
-
-                const name = document.createElement('strong');
-                name.className = 'text-rose-900';
-                name.textContent = item.name;
-
-                const tag = document.createElement('span');
-                tag.className = 'rounded-full border border-rose-200 bg-rose-50 px-2 py-0.5 text-[9px] font-medium text-rose-800';
-                tag.textContent = `${item.status} · ${item.count}`;
-
-                const blessing = document.createElement('p');
-                blessing.className = 'italic text-stone-600';
-                blessing.textContent = `“${item.wish}”`;
-
-                head.append(name, tag);
-                card.append(head, blessing);
-                container.appendChild(card);
-            });
-        }
-
-        renderWishes();
-
-        document.getElementById('rsvpForm').addEventListener('submit', (event) => {
-            event.preventDefault();
-            const name = document.getElementById('guestName').value.trim();
-            const wish = document.getElementById('guestWish').value.trim();
-            if (!name || !wish) {
-                showToast('Please enter your name and blessing.');
-                return;
-            }
-
-            const wishes = getWishes();
-            wishes.unshift({
-                name,
-                status: document.getElementById('guestStatus').value,
-                count: document.getElementById('guestCount').value,
-                wish
-            });
-
-            try {
-                localStorage.setItem(storageKey, JSON.stringify(wishes.slice(0, 50)));
-                renderWishes();
-                event.target.reset();
-                showToast('Saved in this browser only.');
-            } catch (error) {
-                showToast('Could not save. Please try again.');
-            }
-        });
 
         function invitationText() {
             return 'With the blessings of our families, we joyfully invite you to celebrate the wedding of Ahalya & Yogisha.\n\nWedding Muhurta: Sunday, 06 December 2026, 11:00 AM – 12:00 PM\nVishweshwara Sabhagraha, Thrasi, Kammara Kodlu, Kundapura\n\nReception: Wednesday, 09 December 2026, 12:00 PM onwards\nSri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud\n\nYour presence and blessings will make our day truly special.\n\nhttps://yogicurio.github.io/wedding-invitation/';
