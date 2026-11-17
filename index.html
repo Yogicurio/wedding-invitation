@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fdf2f4">
-    <meta name="description" content="Celebrate the wedding of Ahalya and Yogisha. Find event details and send your wishes.">
+    <meta name="description" content="Celebrate the wedding of Ahalya and Yogisha. Find wedding and reception details and send your wishes.">
     <title>Ahalya &amp; Yogisha Wedding Invitation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -31,19 +31,25 @@
             z-index: 10;
             pointer-events: none;
         }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+            .petal { display: none; }
+        }
     </style>
 </head>
 <body class="min-h-screen text-stone-800 py-8 px-4 flex justify-center items-center relative">
     <script>
-        for (let i = 0; i < 15; i++) {
-            const petal = document.createElement('div');
-            petal.className = 'petal';
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.width = (Math.random() * 15 + 10) + 'px';
-            petal.style.height = petal.style.width;
-            petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
-            petal.style.animationDelay = (Math.random() * 5) + 's';
-            document.body.appendChild(petal);
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            for (let i = 0; i < 15; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.width = (Math.random() * 15 + 10) + 'px';
+                petal.style.height = petal.style.width;
+                petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                petal.style.animationDelay = (Math.random() * 5) + 's';
+                document.body.appendChild(petal);
+            }
         }
     </script>
 
@@ -57,13 +63,13 @@
 
         <header class="text-center mb-6">
             <h1 class="font-script text-6xl text-rose-800 mt-2">Ahalya &amp; Yogisha</h1>
-            <p class="font-serif italic text-stone-600 text-sm mt-1">Together Forever</p>
+            <p class="font-serif italic text-stone-600 text-sm mt-1">A harmonious fusion of hearts</p>
         </header>
 
         <div class="relative rounded-2xl overflow-hidden shadow-md mb-6 border-2 border-amber-200">
             <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Ahalya and Yogisha" class="w-full h-60 object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-4">
-                <span class="text-white text-xs tracking-wider uppercase font-medium">With the Grace of Almighty &amp; Families</span>
+                <span class="text-white text-xs tracking-wider uppercase font-medium">Our eternity begins here</span>
             </div>
         </div>
 
@@ -76,23 +82,24 @@
 
         <section aria-label="Wedding events" class="space-y-4 mb-6">
             <article class="bg-white/85 border border-rose-100 rounded-xl p-4 shadow-sm hover:shadow-md transition">
-                <div class="flex justify-between items-start">
+                <div class="flex justify-between items-start gap-3">
                     <div>
-                        <h2 class="font-serif font-bold text-rose-900 text-base">Sangeet &amp; Reception</h2>
-                        <p class="text-xs text-stone-500 mt-0.5">Saturday | 6:30 PM Onwards</p>
-                        <p class="text-xs font-medium text-stone-700 mt-2">Luxor Gardens, Bengaluru</p>
+                        <h2 class="font-serif font-bold text-rose-900 text-base">Wedding</h2>
+                        <p class="text-xs text-stone-500 mt-0.5">Sunday, 06-12-2026 | 11:00 AM to 12:00 PM</p>
+                        <p class="text-xs font-medium text-stone-700 mt-2">Vishweshwara Sabhagruha, Thrasi, Kammara Kodlu, Kundapura</p>
                     </div>
-                    <a href="https://maps.google.com/?q=Luxor+Gardens+Bengaluru" target="_blank" rel="noopener noreferrer" class="bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs px-3 py-1.5 rounded-full font-medium transition shadow-sm">Map</a>
+                    <a href="https://maps.google.com/?q=Vishweshwara+Sabhagruha+Thrasi+Kundapura" target="_blank" rel="noopener noreferrer" class="shrink-0 bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs px-3 py-1.5 rounded-full font-medium transition shadow-sm">Map</a>
                 </div>
             </article>
+
             <article class="bg-white/85 border border-rose-100 rounded-xl p-4 shadow-sm hover:shadow-md transition">
-                <div class="flex justify-between items-start">
+                <div class="flex justify-between items-start gap-3">
                     <div>
-                        <h2 class="font-serif font-bold text-rose-900 text-base">Muhurtham (Wedding)</h2>
-                        <p class="text-xs text-stone-500 mt-0.5">Sunday | 10:00 AM Onwards</p>
-                        <p class="text-xs font-medium text-stone-700 mt-2">The Grand Temple Hall, Mysuru</p>
+                        <h2 class="font-serif font-bold text-rose-900 text-base">Reception</h2>
+                        <p class="text-xs text-stone-500 mt-0.5">Wednesday, 09-12-2026 | 12:00 PM Onwards</p>
+                        <p class="text-xs font-medium text-stone-700 mt-2">Sri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud</p>
                     </div>
-                    <a href="https://maps.google.com/?q=The+Grand+Temple+Hall+Mysuru" target="_blank" rel="noopener noreferrer" class="bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs px-3 py-1.5 rounded-full font-medium transition shadow-sm">Map</a>
+                    <a href="https://maps.google.com/?q=Sri+Kamalamma+Gurumallappa+Kalyana+Mantapa+Nanjangud" target="_blank" rel="noopener noreferrer" class="shrink-0 bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs px-3 py-1.5 rounded-full font-medium transition shadow-sm">Map</a>
                 </div>
             </article>
         </section>
@@ -102,7 +109,7 @@
             <div class="space-y-2">
                 <label class="sr-only" for="guestName">Your name and family</label>
                 <input type="text" id="guestName" placeholder="Your Name &amp; Family" class="w-full text-xs px-3 py-2 rounded-lg border border-stone-200 focus:outline-none focus:border-rose-400 bg-white/90">
-                <label class="sr-only" for="guestWish">Your blessing</label>
+                <label class="sr-only" for="guestWish">Write your blessing</label>
                 <textarea id="guestWish" placeholder="Write your blessing..." rows="2" class="w-full text-xs px-3 py-2 rounded-lg border border-stone-200 focus:outline-none focus:border-rose-400 bg-white/90"></textarea>
                 <button type="button" onclick="submitWish()" class="w-full bg-rose-700 hover:bg-rose-800 text-white text-xs py-2 rounded-lg font-medium transition shadow">Send Blessing</button>
             </div>
@@ -129,7 +136,8 @@
     </audio>
 
     <script>
-        const weddingDate = new Date('December 14, 2026 10:00:00').getTime();
+        // Wedding is at 11:00 AM local time on December 6, 2026.
+        const weddingDate = new Date(2026, 11, 6, 11, 0, 0).getTime();
         function updateCountdown() {
             const diff = weddingDate - Date.now();
             if (diff <= 0) {
@@ -172,27 +180,29 @@
             }
             const container = document.getElementById('wishesContainer');
             if (container.querySelector('.italic')) container.replaceChildren();
-
             const div = document.createElement('div');
             div.className = 'bg-white/90 p-2 rounded border border-rose-50';
             const strong = document.createElement('strong');
             strong.textContent = name + ': ';
             div.append(strong, document.createTextNode(wish));
             container.prepend(div);
-
             document.getElementById('guestName').value = '';
             document.getElementById('guestWish').value = '';
         }
 
+        function getInviteText(includePersonalNote = false) {
+            const personalNote = includePersonalNote ? '\n\nPlease treat this as our personal invite and bless us on our special day!' : '\n\nYour presence and blessing will be cherished forever!';
+            return 'A moment fills a lifetime, our eternity begins here! 💍✨\n\nWe cordially invite you to the wedding of Ahalya & Yogisha:\n\n📅 Wedding: Sunday, 06-12-2026 (11:00 AM - 12:00 PM) at Vishweshwara Sabhagruha, Thrasi, Kammara Kodlu, Kundapura.\n📅 Reception: Wednesday, 09-12-2026 (12:00 PM onwards) at Sri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud.' + personalNote;
+        }
+
         function shareOnWhatsApp() {
-            const text = 'With the grace of Almighty, we cordially invite you to the wedding celebrations of Ahalya & Yogisha! 💍✨\n\n📅 Sangeet & Reception: Saturday, 6:30 PM at Luxor Gardens, Bengaluru.\n📅 Muhurtham: Sunday, 10:00 AM at The Grand Temple Hall, Mysuru.\n\nWe would love for you to join us on our special day!';
+            const text = getInviteText();
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
         }
 
         async function copyInviteText() {
-            const text = 'With the grace of Almighty, we cordially invite you to the wedding celebrations of Ahalya & Yogisha! 💍✨\n\n📅 Sangeet & Reception: Saturday, 6:30 PM at Luxor Gardens, Bengaluru.\n📅 Muhurtham: Sunday, 10:00 AM at The Grand Temple Hall, Mysuru.\n\nPlease treat this as our personal invite and bless us on our special day!';
             try {
-                await navigator.clipboard.writeText(text);
+                await navigator.clipboard.writeText(getInviteText(true));
                 alert('Invitation message copied to clipboard! You can now paste it directly into any WhatsApp chat.');
             } catch (error) {
                 alert('Could not access the clipboard. Please copy the invitation text manually.');
