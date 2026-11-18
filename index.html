@@ -131,8 +131,8 @@
             <section aria-labelledby="rsvpHeading" class="mb-6 rounded-2xl border border-rose-100 bg-white/80 p-4 shadow-sm sm:p-5">
                 <h2 id="rsvpHeading" class="font-serif mb-1 text-center text-xl font-bold text-rose-900">Kindly RSVP</h2>
                 <p class="mb-4 text-center text-sm leading-relaxed text-stone-600">Please let us know which celebration you can attend.</p>
-                <form id="rsvpForm" action="https://formspree.io/f/xbgoozgg" method="POST" class="space-y-4">
-                    <input type="hidden" name="_subject" value="Wedding RSVP — Ahalya & Yogisha">
+                
+                <form id="rsvpForm" class="space-y-4">
                     <div><label for="name" class="mb-1.5 block text-xs font-semibold text-stone-700">Your name</label><input id="name" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Enter your name" class="field"></div>
                     <div><label for="attendance" class="mb-1.5 block text-xs font-semibold text-stone-700">Will you be attending?</label><select id="attendance" name="attendance" class="field" required><option value="" disabled selected>Please choose</option><option value="Attending">Attending</option><option value="Not attending">Not attending</option></select></div>
                     <div id="eventGroup"><label for="event" class="mb-1.5 block text-xs font-semibold text-stone-700">Which event will you attend?</label><select id="event" name="event" class="field" required><option value="" disabled selected>Please choose an event</option><option value="Wedding">Wedding</option><option value="Reception">Reception</option><option value="Wedding and Reception">Wedding and Reception</option></select></div>
@@ -140,6 +140,7 @@
                     <div><label for="blessing" class="mb-1.5 block text-xs font-semibold text-stone-700">Blessing or message <span class="font-normal text-stone-500">(optional)</span></label><textarea id="blessing" name="blessing" rows="3" maxlength="500" placeholder="Share a blessing for the couple..." class="field"></textarea></div>
                     <button id="rsvpSubmit" type="submit" class="primary-btn min-h-12 w-full rounded-xl px-4 py-3 text-sm font-semibold tracking-wide text-white">Send RSVP</button>
                 </form>
+
                 <div id="rsvpMessage" role="status" aria-live="polite" class="reveal-message success-card mt-4 hidden rounded-2xl p-5 text-center"><span class="mx-auto mb-2 flex h-11 w-11 items-center justify-center rounded-full bg-rose-100 text-xl text-rose-800" aria-hidden="true">♥</span><p class="font-serif text-2xl text-rose-900">Thank you!</p><p id="rsvpMessageText" class="mt-1 text-sm leading-relaxed text-stone-600"></p></div>
             </section>
 
@@ -166,18 +167,63 @@
         if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){revealEls.forEach(el=>el.classList.add('is-visible'));}else{requestAnimationFrame(()=>revealEls.forEach(el=>requestAnimationFrame(()=>el.classList.add('is-visible'))));}
         const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target);}});},{threshold:0.15});
         document.querySelectorAll('.reveal-card').forEach(card=>revealObserver.observe(card));
+        
         function escapeCalendarText(value){return value.replace(/\\/g,'\\\\').replace(/,/g,'\\,').replace(/;/g,'\\;').replace(/\r?\n/g,'\\n');}
         function downloadCalendarEvent(eventType){const event=eventType==='wedding'?{uid:'ahalya-yogisha-wedding-20261206',summary:'Wedding Muhurta — Ahalya & Yogisha',start:'DTSTART;TZID=Asia/Kolkata:20261206T110000',end:'DTEND;TZID=Asia/Kolkata:20261206T120000',location:'Vishweshwara Sabhagruha, Thrasi, Kammara Kodlu, Kundapura',filename:'ahalya-yogisha-wedding.ics'}:{uid:'ahalya-yogisha-reception-20261209',summary:'Wedding Reception — Ahalya & Yogisha',start:'DTSTART;VALUE=DATE:20261209',end:'DTEND;VALUE=DATE:20261210',location:'Sri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud',filename:'ahalya-yogisha-reception.ics'};const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ahalya and Yogisha//Wedding Invitation//EN','CALSCALE:GREGORIAN','BEGIN:VEVENT','UID:'+event.uid,'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'')+'Z',event.start,event.end,'SUMMARY:'+escapeCalendarText(event.summary),'LOCATION:'+escapeCalendarText(event.location),'DESCRIPTION:'+escapeCalendarText('With the blessings of our families. View the invitation: https://yogicurio.github.io/wedding-invitation/'),'END:VEVENT','END:VCALENDAR'];const blob=new Blob([lines.join('\r\n')+'\r\n'],{type:'text/calendar;charset=utf-8'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download=event.filename;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('Calendar event downloaded. Open it to add to your calendar.');}
         document.querySelectorAll('[data-calendar-event]').forEach(button=>button.addEventListener('click',()=>downloadCalendarEvent(button.dataset.calendarEvent)));
+        
         const weddingTime=new Date('2026-12-06T11:00:00+05:30').getTime();
         function updateCountdown(){const diff=Math.max(0,weddingTime-Date.now());document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor(diff%60000/1000).padStart(2,'0'));}
         updateCountdown();setInterval(updateCountdown,1000);
+        
         function invitationText(){return 'With the blessings of our families, we joyfully invite you to celebrate the wedding of Ahalya & Yogisha.\n\nView the invitation and kindly RSVP:\nhttps://yogicurio.github.io/wedding-invitation/';}
         document.getElementById('shareButton').addEventListener('click',()=>window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(invitationText()),'_blank','noopener,noreferrer'));
         document.getElementById('copyButton').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(invitationText());showToast('Invitation copied to clipboard.')}catch{showToast('Clipboard access is unavailable in this browser.')}});
+        
         const form=document.getElementById('rsvpForm');const attendance=document.getElementById('attendance');const eventField=document.getElementById('event');const guestsField=document.getElementById('guests');const eventGroup=document.getElementById('eventGroup');const guestGroup=document.getElementById('guestGroup');const rsvpMessage=document.getElementById('rsvpMessage');const rsvpMessageText=document.getElementById('rsvpMessageText');const rsvpSubmit=document.getElementById('rsvpSubmit');
+        
         attendance.addEventListener('change',()=>{const isAttending=attendance.value==='Attending';eventField.disabled=!isAttending;guestsField.disabled=!isAttending;eventField.required=isAttending;guestsField.required=isAttending;if(!isAttending){eventField.value='';guestsField.value='';}eventGroup.classList.toggle('opacity-50',!isAttending);guestGroup.classList.toggle('opacity-50',!isAttending);});
-        form.addEventListener('submit',async event=>{event.preventDefault();rsvpSubmit.disabled=true;rsvpSubmit.textContent='Sending your RSVP…';rsvpMessage.classList.add('hidden');rsvpMessage.classList.remove('is-visible');try{const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(!response.ok)throw new Error('Form submission failed');rsvpMessageText.textContent=attendance.value==='Not attending'?'Thank you for letting us know. We will miss you, and we send our warmest wishes.':'Thank you for letting us know. We can’t wait to celebrate with you!';form.classList.add('hidden');rsvpMessage.classList.remove('hidden');requestAnimationFrame(()=>rsvpMessage.classList.add('is-visible'));rsvpMessage.scrollIntoView({behavior:'smooth',block:'center'});}catch(error){rsvpMessageText.textContent='We could not send your RSVP just now. Please check your connection and try again.';rsvpMessage.classList.remove('hidden');requestAnimationFrame(()=>rsvpMessage.classList.add('is-visible'));rsvpSubmit.disabled=false;rsvpSubmit.textContent='Send RSVP';}});
+
+        // Google Sheets Integration Script
+        form.addEventListener('submit', async event => {
+            event.preventDefault();
+            rsvpSubmit.disabled = true;
+            rsvpSubmit.textContent = 'Sending your RSVP…';
+            rsvpMessage.classList.add('hidden');
+            rsvpMessage.classList.remove('is-visible');
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyfe-EiVE00ekcSm_xP0xn4NEDZB6B3AfvS3coMPKBtPYX-hXhnLZ4N6Q-DLy-ojGSXMQ/exec';
+
+            const formData = {
+                name: document.getElementById('name').value,
+                attendance: document.getElementById('attendance').value,
+                event: document.getElementById('event').value || 'N/A',
+                guests: document.getElementById('guests').value || '0',
+                blessing: document.getElementById('blessing').value || ''
+            };
+
+            try {
+                await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                rsvpMessageText.textContent = attendance.value === 'Not attending' ? 'Thank you for letting us know. We will miss you, and we send our warmest wishes.' : 'Thank you for letting us know. We can’t wait to celebrate with you!';
+                form.classList.add('hidden');
+                rsvpMessage.classList.remove('hidden');
+                requestAnimationFrame(() => rsvpMessage.classList.add('is-visible'));
+                rsvpMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } catch (error) {
+                rsvpMessageText.textContent = 'We could not send your RSVP just now. Please check your connection and try again.';
+                rsvpMessage.classList.remove('hidden');
+                requestAnimationFrame(() => rsvpMessage.classList.add('is-visible'));
+                rsvpSubmit.disabled = false;
+                rsvpSubmit.textContent = 'Send RSVP';
+            }
+        });
+
         let toastTimer;function showToast(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.remove('opacity-0');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.add('opacity-0'),3000);}
     </script>
 </body>
