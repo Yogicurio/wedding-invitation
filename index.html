@@ -184,15 +184,14 @@
         
         attendance.addEventListener('change',()=>{const isAttending=attendance.value==='Attending';eventField.disabled=!isAttending;guestsField.disabled=!isAttending;eventField.required=isAttending;guestsField.required=isAttending;if(!isAttending){eventField.value='';guestsField.value='';}eventGroup.classList.toggle('opacity-50',!isAttending);guestGroup.classList.toggle('opacity-50',!isAttending);});
 
-        // Google Sheets Integration Script
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyfe-EiVE00ekcSm_xP0xn4NEDZB6B3AfvS3coMPKBtPYX-hXhnLZ4N6Q-DLy-ojGSXMQ/exec';
+
         form.addEventListener('submit', async event => {
             event.preventDefault();
             rsvpSubmit.disabled = true;
             rsvpSubmit.textContent = 'Sending your RSVP…';
             rsvpMessage.classList.add('hidden');
             rsvpMessage.classList.remove('is-visible');
-
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyfe-EiVE00ekcSm_xP0xn4NEDZB6B3AfvS3coMPKBtPYX-hXhnLZ4N6Q-DLy-ojGSXMQ/exec';
 
             const formData = {
                 name: document.getElementById('name').value,
@@ -206,7 +205,7 @@
                 await fetch(scriptURL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify(formData)
                 });
 
