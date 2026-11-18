@@ -134,11 +134,35 @@
                 <p class="mb-4 text-center text-sm leading-relaxed text-stone-600">Please let us know which celebration you can attend.</p>
                 
                 <form id="rsvpForm" class="space-y-4">
-                    <div><label for="name" class="mb-1.5 block text-xs font-semibold text-stone-700">Your name</label><input id="name" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Enter your name" class="field"></div>
-                    <div><label for="attendance" class="mb-1.5 block text-xs font-semibold text-stone-700">Will you be attending?</label><select id="attendance" name="attendance" class="field" required><option value="" disabled selected>Please choose</option><option value="Attending">Attending</option><option value="Not attending">Not attending</option></select></div>
-                    <div id="eventGroup"><label for="event" class="mb-1.5 block text-xs font-semibold text-stone-700">Which event will you attend?</label><select id="event" name="event" class="field" required><option value="" disabled selected>Please choose an event</option><option value="Wedding">Wedding</option><option value="Reception">Reception</option><option value="Wedding and Reception">Wedding and Reception</option></select></div>
-                    <div id="guestGroup"><label for="guests" class="mb-1.5 block text-xs font-semibold text-stone-700">Number of guests</label><input id="guests" name="guests" type="number" min="1" step="1" required inputmode="numeric" placeholder="Enter number of guests" class="field"></div>
-                    <div><label for="blessing" class="mb-1.5 block text-xs font-semibold text-stone-700">Blessing or message <span class="font-normal text-stone-500">(optional)</span></label><textarea id="blessing" name="blessing" rows="3" maxlength="500" placeholder="Share a blessing for the couple..." class="field"></textarea></div>
+                    <div>
+                        <label for="name" class="mb-1.5 block text-xs font-semibold text-stone-700">Your name</label>
+                        <input id="name" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Enter your name" class="field">
+                    </div>
+                    <div>
+                        <label for="attendance" class="mb-1.5 block text-xs font-semibold text-stone-700">Will you be attending?</label>
+                        <select id="attendance" name="attendance" class="field" required>
+                            <option value="" disabled selected>Please choose</option>
+                            <option value="Attending">Attending</option>
+                            <option value="Regretfully Decline">Regretfully Decline</option>
+                        </select>
+                    </div>
+                    <div id="eventGroup">
+                        <label for="event" class="mb-1.5 block text-xs font-semibold text-stone-700">Which event will you attend?</label>
+                        <select id="event" name="event" class="field" required>
+                            <option value="" disabled selected>Please choose an event</option>
+                            <option value="Wedding Only">Wedding Only</option>
+                            <option value="Reception Only">Reception Only</option>
+                            <option value="Wedding & Reception">Wedding & Reception</option>
+                        </select>
+                    </div>
+                    <div id="guestGroup">
+                        <label for="guests" class="mb-1.5 block text-xs font-semibold text-stone-700">Number of guests</label>
+                        <input id="guests" name="guests" type="number" min="0" step="1" required inputmode="numeric" placeholder="Enter number of guests" class="field">
+                    </div>
+                    <div>
+                        <label for="blessing" class="mb-1.5 block text-xs font-semibold text-stone-700">Blessing or message <span class="font-normal text-stone-500">(optional)</span></label>
+                        <textarea id="blessing" name="blessing" rows="3" maxlength="500" placeholder="Share a blessing for the couple..." class="field"></textarea>
+                    </div>
                     <button id="rsvpSubmit" type="submit" class="primary-btn min-h-12 w-full rounded-xl px-4 py-3 text-sm font-semibold tracking-wide text-white">Send RSVP</button>
                 </form>
 
@@ -217,7 +241,7 @@
                     body: JSON.stringify(formData)
                 });
 
-                rsvpMessageText.textContent = attendance.value === 'Not attending' ? 'Thank you for letting us know. We will miss you, and we send our warmest wishes.' : 'Thank you for letting us know. We can’t wait to celebrate with you!';
+                rsvpMessageText.textContent = attendance.value === 'Regretfully Decline' ? 'Thank you for letting us know. We will miss you, and we send our warmest wishes.' : 'Thank you for letting us know. We can’t wait to celebrate with you!';
                 form.classList.add('hidden');
                 rsvpMessage.classList.remove('hidden');
                 requestAnimationFrame(() => rsvpMessage.classList.add('is-visible'));
