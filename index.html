@@ -8,6 +8,7 @@
     <meta property="og:title" content="Ahalya & Yogisha Wedding Invitation">
     <meta property="og:description" content="With the blessings of our families, join us in celebrating our wedding and reception.">
     <title>Ahalya &amp; Yogisha Wedding Invitation</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -173,7 +174,13 @@
         document.querySelectorAll('[data-calendar-event]').forEach(button=>button.addEventListener('click',()=>downloadCalendarEvent(button.dataset.calendarEvent)));
         
         const weddingTime=new Date('2026-12-06T11:00:00+05:30').getTime();
-        function updateCountdown(){const diff=Math.max(0,weddingTime-Date.now());document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('seconds').textContent=String(Math.floor(diff%60000/1000).padStart(2,'0'));}
+        function updateCountdown(){
+            const diff=Math.max(0,weddingTime-Date.now());
+            document.getElementById('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+            document.getElementById('hours').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+            document.getElementById('minutes').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+            document.getElementById('seconds').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+        }
         updateCountdown();setInterval(updateCountdown,1000);
         
         function invitationText(){return 'With the blessings of our families, we joyfully invite you to celebrate the wedding of Ahalya & Yogisha.\n\nView the invitation and kindly RSVP:\nhttps://yogicurio.github.io/wedding-invitation/';}
@@ -184,14 +191,15 @@
         
         attendance.addEventListener('change',()=>{const isAttending=attendance.value==='Attending';eventField.disabled=!isAttending;guestsField.disabled=!isAttending;eventField.required=isAttending;guestsField.required=isAttending;if(!isAttending){eventField.value='';guestsField.value='';}eventGroup.classList.toggle('opacity-50',!isAttending);guestGroup.classList.toggle('opacity-50',!isAttending);});
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyfe-EiVE00ekcSm_xP0xn4NEDZB6B3AfvS3coMPKBtPYX-hXhnLZ4N6Q-DLy-ojGSXMQ/exec';
-
+        // Google Sheets Integration Script
         form.addEventListener('submit', async event => {
             event.preventDefault();
             rsvpSubmit.disabled = true;
             rsvpSubmit.textContent = 'Sending your RSVP…';
             rsvpMessage.classList.add('hidden');
             rsvpMessage.classList.remove('is-visible');
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyfe-EiVE00ekcSm_xP0xn4NEDZB6B3AfvS3coMPKBtPYX-hXhnLZ4N6Q-DLy-ojGSXMQ/exec';
 
             const formData = {
                 name: document.getElementById('name').value,
@@ -205,7 +213,7 @@
                 await fetch(scriptURL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
                 });
 
