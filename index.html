@@ -28,7 +28,7 @@
         .couple-names.is-visible .name-ampersand, .cover-shell .reveal.is-visible .name-ampersand { opacity:1; transform:translateY(0); }
         .gold-divider { width:72px; height:2px; background:linear-gradient(90deg,transparent,#d5b06a,transparent); margin:1rem auto 0; opacity:0; transform:scaleX(.5); transition:opacity .8s ease .7s, transform .8s ease .7s; }
         .gold-divider.is-visible { opacity:1; transform:scaleX(1); }
-        .glass-card { background:rgba(255,255,255,.84); border:1px solid rgba(212,175,55,.42); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 18px 45px rgba(110,24,41,.08); }
+        .glass-card { background:rgba(255,255,255,.74); border:1px solid rgba(212,175,55,.45); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); box-shadow:0 18px 45px rgba(110,24,41,.08); }
         .petal { position:fixed; top:-10vh; z-index:10; pointer-events:none; border-radius:150% 0 150% 0; background:radial-gradient(circle at 30% 30%,#f4d2d8,#e7a8b6 35%,#d7839f 100%); opacity:.7; animation:drift linear infinite; }
         @keyframes drift { 0%{transform:translateY(-15vh) translateX(0) rotate(0);opacity:0} 15%{opacity:.8} 100%{transform:translateY(110vh) translateX(24px) rotate(360deg);opacity:0} }
         .cover-shell { background:radial-gradient(circle at 50% 15%,rgba(255,255,255,.55),transparent 28%),linear-gradient(135deg,#fff8ed,#fff0f4); }
@@ -55,10 +55,10 @@
     </style>
 </head>
 <body class="min-h-screen text-stone-800">
-    <!-- Full-length fixed background using IMG_9785.JPG -->
+    <!-- Full-length fixed background using IMG_9785.JPG.jpeg -->
     <div aria-hidden="true" class="fixed inset-0 z-0 pointer-events-none">
-        <img src="images/IMG_9785.JPG.jpeg" alt="" class="h-full w-full object-cover object-center opacity-20">
-        <div class="absolute inset-0 bg-gradient-to-b from-[#fff8f7]/80 via-[#fff5f4]/75 to-[#fff3f1]/85"></div>
+        <img src="images/IMG_9785.JPG.jpeg" alt="" class="h-full w-full object-cover object-top opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#fff8f7]/55 via-[#fff5f4]/45 to-[#fff3f1]/60"></div>
     </div>
 
     <script>
@@ -77,16 +77,16 @@
         <span id="audioIcon" aria-hidden="true">♫</span><span id="audioText">Unmute</span>
     </button>
 
-    <!-- Cover screen with IMG_9787.JPG -->
+    <!-- Cover screen with IMG_9787.JPG.jpeg -->
     <section id="coverScreen" class="cover-shell fixed inset-0 z-40 flex items-center justify-center p-5 text-rose-900 transition-opacity duration-1000" aria-label="Wedding invitation cover">
-        <img src="images/IMG_9787.JPG.jpeg" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-bottom opacity-30">
-        <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-b from-[#fff8ed]/90 via-[#fff4f6]/75 to-[#fff0f4]/60"></div>
+        <img src="images/IMG_9787.JPG.jpeg" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-[center_75%] opacity-40">
+        <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-b from-[#fff8ed]/75 via-[#fff4f6]/45 to-[#fff0f4]/30"></div>
 
         <div class="cover-card relative z-10 w-full max-w-md overflow-hidden rounded-[28px] p-8 text-center sm:p-10">
             <div class="ornament absolute -left-3 -top-7 text-7xl" aria-hidden="true">✦</div>
             <div class="ornament absolute -right-4 -bottom-8 text-7xl" aria-hidden="true">❦</div>
             <p class="reveal reveal-delay-1 mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-amber-700">With the blessings of our families</p>
-            <h1 class="couple-names reveal reveal-delay-2 text-6xl text-rose-900 sm:text-7xl">Ahalya <span class="name-ampersand">&amp;</span> Yogisha</h1>
+            <h1 class="couple-names reveal reveal-delay-2 text-5xl text-rose-900 sm:text-6xl">Ahalya <span class="name-ampersand">&amp;</span> Yogisha</h1>
             <p class="reveal reveal-delay-3 font-serif mt-3 text-base italic text-stone-600">A harmonious fusion of hearts</p>
             <div class="gold-divider reveal-delay-3"></div>
             <p class="cover-date reveal reveal-delay-3 mt-6 text-[11px] font-semibold uppercase tracking-[0.16em]"><span aria-hidden="true">✧</span> Sunday · 06 December 2026</p>
@@ -99,20 +99,20 @@
         <article class="glass-card relative w-full max-w-md overflow-hidden rounded-[24px] p-4 sm:rounded-[28px] sm:p-8">
             <header class="mb-6 text-center">
                 <p class="reveal reveal-delay-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-700">Wedding Celebration</p>
-                <h1 class="couple-names reveal reveal-delay-2 mt-2 text-5xl text-rose-900 sm:text-6xl">Ahalya <span class="name-ampersand">&amp;</span> Yogisha</h1>
+                <h1 class="couple-names reveal reveal-delay-2 mt-2 whitespace-nowrap text-4xl text-rose-900 sm:text-5xl">Ahalya <span class="name-ampersand">&amp;</span> Yogisha</h1>
                 <p class="reveal reveal-delay-3 font-serif mt-2 text-base italic text-stone-600">Together forever</p>
                 <div class="gold-divider reveal-delay-3"></div>
             </header>
 
-            <!-- Hero image using IMG_9783.JPG -->
-            <div class="relative mb-6 overflow-hidden rounded-2xl border-2 border-amber-200 shadow-md">
-                <img src="images/IMG_9783.JPG.jpeg" alt="Ahalya and Yogisha" class="h-80 w-full object-cover object-top sm:h-96">
-                <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/55 via-transparent to-transparent p-4"><span class="text-[10px] font-medium uppercase tracking-[0.18em] text-white">With the grace of Almighty &amp; families</span></div>
+            <!-- Hero image using IMG_9783.JPG.jpeg -->
+            <div class="relative mb-6 aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-amber-200 shadow-md">
+                <img src="images/IMG_9783.JPG.jpeg" alt="Ahalya and Yogisha" class="h-full w-full object-cover object-[center_30%]">
+                <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/65 via-black/15 to-transparent p-4"><span class="text-[10px] font-medium uppercase tracking-[0.18em] text-white">With the grace of Almighty &amp; families</span></div>
             </div>
 
             <p class="font-serif mb-6 text-center text-base leading-relaxed text-stone-600">We joyfully invite you to celebrate the beginning of our lifelong journey together. Your presence and blessings will make this day even more special.</p>
 
-            <section aria-label="Countdown to the wedding" class="mb-6 grid grid-cols-4 gap-2 rounded-2xl border border-rose-100 bg-white/75 p-3 text-center shadow-sm">
+            <section aria-label="Countdown to the wedding" class="mb-6 grid grid-cols-4 gap-2 rounded-2xl border border-rose-100 bg-white/80 p-3 text-center shadow-sm">
                 <div><span id="days" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Days</span></div>
                 <div><span id="hours" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Hours</span></div>
                 <div><span id="minutes" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Mins</span></div>
@@ -139,6 +139,12 @@
                     </div>
                 </article>
             </section>
+
+            <!-- Lakeside photo inside main invite right above RSVP -->
+            <div class="reveal-card relative mb-6 aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-amber-200 shadow-md">
+                <img src="images/IMG_9787.JPG.jpeg" alt="Ahalya and Yogisha by the water" class="h-full w-full object-cover object-[center_72%]">
+                <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent p-4"><span class="text-[10px] font-medium uppercase tracking-[0.18em] text-white">A moment of quiet joy</span></div>
+            </div>
 
             <section aria-labelledby="rsvpHeading" class="mb-6 rounded-2xl border border-rose-100 bg-white/85 p-4 shadow-sm sm:p-5">
                 <h2 id="rsvpHeading" class="font-serif mb-1 text-center text-xl font-bold text-rose-900">Kindly RSVP</h2>
