@@ -12,10 +12,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root { --rose-50:#fff7f5; --rose-100:#fdf2f4; --rose-200:#f7dfe3; --rose-700:#8f3247; --rose-800:#6b1e35; --rose-900:#4f1528; --stone-600:#5e5a56; --stone-700:#3d3937; }
+        :root { --rose-50:#fff7f5; --rose-100:#fdf2f4; --rose-200:#f7dfe3; --rose-700:#8f3247; --rose-800:#6b1e35; --rose-900:#4f1528; --gold:#c9a255; --stone-600:#5e5a56; --stone-700:#3d3937; }
         * { box-sizing:border-box; }
         html { scroll-behavior:smooth; }
-        body { margin:0; font-family:'Plus Jakarta Sans',sans-serif; background:linear-gradient(180deg,#fff8f7 0%,#fdf0f2 50%,#fff6f4 100%); color:var(--stone-700); overflow-x:hidden; }
+        body {
+            margin:0;
+            font-family:'Plus Jakarta Sans',sans-serif;
+            background-color:#fff9f7;
+            background-image:
+                radial-gradient(circle at 15% 10%, rgba(247,223,227,.55), transparent 40%),
+                radial-gradient(circle at 85% 35%, rgba(255,240,218,.65), transparent 45%),
+                radial-gradient(circle at 20% 75%, rgba(247,223,227,.5), transparent 45%),
+                linear-gradient(180deg,#fff9f7 0%,#fdf1f3 50%,#fff8f5 100%);
+            color:var(--stone-700);
+            overflow-x:hidden;
+        }
         .font-script { font-family:'Pinyon Script','Great Vibes',cursive; }
         .font-serif { font-family:'Cormorant Garamond',Georgia,serif; }
         .couple-names { font-family:'Pinyon Script','Great Vibes',cursive; font-weight:400; line-height:1.15; letter-spacing:-.01em; }
@@ -26,18 +37,48 @@
         .reveal-delay-3 { transition-delay:.52s; }
         .reveal.is-visible, .reveal-card.is-visible, .reveal-message.is-visible { opacity:1; transform:translateY(0); }
         .couple-names.is-visible .name-ampersand, .cover-shell .reveal.is-visible .name-ampersand { opacity:1; transform:translateY(0); }
-        .gold-divider { width:72px; height:2px; background:linear-gradient(90deg,transparent,#d5b06a,transparent); margin:1rem auto 0; opacity:0; transform:scaleX(.5); transition:opacity .8s ease .7s, transform .8s ease .7s; }
+        .gold-divider { width:84px; height:2px; background:linear-gradient(90deg,transparent,#d5b06a,transparent); margin:1rem auto 0; opacity:0; transform:scaleX(.5); transition:opacity .8s ease .7s, transform .8s ease .7s; }
         .gold-divider.is-visible { opacity:1; transform:scaleX(1); }
-        .photo-card { position:relative; overflow:hidden; border:1px solid rgba(212,175,55,.48); box-shadow:0 18px 45px rgba(110,24,41,.10); }
-        .petal { position:fixed; top:-10vh; z-index:30; pointer-events:none; border-radius:150% 0 150% 0; background:radial-gradient(circle at 30% 30%,#f4d2d8,#e7a8b6 35%,#d7839f 100%); opacity:.65; animation:drift linear infinite; }
-        @keyframes drift { 0%{transform:translateY(-15vh) translateX(0) rotate(0);opacity:0} 15%{opacity:.75} 100%{transform:translateY(110vh) translateX(24px) rotate(360deg);opacity:0} }
-        .cover-shell { background:radial-gradient(circle at 50% 15%,rgba(255,255,255,.55),transparent 28%),linear-gradient(135deg,#fff8ed,#fff0f4); }
-        .cover-card { background:rgba(255,255,255,.82); border:1px solid rgba(212,175,55,.48); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); box-shadow:0 30px 80px rgba(87,19,35,.15); }
-        .ornament { color:rgba(148,92,54,.38); }
+
+        /* Patrika Editorial Cards & Portrait Frames */
+        .patrika-sheet {
+            background:rgba(255,255,255,.94);
+            border:1px solid rgba(201,162,85,.45);
+            box-shadow:0 22px 55px rgba(107,30,53,.08);
+        }
+        .temple-arch {
+            border-radius:170px 170px 22px 22px;
+            border:2px solid rgba(201,162,85,.65);
+            box-shadow:0 18px 42px rgba(87,19,35,.14);
+        }
+        .pillar-frame {
+            border-radius:26px;
+            border:2px solid rgba(201,162,85,.6);
+            box-shadow:0 20px 48px rgba(87,19,35,.14);
+        }
+        .keepsake-mat {
+            background:#fffdf9;
+            padding:12px 12px 18px;
+            border-radius:24px;
+            border:1px solid rgba(201,162,85,.55);
+            box-shadow:0 18px 45px rgba(87,19,35,.10);
+        }
+
+        .petal { position:fixed; top:-10vh; z-index:30; pointer-events:none; border-radius:150% 0 150% 0; background:radial-gradient(circle at 30% 30%,#f4d2d8,#e7a8b6 35%,#d7839f 100%); opacity:.6; animation:drift linear infinite; }
+        @keyframes drift { 0%{transform:translateY(-15vh) translateX(0) rotate(0);opacity:0} 15%{opacity:.7} 100%{transform:translateY(110vh) translateX(24px) rotate(360deg);opacity:0} }
+
+        .cover-shell { background:radial-gradient(circle at 50% 18%,rgba(255,255,255,.8),transparent 45%),linear-gradient(155deg,#fff9ef 0%,#fdf0f3 100%); }
+        .cover-arch-card {
+            background:rgba(255,255,255,.92);
+            border:1.5px solid rgba(201,162,85,.6);
+            border-radius:180px 180px 28px 28px;
+            box-shadow:0 30px 80px rgba(87,19,35,.14);
+        }
+        .ornament { color:rgba(184,138,67,.42); }
         .primary-btn { background:linear-gradient(135deg,var(--rose-700),var(--rose-800)); color:white; transition:transform .2s ease,box-shadow .2s ease; box-shadow:0 12px 30px rgba(107,30,53,.2); }
         .primary-btn:hover:not(:disabled) { transform:translateY(-1px); box-shadow:0 14px 34px rgba(107,30,53,.26); }
         .primary-btn:disabled { cursor:wait; opacity:.72; }
-        .field { display:block; width:100%; min-height:48px; border:1px solid #dcc4ca; border-radius:.9rem; background:rgba(255,250,251,.92); padding:.75rem .9rem; font-size:16px; line-height:1.4; color:#3d3937; }
+        .field { display:block; width:100%; min-height:48px; border:1px solid #dcc4ca; border-radius:.9rem; background:#fffafb; padding:.75rem .9rem; font-size:16px; line-height:1.4; color:#3d3937; }
         textarea.field { min-height:104px; resize:vertical; }
         .field:focus { border-color:#d4af62; outline:none; box-shadow:0 0 0 3px rgba(212,175,98,.18); }
         .field:disabled { cursor:not-allowed; background:#f4eeee; color:#8b8582; }
@@ -50,36 +91,40 @@
         .calendar-date { width:14rem; max-width:100%; flex:0 1 14rem; min-width:0; cursor:pointer; font:inherit; text-align:center; overflow-wrap:anywhere; transition:filter .2s ease,transform .2s ease; }
         .calendar-date:hover { filter:brightness(1.08); transform:translateY(-1px); }
         .calendar-date:focus-visible { outline:3px solid #d6b66e; outline-offset:3px; }
-        @media(max-width:480px) { body{padding-bottom:env(safe-area-inset-bottom)} .photo-card{border-radius:24px} .field{font-size:16px} .event-date,.event-time{padding:.38rem .55rem;font-size:.62rem} .calendar-date{width:13rem;flex-basis:13rem} }
+        @media(max-width:480px) {
+            body{padding-bottom:env(safe-area-inset-bottom)}
+            .patrika-sheet{border-radius:24px}
+            .temple-arch{border-radius:140px 140px 20px 20px}
+            .cover-arch-card{border-radius:150px 150px 24px 24px}
+            .field{font-size:16px}
+            .event-date,.event-time{padding:.38rem .55rem;font-size:.62rem}
+            .calendar-date{width:13rem;flex-basis:13rem}
+        }
         @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important} .petal{display:none} .reveal,.reveal-card,.reveal-message,.name-ampersand,.gold-divider{opacity:1;transform:none;transition:none;} }
     </style>
 </head>
 <body class="min-h-screen text-stone-800">
     <script>
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            for (let i=0;i<14;i++) {
+            for (let i=0;i<12;i++) {
                 const petal=document.createElement('span'); petal.className='petal';
-                const size=Math.random()*16+10;
+                const size=Math.random()*14+9;
                 petal.style.left=Math.random()*100+'vw'; petal.style.width=size+'px'; petal.style.height=size*1.4+'px';
-                petal.style.animationDuration=(Math.random()*5+7)+'s'; petal.style.animationDelay=Math.random()*5+'s';
+                petal.style.animationDuration=(Math.random()*5+8)+'s'; petal.style.animationDelay=Math.random()*5+'s';
                 document.body.appendChild(petal);
             }
         }
     </script>
 
-    <button id="audioBtn" type="button" aria-pressed="false" class="fixed right-4 top-4 z-50 flex min-h-11 items-center gap-2 rounded-full border border-amber-300 bg-white/90 px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-900 shadow-lg backdrop-blur transition hover:bg-white" aria-label="Unmute music">
+    <button id="audioBtn" type="button" aria-pressed="false" class="fixed right-4 top-4 z-50 flex min-h-11 items-center gap-2 rounded-full border border-amber-300 bg-white/95 px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-900 shadow-lg backdrop-blur transition hover:bg-white" aria-label="Unmute music">
         <span id="audioIcon" aria-hidden="true">♫</span><span id="audioText">Unmute</span>
     </button>
 
-    <!-- Cover Screen -->
+    <!-- Temple-Arch Cover Screen -->
     <section id="coverScreen" class="cover-shell fixed inset-0 z-40 flex items-center justify-center p-5 text-rose-900 transition-opacity duration-1000" aria-label="Wedding invitation cover">
-        <img src="images/IMG_9787.JPG.jpeg" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-[center_75%] opacity-40">
-        <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-b from-[#fff8ed]/75 via-[#fff4f6]/45 to-[#fff0f4]/30"></div>
-
-        <div class="cover-card relative z-10 w-full max-w-md overflow-hidden rounded-[28px] p-8 text-center sm:p-10">
-            <div class="ornament absolute -left-3 -top-7 text-7xl" aria-hidden="true">✦</div>
-            <div class="ornament absolute -right-4 -bottom-8 text-7xl" aria-hidden="true">❦</div>
-            <p class="reveal reveal-delay-1 mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-amber-700">With the blessings of our families</p>
+        <div class="cover-arch-card relative z-10 w-full max-w-md overflow-hidden px-7 pb-9 pt-14 text-center sm:px-10 sm:pb-10 sm:pt-16">
+            <div class="ornament mb-2 text-2xl" aria-hidden="true">❖</div>
+            <p class="reveal reveal-delay-1 mb-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-amber-700">With the blessings of our families</p>
             <h1 class="couple-names reveal reveal-delay-2 text-5xl text-rose-900 sm:text-6xl">Ahalya <span class="name-ampersand">&amp;</span> Yogisha</h1>
             <p class="reveal reveal-delay-3 font-serif mt-3 text-base italic text-stone-600">A harmonious fusion of hearts</p>
             <div class="gold-divider reveal-delay-3"></div>
@@ -89,52 +134,53 @@
         </div>
     </section>
 
-    <!-- Main Scrolling Invitation with Background Photos Embedded in Each Card -->
-    <main id="mainContent" aria-hidden="true" class="pointer-events-none relative z-20 mx-auto w-full max-w-md space-y-6 px-3 py-6 opacity-0 transition-opacity duration-1000 sm:px-4 sm:py-12">
+    <!-- Editorial Lookbook Main Scroll -->
+    <main id="mainContent" aria-hidden="true" class="pointer-events-none relative z-20 mx-auto w-full max-w-md space-y-8 px-3.5 py-7 opacity-0 transition-opacity duration-1000 sm:px-4 sm:py-12">
 
-        <!-- Card 1: Background photo IMG_9783.JPG.jpeg -->
-        <section class="photo-card rounded-[24px] p-5 sm:rounded-[28px] sm:p-8">
-            <img src="images/IMG_9783.JPG.jpeg" alt="" aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[center_45%] opacity-30">
-            <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-[#fff8f7]/80 via-[#fff5f4]/70 to-[#fff3f1]/85"></div>
+        <!-- Chapter 1: Arch-Framed Hero (IMG_9783.JPG.jpeg in natural 3:4 portrait) -->
+        <section class="patrika-sheet rounded-[28px] p-5 sm:p-8">
+            <header class="mb-6 text-center">
+                <p class="reveal reveal-delay-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-amber-700">✦ Wedding Patrika ✦</p>
+                <h1 class="couple-names reveal reveal-delay-2 mt-2 whitespace-nowrap text-4xl text-rose-900 sm:text-5xl">Ahalya <span class="name-ampersand">&amp;</span> Yogisha</h1>
+                <p class="reveal reveal-delay-3 font-serif mt-2 text-base italic text-stone-600">Together forever</p>
+                <div class="gold-divider reveal-delay-3"></div>
+            </header>
 
-            <div class="relative z-10">
-                <header class="mb-6 text-center">
-                    <p class="reveal reveal-delay-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-700">Wedding Celebration</p>
-                    <h1 class="couple-names reveal reveal-delay-2 mt-2 whitespace-nowrap text-4xl text-rose-900 sm:text-5xl">Ahalya <span class="name-ampersand">&amp;</span> Yogisha</h1>
-                    <p class="reveal reveal-delay-3 font-serif mt-2 text-base italic text-stone-600">Together forever</p>
-                    <div class="gold-divider reveal-delay-3"></div>
-                </header>
+            <!-- 3:4 Temple Arch Portrait -->
+            <figure class="temple-arch relative mb-6 aspect-[3/4] w-full overflow-hidden">
+                <img src="images/IMG_9783.JPG.jpeg" alt="Ahalya and Yogisha seated on temple steps" class="h-full w-full object-cover object-[center_28%]">
+                <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent p-4 text-center">
+                    <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-white/95">With the grace of Almighty &amp; families</span>
+                </figcaption>
+            </figure>
 
-                <div class="relative mb-6 aspect-[5/4] w-full overflow-hidden rounded-2xl border-2 border-amber-200 shadow-md">
-                    <img src="images/IMG_9783.JPG.jpeg" alt="Ahalya and Yogisha on temple steps" class="h-full w-full object-cover object-[center_62%]">
-                    <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/65 via-black/15 to-transparent p-4">
-                        <span class="text-[10px] font-medium uppercase tracking-[0.18em] text-white">With the grace of Almighty &amp; families</span>
-                    </div>
-                </div>
+            <p class="font-serif mb-6 text-center text-base leading-relaxed text-stone-600">We joyfully invite you to celebrate the beginning of our lifelong journey together. Your presence and blessings will make this day even more special.</p>
 
-                <p class="font-serif mb-6 text-center text-base font-medium leading-relaxed text-stone-700">We joyfully invite you to celebrate the beginning of our lifelong journey together. Your presence and blessings will make this day even more special.</p>
-
-                <div aria-label="Countdown to the wedding" class="grid grid-cols-4 gap-2 rounded-2xl border border-rose-100 bg-white/80 p-3 text-center shadow-sm backdrop-blur-sm">
-                    <div><span id="days" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-600">Days</span></div>
-                    <div><span id="hours" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-600">Hours</span></div>
-                    <div><span id="minutes" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-600">Mins</span></div>
-                    <div><span id="seconds" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-600">Secs</span></div>
-                </div>
+            <div aria-label="Countdown to the wedding" class="grid grid-cols-4 gap-2 rounded-2xl border border-amber-200/80 bg-gradient-to-b from-rose-50/80 to-amber-50/50 p-3.5 text-center shadow-sm">
+                <div><span id="days" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Days</span></div>
+                <div><span id="hours" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Hours</span></div>
+                <div><span id="minutes" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Mins</span></div>
+                <div><span id="seconds" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Secs</span></div>
             </div>
         </section>
 
-        <!-- Card 2: Background photo IMG_9785.JPG.jpeg -->
-        <section aria-label="Wedding events" class="photo-card rounded-[24px] p-5 sm:rounded-[28px] sm:p-7">
-            <img src="images/IMG_9785.JPG.jpeg" alt="" aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[center_55%] opacity-40">
-            <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-[#fff8f7]/75 via-[#fff5f4]/60 to-[#fff3f1]/80"></div>
+        <!-- Chapter 2: Temple Pillar Corridor (IMG_9785.JPG.jpeg in natural 3:4 portrait) + Events -->
+        <section aria-label="Wedding events" class="space-y-5">
+            <figure class="reveal-card pillar-frame relative aspect-[3/4] w-full overflow-hidden">
+                <img src="images/IMG_9785.JPG.jpeg" alt="Ahalya and Yogisha in traditional attire inside a stone temple corridor" class="h-full w-full object-cover object-center">
+                <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-5 text-center">
+                    <span class="block text-[9px] font-semibold uppercase tracking-[0.24em] text-amber-200">Sacred Beginnings</span>
+                    <p class="font-serif mt-1 text-lg italic text-white">Two paths, one sacred journey</p>
+                </figcaption>
+            </figure>
 
-            <div class="relative z-10 space-y-4">
+            <div class="patrika-sheet space-y-4 rounded-[28px] p-5 sm:p-7">
                 <div class="text-center">
                     <span class="text-[10px] font-bold uppercase tracking-[0.22em] text-amber-700">Celebration Schedule</span>
                     <h2 class="font-serif mt-1 text-2xl font-bold text-rose-900">Join Our Celebrations</h2>
                 </div>
 
-                <article class="reveal-card rounded-2xl border border-rose-100 bg-white/85 p-4 shadow-sm backdrop-blur-sm">
+                <article class="reveal-card rounded-2xl border border-rose-100 bg-rose-50/40 p-4">
                     <div class="flex items-start justify-between gap-3">
                         <div class="min-w-0">
                             <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Wedding Ceremony</span>
@@ -149,7 +195,7 @@
                     </div>
                 </article>
 
-                <article class="reveal-card rounded-2xl border border-rose-100 bg-white/85 p-4 shadow-sm backdrop-blur-sm">
+                <article class="reveal-card rounded-2xl border border-rose-100 bg-rose-50/40 p-4">
                     <div class="flex items-start justify-between gap-3">
                         <div class="min-w-0">
                             <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Celebrate Together</span>
@@ -166,22 +212,28 @@
             </div>
         </section>
 
-        <!-- Card 3: Background photo IMG_9787.JPG.jpeg -->
-        <section aria-labelledby="rsvpHeading" class="photo-card rounded-[24px] p-5 sm:rounded-[28px] sm:p-8">
-            <img src="images/IMG_9787.JPG.jpeg" alt="" aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[center_78%] opacity-40">
-            <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-[#fff8f7]/80 via-[#fff5f4]/70 to-[#fff3f1]/85"></div>
+        <!-- Chapter 3: Keepsake Mat Frame (IMG_9787.JPG.jpeg in natural 3:4 portrait) + RSVP -->
+        <section aria-labelledby="rsvpHeading" class="space-y-5">
+            <figure class="reveal-card keepsake-mat">
+                <div class="aspect-[3/4] w-full overflow-hidden rounded-2xl">
+                    <img src="images/IMG_9787.JPG.jpeg" alt="Ahalya and Yogisha sharing a candid laugh by the lakeside" class="h-full w-full object-cover object-[center_65%]">
+                </div>
+                <figcaption class="pt-3.5 text-center">
+                    <p class="font-serif text-base italic text-stone-700">“Every step leads us closer to celebrating with the people we love most.”</p>
+                </figcaption>
+            </figure>
 
-            <div class="relative z-10">
+            <div class="patrika-sheet rounded-[28px] p-5 sm:p-8">
                 <h2 id="rsvpHeading" class="font-serif mb-1 text-center text-2xl font-bold text-rose-900">Kindly RSVP</h2>
-                <p class="mb-5 text-center text-sm font-medium leading-relaxed text-stone-700">Please let us know which celebration you can attend.</p>
+                <p class="mb-5 text-center text-sm leading-relaxed text-stone-600">Please let us know which celebration you can attend.</p>
                 
                 <form id="rsvpForm" class="space-y-4">
                     <div>
-                        <label for="name" class="mb-1.5 block text-xs font-semibold text-stone-800">Your name</label>
+                        <label for="name" class="mb-1.5 block text-xs font-semibold text-stone-700">Your name</label>
                         <input id="name" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Enter your name" class="field">
                     </div>
                     <div>
-                        <label for="attendance" class="mb-1.5 block text-xs font-semibold text-stone-800">Will you be attending?</label>
+                        <label for="attendance" class="mb-1.5 block text-xs font-semibold text-stone-700">Will you be attending?</label>
                         <select id="attendance" name="attendance" class="field" required>
                             <option value="" disabled selected>Please choose</option>
                             <option value="Attending">Attending</option>
@@ -189,7 +241,7 @@
                         </select>
                     </div>
                     <div id="eventGroup">
-                        <label for="event" class="mb-1.5 block text-xs font-semibold text-stone-800">Which event will you attend?</label>
+                        <label for="event" class="mb-1.5 block text-xs font-semibold text-stone-700">Which event will you attend?</label>
                         <select id="event" name="event" class="field" required>
                             <option value="" disabled selected>Please choose an event</option>
                             <option value="Wedding Only">Wedding Only</option>
@@ -198,11 +250,11 @@
                         </select>
                     </div>
                     <div id="guestGroup">
-                        <label for="guests" class="mb-1.5 block text-xs font-semibold text-stone-800">Number of guests</label>
+                        <label for="guests" class="mb-1.5 block text-xs font-semibold text-stone-700">Number of guests</label>
                         <input id="guests" name="guests" type="number" min="0" step="1" required inputmode="numeric" placeholder="Enter number of guests" class="field">
                     </div>
                     <div>
-                        <label for="blessing" class="mb-1.5 block text-xs font-semibold text-stone-800">Blessing or message <span class="font-normal text-stone-600">(optional)</span></label>
+                        <label for="blessing" class="mb-1.5 block text-xs font-semibold text-stone-700">Blessing or message <span class="font-normal text-stone-500">(optional)</span></label>
                         <textarea id="blessing" name="blessing" rows="3" maxlength="500" placeholder="Share a blessing for the couple..." class="field"></textarea>
                     </div>
                     <button id="rsvpSubmit" type="submit" class="primary-btn min-h-12 w-full rounded-xl px-4 py-3 text-sm font-semibold tracking-wide text-white">Send RSVP</button>
@@ -216,7 +268,7 @@
 
                 <div class="mt-6 space-y-3">
                     <button id="shareButton" type="button" class="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-emerald-700">Share on WhatsApp</button>
-                    <button id="copyButton" type="button" class="min-h-11 w-full rounded-xl bg-amber-100/95 px-4 py-2.5 text-sm font-medium text-amber-900 shadow-sm transition hover:bg-amber-200">Copy Invite Message</button>
+                    <button id="copyButton" type="button" class="min-h-11 w-full rounded-xl bg-amber-100 px-4 py-2.5 text-sm font-medium text-amber-900 shadow-sm transition hover:bg-amber-200">Copy Invite Message</button>
                 </div>
 
                 <footer class="mt-6 text-center"><span class="font-script text-3xl text-rose-700">#AhalyaWedsYogisha</span></footer>
