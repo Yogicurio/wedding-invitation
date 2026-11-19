@@ -50,16 +50,14 @@
         .gold-divider { width:92px; height:2px; background:linear-gradient(90deg,transparent,#d5b06a,transparent); margin:1rem auto 0; opacity:0; transform:scaleX(.5); transition:opacity .8s ease .7s, transform .8s ease .7s; }
         .gold-divider.is-visible { opacity:1; transform:scaleX(1); }
 
-        /* Unveiling Scroll Reveal */
+        /* Smooth Reveal Without Clip-Path Seam Artifacts */
         .reveal-item {
             opacity:0;
-            clip-path:inset(0 0 8% 0 round 24px);
             transform:translate3d(0, 12px, 0);
-            transition:opacity .65s cubic-bezier(.22, 1, .36, 1), transform .65s cubic-bezier(.22, 1, .36, 1), clip-path .7s cubic-bezier(.22, 1, .36, 1);
+            transition:opacity .65s cubic-bezier(.22, 1, .36, 1), transform .65s cubic-bezier(.22, 1, .36, 1);
         }
         .reveal-item.is-revealed {
             opacity:1;
-            clip-path:inset(0 0 0 0 round 24px);
             transform:translate3d(0, 0, 0);
         }
 
@@ -204,7 +202,7 @@
             html{scroll-behavior:auto}
             *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
             .diya-glow{animation:none}
-            .reveal,.reveal-message,.name-mattu,.gold-divider,.reveal-item{opacity:1;clip-path:none;transform:none;transition:none;}
+            .reveal,.reveal-message,.name-mattu,.gold-divider,.reveal-item{opacity:1;transform:none;transition:none;}
         }
     </style>
 </head>
@@ -276,7 +274,7 @@
         <section aria-label="Wedding events" class="space-y-5">
             <figure class="pillar-frame reveal-item relative aspect-[3/4] w-full overflow-hidden">
                 <img src="images/IMG_9785.JPG.jpeg" alt="Ahalya Mattu Yogisha in traditional attire inside a stone temple corridor" class="h-full w-full object-cover object-bottom">
-                <figcaption class="absolute inset-x-0 top-0 bg-gradient-to-b from-black/55 to-transparent px-5 pb-10 pt-5 text-center">
+                <figcaption class="absolute inset-x-0 top-0 bg-gradient-to-b from-black/45 to-transparent px-5 pb-10 pt-5 text-center">
                     <span class="block text-[9px] font-semibold uppercase tracking-[0.24em] text-amber-200">Sacred Beginnings</span>
                     <p class="font-serif mt-1 text-lg italic text-white">Two paths, one sacred journey</p>
                 </figcaption>
@@ -324,7 +322,7 @@
         <section aria-labelledby="rsvpHeading" class="space-y-5">
             <figure class="keepsake-mat reveal-item">
                 <div class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
-                    <img src="images/IMG_9787.JPG.jpeg" alt="Ahalya Mattu Yogisha sharing a candid laugh by the lakeside" style="object-position: 72% 62%;" class="h-full w-full object-cover">
+                    <img src="images/IMG_9787.JPG.jpeg" alt="Ahalya Mattu Yogisha sharing a candid laugh by the lakeside" style="transform: scale(1.16); transform-origin: 22% 62%;" class="h-full w-full object-cover">
                     <figcaption class="absolute inset-x-0 top-0 bg-gradient-to-b from-black/70 via-black/25 to-transparent px-4 py-3.5 text-center">
                         <p class="font-serif text-sm italic text-white/95 sm:text-base">“Every step leads us closer to celebrating with the people we love most.”</p>
                     </figcaption>
