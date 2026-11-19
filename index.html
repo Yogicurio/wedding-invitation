@@ -50,6 +50,19 @@
         .gold-divider { width:92px; height:2px; background:linear-gradient(90deg,transparent,#d5b06a,transparent); margin:1rem auto 0; opacity:0; transform:scaleX(.5); transition:opacity .8s ease .7s, transform .8s ease .7s; }
         .gold-divider.is-visible { opacity:1; transform:scaleX(1); }
 
+        /* Unveiling Scroll Reveal */
+        .reveal-item {
+            opacity:0;
+            clip-path:inset(0 0 8% 0 round 24px);
+            transform:translate3d(0, 12px, 0);
+            transition:opacity .65s cubic-bezier(.22, 1, .36, 1), transform .65s cubic-bezier(.22, 1, .36, 1), clip-path .7s cubic-bezier(.22, 1, .36, 1);
+        }
+        .reveal-item.is-revealed {
+            opacity:1;
+            clip-path:inset(0 0 0 0 round 24px);
+            transform:translate3d(0, 0, 0);
+        }
+
         /* Smooth-Scrolling Luminous Cards */
         .glass-sheet {
             position:relative;
@@ -191,7 +204,7 @@
             html{scroll-behavior:auto}
             *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
             .diya-glow{animation:none}
-            .reveal,.reveal-message,.name-mattu,.gold-divider{opacity:1;transform:none;transition:none;}
+            .reveal,.reveal-message,.name-mattu,.gold-divider,.reveal-item{opacity:1;clip-path:none;transform:none;transition:none;}
         }
     </style>
 </head>
@@ -261,7 +274,7 @@
 
         <!-- Chapter 2: Temple Pillar Corridor + Events -->
         <section aria-label="Wedding events" class="space-y-5">
-            <figure class="pillar-frame relative aspect-[3/4] w-full overflow-hidden">
+            <figure class="pillar-frame reveal-item relative aspect-[3/4] w-full overflow-hidden">
                 <img src="images/IMG_9785.JPG.jpeg" alt="Ahalya Mattu Yogisha in traditional attire inside a stone temple corridor" class="h-full w-full origin-bottom scale-[1.18] object-cover object-bottom">
                 <figcaption class="absolute inset-x-0 top-0 bg-gradient-to-b from-black/35 to-transparent px-5 pb-14 pt-4 text-center">
                     <span class="block text-[9px] font-semibold uppercase tracking-[0.24em] text-amber-200">Sacred Beginnings</span>
@@ -269,7 +282,7 @@
                 </figcaption>
             </figure>
 
-            <div class="glass-sheet tilt-card space-y-4 rounded-[28px] p-5 sm:p-7">
+            <div class="glass-sheet tilt-card reveal-item space-y-4 rounded-[28px] p-5 sm:p-7">
                 <div class="text-center">
                     <span class="text-[10px] font-bold uppercase tracking-[0.22em] text-amber-700">Celebration Schedule</span>
                     <h2 class="font-serif mt-1 text-2xl font-bold text-rose-900">Join Our Celebrations</h2>
@@ -309,16 +322,16 @@
 
         <!-- Chapter 3: Wide Keepsake Mat Frame + RSVP -->
         <section aria-labelledby="rsvpHeading" class="space-y-5">
-            <figure class="keepsake-mat">
+            <figure class="keepsake-mat reveal-item">
                 <div class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
-                    <img src="images/IMG_9787.JPG.jpeg" alt="Ahalya Mattu Yogisha sharing a candid laugh by the lakeside" class="h-full w-full object-cover object-bottom">
+                    <img src="images/IMG_9787.JPG.jpeg" alt="Ahalya Mattu Yogisha sharing a candid laugh by the lakeside" class="h-full w-full object-cover object-center">
                     <figcaption class="absolute inset-x-0 top-0 bg-gradient-to-b from-black/70 via-black/25 to-transparent px-4 py-3.5 text-center">
                         <p class="font-serif text-sm italic text-white/95 sm:text-base">“Every step leads us closer to celebrating with the people we love most.”</p>
                     </figcaption>
                 </div>
             </figure>
 
-            <div class="glass-sheet tilt-card rounded-[28px] p-5 sm:p-8">
+            <div class="glass-sheet tilt-card reveal-item rounded-[28px] p-5 sm:p-8">
                 <h2 id="rsvpHeading" class="font-serif mb-1 text-center text-2xl font-bold text-rose-900">Kindly RSVP</h2>
                 <p class="mb-5 text-center text-sm leading-relaxed text-stone-600">Please let us know which celebration you can attend.</p>
                 
@@ -405,12 +418,30 @@
             },36);
         }
 
+        function initScrollReveal(){
+            const items=[...document.querySelectorAll('.reveal-item')];
+            if(window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)){
+                items.forEach(el=>el.classList.add('is-revealed'));
+                return;
+            }
+            const observer=new IntersectionObserver((entries,obs)=>{
+                entries.forEach(entry=>{
+                    if(entry.isIntersecting){
+                        entry.target.classList.add('is-revealed');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            },{threshold:0.1,rootMargin:'0px 0px -20px 0px'});
+            items.forEach(el=>observer.observe(el));
+        }
+
         document.getElementById('openInvitation').addEventListener('click',async()=>{
             window.scrollTo({top:0,left:0,behavior:'auto'});
             cover.classList.add('pointer-events-none','is-opening');
             main.classList.remove('pointer-events-none','opacity-0');
             main.setAttribute('aria-hidden','false');
             animateKineticSubtitle();
+            initScrollReveal();
             await startMusic();
             setTimeout(()=>{
                 cover.hidden=true;
