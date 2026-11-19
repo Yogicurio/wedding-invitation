@@ -16,7 +16,7 @@
         * { box-sizing:border-box; }
         html { scroll-behavior:auto; }
 
-        /* Soft Aurora Mesh Background (GPU-friendly) */
+        /* Soft Aurora Mesh Background */
         body {
             margin:0;
             font-family:'Plus Jakarta Sans',sans-serif;
@@ -50,16 +50,14 @@
         .gold-divider { width:92px; height:2px; background:linear-gradient(90deg,transparent,#d5b06a,transparent); margin:1rem auto 0; opacity:0; transform:scaleX(.5); transition:opacity .8s ease .7s, transform .8s ease .7s; }
         .gold-divider.is-visible { opacity:1; transform:scaleX(1); }
 
-        /* Frosted Glass Cards with Smooth Scrolling */
+        /* Smooth-Scrolling Luminous Cards */
         .glass-sheet {
             position:relative;
-            background:rgba(255,253,254,0.88);
-            backdrop-filter:blur(12px);
-            -webkit-backdrop-filter:blur(12px);
-            border:1px solid rgba(255, 255, 255, 0.92);
+            background:linear-gradient(150deg, rgba(255,255,255,0.94), rgba(255,250,251,0.92));
+            border:1px solid rgba(255, 255, 255, 0.95);
             box-shadow:
-                0 18px 42px rgba(107,30,53,.08),
-                inset 0 0 0 1px rgba(201,162,85,.32);
+                0 16px 36px rgba(107,30,53,.08),
+                inset 0 0 0 1px rgba(201,162,85,.34);
         }
         @media (hover: hover) and (pointer: fine) {
             .glass-sheet {
@@ -90,20 +88,20 @@
             box-shadow:0 20px 48px rgba(87,19,35,.14);
         }
         .keepsake-mat {
-            background:rgba(255,253,249,.9);
+            background:rgba(255,253,249,.94);
             padding:12px;
             border-radius:24px;
             border:1px solid rgba(201,162,85,.55);
             box-shadow:0 18px 45px rgba(87,19,35,.10);
         }
 
-        /* Twin Glass-Temple Doors */
+        /* Twin Temple Doors */
         .door-panel {
             position:absolute;
             top:0;
             bottom:0;
             width:50.5%;
-            background:linear-gradient(160deg,rgba(255,249,242,.95) 0%,rgba(252,238,243,.94) 100%);
+            background:linear-gradient(160deg,rgba(255,249,242,.97) 0%,rgba(252,238,243,.96) 100%);
             transition:transform 1.15s cubic-bezier(.77,0,.175,1);
         }
         .door-left { left:0; border-right:1.5px solid rgba(201,162,85,.65); box-shadow:4px 0 24px rgba(87,19,35,.08); }
@@ -113,7 +111,7 @@
         .cover-shell.is-opening .cover-arch-card { opacity:0; transform:scale(.96); transition:opacity .45s ease, transform .45s ease; }
 
         .cover-arch-card {
-            background:linear-gradient(155deg, rgba(255,255,255,.95), rgba(255,248,250,.9));
+            background:linear-gradient(155deg, rgba(255,255,255,.96), rgba(255,248,250,.92));
             border:1.5px solid rgba(201,162,85,.65);
             border-radius:180px 180px 28px 28px;
             box-shadow:0 28px 75px rgba(87,19,35,.14), inset 0 0 24px rgba(255,243,214,.5);
@@ -166,7 +164,7 @@
         .primary-btn:hover:not(:disabled) { transform:translateY(-1px); box-shadow:0 14px 34px rgba(107,30,53,.28); }
         .primary-btn:disabled { cursor:wait; opacity:.72; }
 
-        .field { display:block; width:100%; min-height:48px; border:1px solid rgba(201,162,85,.42); border-radius:.9rem; background:rgba(255,255,255,.9); padding:.75rem .9rem; font-size:16px; line-height:1.4; color:#3d3937; transition:border-color .2s ease, box-shadow .2s ease; }
+        .field { display:block; width:100%; min-height:48px; border:1px solid rgba(201,162,85,.42); border-radius:.9rem; background:rgba(255,255,255,.94); padding:.75rem .9rem; font-size:16px; line-height:1.4; color:#3d3937; transition:border-color .2s ease, box-shadow .2s ease; }
         textarea.field { min-height:104px; resize:vertical; }
         .field:focus { border-color:#d4af62; outline:none; box-shadow:0 0 0 3px rgba(212,175,98,.22); background:#fff; }
         .field:disabled { cursor:not-allowed; background:#f4eeee; color:#8b8582; }
@@ -182,7 +180,7 @@
 
         @media(max-width:480px) {
             body{padding-bottom:env(safe-area-inset-bottom)}
-            .glass-sheet{border-radius:24px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+            .glass-sheet{border-radius:24px}
             .temple-arch{border-radius:140px 140px 20px 20px}
             .cover-arch-card{border-radius:150px 150px 24px 24px}
             .field{font-size:16px}
@@ -201,7 +199,7 @@
     <!-- Soft Aurora Backdrop -->
     <div aria-hidden="true" class="aurora-canvas"></div>
 
-    <button id="audioBtn" type="button" aria-pressed="false" class="fixed right-3 top-3 z-50 flex min-h-9 items-center gap-1.5 rounded-full border border-amber-300/80 bg-white/90 px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-rose-900 shadow-md transition hover:bg-white sm:right-4 sm:top-4 sm:min-h-11 sm:gap-2 sm:px-3.5 sm:py-2 sm:text-[11px] sm:tracking-[0.14em]" aria-label="Unmute music">
+    <button id="audioBtn" type="button" aria-pressed="false" class="fixed right-3 top-3 z-50 flex min-h-9 items-center gap-1.5 rounded-full border border-amber-300/80 bg-white/95 px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-rose-900 shadow-md transition hover:bg-white sm:right-4 sm:top-4 sm:min-h-11 sm:gap-2 sm:px-3.5 sm:py-2 sm:text-[11px] sm:tracking-[0.14em]" aria-label="Unmute music">
         <span id="audioIcon" aria-hidden="true">♫</span><span id="audioText">Unmute</span>
     </button>
 
@@ -253,7 +251,7 @@
 
             <p class="font-serif mb-6 text-center text-base leading-relaxed text-stone-700">We joyfully invite you to celebrate the beginning of our lifelong journey together. Your presence and blessings will make this day even more special.</p>
 
-            <div aria-label="Countdown to the wedding" class="grid grid-cols-4 gap-2 rounded-2xl border border-amber-200/80 bg-white/80 p-3.5 text-center shadow-sm">
+            <div aria-label="Countdown to the wedding" class="grid grid-cols-4 gap-2 rounded-2xl border border-amber-200/80 bg-white/85 p-3.5 text-center shadow-sm">
                 <div><span id="days" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Days</span></div>
                 <div><span id="hours" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Hours</span></div>
                 <div><span id="minutes" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Mins</span></div>
@@ -264,7 +262,7 @@
         <!-- Chapter 2: Temple Pillar Corridor + Events -->
         <section aria-label="Wedding events" class="space-y-5">
             <figure class="pillar-frame relative aspect-[3/4] w-full overflow-hidden">
-                <img src="images/IMG_9785.JPG.jpeg" alt="Ahalya Mattu Yogisha in traditional attire inside a stone temple corridor" class="h-full w-full object-cover object-center">
+                <img src="images/IMG_9785.JPG.jpeg" alt="Ahalya Mattu Yogisha in traditional attire inside a stone temple corridor" class="h-full w-full origin-bottom scale-[1.18] object-cover object-bottom">
                 <figcaption class="absolute inset-x-0 top-0 bg-gradient-to-b from-black/35 to-transparent px-5 pb-14 pt-4 text-center">
                     <span class="block text-[9px] font-semibold uppercase tracking-[0.24em] text-amber-200">Sacred Beginnings</span>
                     <p class="font-serif mt-1 text-lg italic text-white">Two paths, one sacred journey</p>
@@ -277,7 +275,7 @@
                     <h2 class="font-serif mt-1 text-2xl font-bold text-rose-900">Join Our Celebrations</h2>
                 </div>
 
-                <article class="rounded-2xl border border-white/90 bg-white/75 p-4 shadow-sm">
+                <article class="rounded-2xl border border-amber-100 bg-white/80 p-4 shadow-sm">
                     <div class="flex items-start justify-between gap-3">
                         <div class="min-w-0">
                             <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Wedding Ceremony</span>
@@ -292,7 +290,7 @@
                     </div>
                 </article>
 
-                <article class="rounded-2xl border border-white/90 bg-white/75 p-4 shadow-sm">
+                <article class="rounded-2xl border border-amber-100 bg-white/80 p-4 shadow-sm">
                     <div class="flex items-start justify-between gap-3">
                         <div class="min-w-0">
                             <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Celebrate Together</span>
@@ -313,7 +311,7 @@
         <section aria-labelledby="rsvpHeading" class="space-y-5">
             <figure class="keepsake-mat">
                 <div class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
-                    <img src="images/IMG_9787.JPG.jpeg" alt="Ahalya Mattu Yogisha sharing a candid laugh by the lakeside" class="h-full w-full object-cover object-[center_60%]">
+                    <img src="images/IMG_9787.JPG.jpeg" alt="Ahalya Mattu Yogisha sharing a candid laugh by the lakeside" class="h-full w-full object-cover object-bottom">
                     <figcaption class="absolute inset-x-0 top-0 bg-gradient-to-b from-black/70 via-black/25 to-transparent px-4 py-3.5 text-center">
                         <p class="font-serif text-sm italic text-white/95 sm:text-base">“Every step leads us closer to celebrating with the people we love most.”</p>
                     </figcaption>
