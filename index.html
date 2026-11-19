@@ -58,7 +58,7 @@
         }
         .keepsake-mat {
             background:#fffdf9;
-            padding:12px 12px 18px;
+            padding:12px;
             border-radius:24px;
             border:1px solid rgba(201,162,85,.55);
             box-shadow:0 18px 45px rgba(87,19,35,.10);
@@ -98,18 +98,33 @@
             box-shadow:0 28px 75px rgba(87,19,35,.14);
             transition:opacity .45s ease, transform .45s ease;
         }
-        .monogram-seal {
-            width:76px;
-            height:76px;
-            margin:0 auto 16px;
+
+        /* Diya & Lotus Sacred Emblem */
+        .sacred-emblem {
+            position:relative;
+            width:108px;
+            height:64px;
+            margin:0 auto 14px;
             border-radius:999px;
-            border:1.5px solid rgba(201,162,85,.75);
-            background:radial-gradient(circle at 30% 30%, #fffdf8, #fff2d6);
-            box-shadow:0 8px 22px rgba(107,30,53,.10), inset 0 0 0 3px rgba(255,255,255,.8);
+            border:1.5px solid rgba(201,162,85,.7);
+            background:radial-gradient(circle at 50% 45%, #fffdf7 0%, #fff2d4 75%, #fae4b2 100%);
+            box-shadow:0 8px 24px rgba(184,138,67,.18), inset 0 0 0 3px rgba(255,255,255,.85);
             display:flex;
             align-items:center;
             justify-content:center;
-            color:#8f3247;
+            gap:8px;
+        }
+        .diya-glow {
+            display:inline-block;
+            font-size:1.15rem;
+            animation:diyaGlow 2.8s ease-in-out infinite;
+        }
+        .diya-glow:last-child {
+            animation-delay:1.4s;
+        }
+        @keyframes diyaGlow {
+            0%, 100% { transform:translateY(0) scale(1); filter:drop-shadow(0 0 4px rgba(234,179,8,.35)); }
+            50% { transform:translateY(-1.5px) scale(1.07); filter:drop-shadow(0 0 8px rgba(245,158,11,.65)); }
         }
 
         .petal { position:fixed; top:-10vh; z-index:30; pointer-events:none; border-radius:150% 0 150% 0; background:radial-gradient(circle at 30% 30%,#f4d2d8,#e7a8b6 35%,#d7839f 100%); opacity:.6; animation:drift linear infinite; }
@@ -140,7 +155,7 @@
             .event-date,.event-time{padding:.38rem .55rem;font-size:.62rem}
             .calendar-date{width:13rem;flex-basis:13rem}
         }
-        @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important} .petal{display:none} .reveal,.reveal-card,.reveal-message,.name-ampersand,.gold-divider{opacity:1;transform:none;transition:none;} }
+        @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important} .petal,.diya-glow{display:none} .reveal,.reveal-card,.reveal-message,.name-ampersand,.gold-divider{opacity:1;transform:none;transition:none;} }
     </style>
 </head>
 <body class="min-h-screen text-stone-800">
@@ -160,7 +175,7 @@
         <span id="audioIcon" aria-hidden="true">♫</span><span id="audioText">Unmute</span>
     </button>
 
-    <!-- Temple-Arch Cover Screen with Twin Doors & Brass Monogram Seal -->
+    <!-- Temple-Arch Cover Screen with Twin Doors & Glowing Diya-Lotus Emblem -->
     <section id="coverScreen" class="cover-shell fixed inset-0 z-40 flex items-center justify-center overflow-hidden p-5 text-rose-900" aria-label="Wedding invitation cover">
         <!-- Twin Temple Doors -->
         <div aria-hidden="true" class="door-panel door-left"></div>
@@ -168,9 +183,16 @@
 
         <!-- Center Arch Invitation Card -->
         <div class="cover-arch-card relative z-10 w-full max-w-md overflow-hidden px-7 pb-9 pt-12 text-center sm:px-10 sm:pb-10 sm:pt-14">
-            <!-- Engraved Brass Monogram Seal -->
-            <div class="monogram-seal reveal reveal-delay-1" aria-hidden="true">
-                <span class="font-serif text-xl font-semibold tracking-widest">A<span class="mx-0.5 text-sm text-amber-600">&amp;</span>Y</span>
+            <!-- Twin Diyas & Lotus Emblem -->
+            <div class="sacred-emblem reveal reveal-delay-1" aria-hidden="true">
+                <span class="diya-glow">🪔</span>
+                <svg class="h-6 w-6 text-rose-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3c2.5 3.5 3.5 6.5 0 10-3.5-3.5-2.5-6.5 0-10z"/>
+                    <path d="M12 13c-3.5-1.5-7.5 0-9.5 3.5 3.5 1.5 7 .5 9.5-3.5z"/>
+                    <path d="M12 13c3.5-1.5 7.5 0 9.5 3.5-3.5 1.5-7 .5-9.5-3.5z"/>
+                    <path d="M5 19.5h14"/>
+                </svg>
+                <span class="diya-glow">🪔</span>
             </div>
 
             <p class="reveal reveal-delay-1 mb-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-amber-700">With the blessings of our families</p>
@@ -261,15 +283,15 @@
             </div>
         </section>
 
-        <!-- Chapter 3: Wide Keepsake Mat Frame (IMG_9787.JPG.jpeg in natural wide 4:3 framing) + RSVP -->
+        <!-- Chapter 3: Wide Keepsake Mat Frame (IMG_9787.JPG.jpeg with embedded caption) + RSVP -->
         <section aria-labelledby="rsvpHeading" class="space-y-5">
             <figure class="reveal-card keepsake-mat">
-    <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl">
-        <img src="images/IMG_9787.JPG.jpeg" alt="Ahalya and Yogisha sharing a candid laugh by the lakeside" class="h-full w-full object-cover object-[center_65%]">
-    </div>
-    <figcaption class="pt-3.5 text-center">
-        <p class="font-serif text-base italic text-stone-700">“Every step leads us closer to celebrating with the people we love most.”</p>
-    </figcaption>
+                <div class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
+                    <img src="images/IMG_9787.JPG.jpeg" alt="Ahalya and Yogisha sharing a candid laugh by the lakeside" class="h-full w-full object-cover object-[center_65%]">
+                    <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent px-4 py-3.5 text-center">
+                        <p class="font-serif text-sm italic text-white/95 sm:text-base">“Every step leads us closer to celebrating with the people we love most.”</p>
+                    </figcaption>
+                </div>
             </figure>
 
             <div class="patrika-sheet rounded-[28px] p-5 sm:p-8">
