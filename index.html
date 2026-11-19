@@ -15,7 +15,7 @@
         :root { --rose-50:#fff7f5; --rose-100:#fdf2f4; --rose-200:#f7dfe3; --rose-700:#8f3247; --rose-800:#6b1e35; --rose-900:#4f1528; --stone-600:#5e5a56; --stone-700:#3d3937; }
         * { box-sizing:border-box; }
         html { scroll-behavior:smooth; }
-        body { margin:0; font-family:'Plus Jakarta Sans',sans-serif; background:linear-gradient(180deg,#fff8f7 0%,#fff3f1 100%); color:var(--stone-700); overflow-x:hidden; }
+        body { margin:0; font-family:'Plus Jakarta Sans',sans-serif; background:linear-gradient(180deg,#fff8f7 0%,#fdf0f2 50%,#fff6f4 100%); color:var(--stone-700); overflow-x:hidden; }
         .font-script { font-family:'Pinyon Script','Great Vibes',cursive; }
         .font-serif { font-family:'Cormorant Garamond',Georgia,serif; }
         .couple-names { font-family:'Pinyon Script','Great Vibes',cursive; font-weight:400; line-height:1.15; letter-spacing:-.01em; }
@@ -28,17 +28,17 @@
         .couple-names.is-visible .name-ampersand, .cover-shell .reveal.is-visible .name-ampersand { opacity:1; transform:translateY(0); }
         .gold-divider { width:72px; height:2px; background:linear-gradient(90deg,transparent,#d5b06a,transparent); margin:1rem auto 0; opacity:0; transform:scaleX(.5); transition:opacity .8s ease .7s, transform .8s ease .7s; }
         .gold-divider.is-visible { opacity:1; transform:scaleX(1); }
-        .glass-card { background:rgba(255,255,255,.52); border:1px solid rgba(212,175,55,.48); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); box-shadow:0 18px 45px rgba(110,24,41,.10); }
-        .soft-panel { background:rgba(255,255,255,.62); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); }
-        .petal { position:fixed; top:-10vh; z-index:10; pointer-events:none; border-radius:150% 0 150% 0; background:radial-gradient(circle at 30% 30%,#f4d2d8,#e7a8b6 35%,#d7839f 100%); opacity:.7; animation:drift linear infinite; }
-        @keyframes drift { 0%{transform:translateY(-15vh) translateX(0) rotate(0);opacity:0} 15%{opacity:.8} 100%{transform:translateY(110vh) translateX(24px) rotate(360deg);opacity:0} }
+        .glass-card { background:rgba(255,255,255,.88); border:1px solid rgba(212,175,55,.45); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 18px 45px rgba(110,24,41,.09); }
+        .photo-window { position:relative; width:100%; overflow:hidden; border-radius:26px; border:1px solid rgba(212,175,55,.5); box-shadow:0 22px 50px rgba(87,19,35,.16); }
+        .petal { position:fixed; top:-10vh; z-index:30; pointer-events:none; border-radius:150% 0 150% 0; background:radial-gradient(circle at 30% 30%,#f4d2d8,#e7a8b6 35%,#d7839f 100%); opacity:.65; animation:drift linear infinite; }
+        @keyframes drift { 0%{transform:translateY(-15vh) translateX(0) rotate(0);opacity:0} 15%{opacity:.75} 100%{transform:translateY(110vh) translateX(24px) rotate(360deg);opacity:0} }
         .cover-shell { background:radial-gradient(circle at 50% 15%,rgba(255,255,255,.55),transparent 28%),linear-gradient(135deg,#fff8ed,#fff0f4); }
-        .cover-card { background:rgba(255,255,255,.80); border:1px solid rgba(212,175,55,.48); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); box-shadow:0 30px 80px rgba(87,19,35,.15); }
+        .cover-card { background:rgba(255,255,255,.82); border:1px solid rgba(212,175,55,.48); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); box-shadow:0 30px 80px rgba(87,19,35,.15); }
         .ornament { color:rgba(148,92,54,.38); }
         .primary-btn { background:linear-gradient(135deg,var(--rose-700),var(--rose-800)); color:white; transition:transform .2s ease,box-shadow .2s ease; box-shadow:0 12px 30px rgba(107,30,53,.2); }
         .primary-btn:hover:not(:disabled) { transform:translateY(-1px); box-shadow:0 14px 34px rgba(107,30,53,.26); }
         .primary-btn:disabled { cursor:wait; opacity:.72; }
-        .field { display:block; width:100%; min-height:48px; border:1px solid #dcc4ca; border-radius:.9rem; background:rgba(255,250,251,.9); padding:.75rem .9rem; font-size:16px; line-height:1.4; color:#3d3937; }
+        .field { display:block; width:100%; min-height:48px; border:1px solid #dcc4ca; border-radius:.9rem; background:#fffafb; padding:.75rem .9rem; font-size:16px; line-height:1.4; color:#3d3937; }
         textarea.field { min-height:104px; resize:vertical; }
         .field:focus { border-color:#d4af62; outline:none; box-shadow:0 0 0 3px rgba(212,175,98,.18); }
         .field:disabled { cursor:not-allowed; background:#f4eeee; color:#8b8582; }
@@ -51,17 +51,11 @@
         .calendar-date { width:14rem; max-width:100%; flex:0 1 14rem; min-width:0; cursor:pointer; font:inherit; text-align:center; overflow-wrap:anywhere; transition:filter .2s ease,transform .2s ease; }
         .calendar-date:hover { filter:brightness(1.08); transform:translateY(-1px); }
         .calendar-date:focus-visible { outline:3px solid #d6b66e; outline-offset:3px; }
-        @media(max-width:480px) { body{padding-bottom:env(safe-area-inset-bottom)} .glass-card{border-radius:24px} .field{font-size:16px} .event-date,.event-time{padding:.38rem .55rem;font-size:.62rem} .calendar-date{width:13rem;flex-basis:13rem} }
+        @media(max-width:480px) { body{padding-bottom:env(safe-area-inset-bottom)} .glass-card,.photo-window{border-radius:24px} .field{font-size:16px} .event-date,.event-time{padding:.38rem .55rem;font-size:.62rem} .calendar-date{width:13rem;flex-basis:13rem} }
         @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important} .petal{display:none} .reveal,.reveal-card,.reveal-message,.name-ampersand,.gold-divider{opacity:1;transform:none;transition:none;} }
     </style>
 </head>
 <body class="min-h-screen text-stone-800">
-    <!-- Full-length fixed background using IMG_9785.JPG.jpeg -->
-    <div aria-hidden="true" class="fixed inset-0 z-0 pointer-events-none">
-        <img src="images/IMG_9785.JPG.jpeg" alt="" class="h-full w-full object-cover object-top opacity-50">
-        <div class="absolute inset-0 bg-gradient-to-b from-[#fff8f7]/45 via-[#fff5f4]/35 to-[#fff3f1]/50"></div>
-    </div>
-
     <script>
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             for (let i=0;i<14;i++) {
@@ -78,7 +72,7 @@
         <span id="audioIcon" aria-hidden="true">♫</span><span id="audioText">Unmute</span>
     </button>
 
-    <!-- Cover screen with IMG_9787.JPG.jpeg -->
+    <!-- Cover Screen -->
     <section id="coverScreen" class="cover-shell fixed inset-0 z-40 flex items-center justify-center p-5 text-rose-900 transition-opacity duration-1000" aria-label="Wedding invitation cover">
         <img src="images/IMG_9787.JPG.jpeg" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-[center_75%] opacity-40">
         <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-b from-[#fff8ed]/75 via-[#fff4f6]/45 to-[#fff0f4]/30"></div>
@@ -96,8 +90,11 @@
         </div>
     </section>
 
-    <main id="mainContent" aria-hidden="true" class="pointer-events-none relative z-20 flex min-h-screen items-center justify-center px-3 py-6 opacity-0 transition-opacity duration-1000 sm:px-4 sm:py-12">
-        <article class="glass-card relative w-full max-w-md overflow-hidden rounded-[24px] p-4 sm:rounded-[28px] sm:p-8">
+    <!-- Main Scrolling Invitation with Open Photo Windows -->
+    <main id="mainContent" aria-hidden="true" class="pointer-events-none relative z-20 mx-auto w-full max-w-md space-y-6 px-3 py-6 opacity-0 transition-opacity duration-1000 sm:px-4 sm:py-12">
+
+        <!-- Card 1: Header, Hero Portrait & Countdown -->
+        <section class="glass-card rounded-[24px] p-5 sm:rounded-[28px] sm:p-8">
             <header class="mb-6 text-center">
                 <p class="reveal reveal-delay-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-700">Wedding Celebration</p>
                 <h1 class="couple-names reveal reveal-delay-2 mt-2 whitespace-nowrap text-4xl text-rose-900 sm:text-5xl">Ahalya <span class="name-ampersand">&amp;</span> Yogisha</h1>
@@ -105,91 +102,128 @@
                 <div class="gold-divider reveal-delay-3"></div>
             </header>
 
-            <!-- Hero image using IMG_9783.JPG.jpeg -->
             <div class="relative mb-6 aspect-[5/4] w-full overflow-hidden rounded-2xl border-2 border-amber-200 shadow-md">
-                <img src="images/IMG_9783.JPG.jpeg" alt="Ahalya and Yogisha" class="h-full w-full object-cover object-[center_62%]">
-                <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/65 via-black/15 to-transparent p-4"><span class="text-[10px] font-medium uppercase tracking-[0.18em] text-white">With the grace of Almighty &amp; families</span></div>
+                <img src="images/IMG_9783.JPG.jpeg" alt="Ahalya and Yogisha on temple steps" class="h-full w-full object-cover object-[center_62%]">
+                <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/65 via-black/15 to-transparent p-4">
+                    <span class="text-[10px] font-medium uppercase tracking-[0.18em] text-white">With the grace of Almighty &amp; families</span>
+                </div>
             </div>
 
-            <p class="font-serif mb-6 text-center text-base font-medium leading-relaxed text-stone-700">We joyfully invite you to celebrate the beginning of our lifelong journey together. Your presence and blessings will make this day even more special.</p>
+            <p class="font-serif mb-6 text-center text-base leading-relaxed text-stone-600">We joyfully invite you to celebrate the beginning of our lifelong journey together. Your presence and blessings will make this day even more special.</p>
 
-            <section aria-label="Countdown to the wedding" class="soft-panel mb-6 grid grid-cols-4 gap-2 rounded-2xl border border-rose-100 p-3 text-center shadow-sm">
-                <div><span id="days" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-600">Days</span></div>
-                <div><span id="hours" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-600">Hours</span></div>
-                <div><span id="minutes" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-600">Mins</span></div>
-                <div><span id="seconds" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-600">Secs</span></div>
-            </section>
+            <div aria-label="Countdown to the wedding" class="grid grid-cols-4 gap-2 rounded-2xl border border-rose-100 bg-rose-50/70 p-3 text-center shadow-sm">
+                <div><span id="days" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Days</span></div>
+                <div><span id="hours" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Hours</span></div>
+                <div><span id="minutes" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Mins</span></div>
+                <div><span id="seconds" class="font-serif block text-2xl font-bold text-rose-900">00</span><span class="text-[9px] font-semibold uppercase tracking-wider text-stone-500">Secs</span></div>
+            </div>
+        </section>
 
-            <section aria-label="Wedding events" class="mb-6 space-y-4">
-                <article class="reveal-card soft-panel rounded-2xl border border-rose-100 p-4 shadow-sm">
-                    <div class="flex items-start justify-between gap-3">
-                        <div class="min-w-0"><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Wedding Ceremony</span><h2 class="font-serif mt-1 text-lg font-bold text-rose-900">Wedding Muhurta</h2>
-                            <div class="event-when"><button type="button" class="event-date calendar-date" data-calendar-event="wedding" aria-label="Add wedding ceremony to calendar"><span aria-hidden="true">▣</span>Sunday · 06 December 2026</button><span class="event-time"><span aria-hidden="true">◷</span>11:00 AM – 12:00 PM</span></div>
-                            <p class="mt-2 font-serif text-sm font-semibold leading-relaxed text-stone-700">Vishweshwara Sabhagruha<br>Thrasi, Kammara Kodlu, Kundapura</p>
-                        </div>
-                        <a href="https://maps.app.goo.gl/wqT8o1FiwpDsX62NA" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100 px-3 py-2 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a>
-                    </div>
-                </article>
-                <article class="reveal-card soft-panel rounded-2xl border border-rose-100 p-4 shadow-sm">
-                    <div class="flex items-start justify-between gap-3">
-                        <div class="min-w-0"><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Celebrate Together</span><h2 class="font-serif mt-1 text-lg font-bold text-rose-900">Wedding Reception</h2>
-                            <div class="event-when"><button type="button" class="event-date calendar-date" data-calendar-event="reception" aria-label="Add wedding reception to calendar"><span aria-hidden="true">▣</span>Wednesday · 09 December 2026</button><span class="event-time"><span aria-hidden="true">◷</span>12:00 PM onwards</span></div>
-                            <p class="mt-2 font-serif text-sm font-semibold leading-relaxed text-stone-700">Sri Kamalamma Gurumallappa Kalyana Mantapa<br>Hullahalli Road, Nanjangud</p>
-                        </div>
-                        <a href="https://maps.app.goo.gl/rBhBiobK8w5ijveDA" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100 px-3 py-2 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a>
-                    </div>
-                </article>
-            </section>
+        <!-- Open Scroll Photo Window 1: Temple Corridor (100% Crisp Visibility) -->
+        <figure class="reveal-card photo-window aspect-[3/4] w-full">
+            <img src="images/IMG_9785.JPG.jpeg" alt="Ahalya and Yogisha standing in temple corridor" class="h-full w-full object-cover object-center">
+            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-5 text-center">
+                <p class="font-serif text-base italic text-white/95">Two paths, one sacred journey</p>
+            </figcaption>
+        </figure>
 
-            <!-- Lakeside photo inside main invite right above RSVP -->
-            <div class="reveal-card relative mb-6 aspect-[5/4] w-full overflow-hidden rounded-2xl border-2 border-amber-200 shadow-md">
-                <img src="images/IMG_9787.JPG.jpeg" alt="Ahalya and Yogisha by the water" class="h-full w-full object-cover object-[center_78%]">
-                <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent p-4"><span class="text-[10px] font-medium uppercase tracking-[0.18em] text-white">A moment of quiet joy</span></div>
+        <!-- Card 2: Wedding Events -->
+        <section aria-label="Wedding events" class="glass-card space-y-4 rounded-[24px] p-5 sm:rounded-[28px] sm:p-7">
+            <div class="text-center">
+                <span class="text-[10px] font-bold uppercase tracking-[0.22em] text-amber-700">Celebration Schedule</span>
+                <h2 class="font-serif mt-1 text-2xl font-bold text-rose-900">Join Our Celebrations</h2>
             </div>
 
-            <section aria-labelledby="rsvpHeading" class="soft-panel mb-6 rounded-2xl border border-rose-100 p-4 shadow-sm sm:p-5">
-                <h2 id="rsvpHeading" class="font-serif mb-1 text-center text-xl font-bold text-rose-900">Kindly RSVP</h2>
-                <p class="mb-4 text-center text-sm leading-relaxed text-stone-700">Please let us know which celebration you can attend.</p>
-                
-                <form id="rsvpForm" class="space-y-4">
-                    <div>
-                        <label for="name" class="mb-1.5 block text-xs font-semibold text-stone-700">Your name</label>
-                        <input id="name" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Enter your name" class="field">
+            <article class="reveal-card rounded-2xl border border-rose-100 bg-white/90 p-4 shadow-sm">
+                <div class="flex items-start justify-between gap-3">
+                    <div class="min-w-0">
+                        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Wedding Ceremony</span>
+                        <h3 class="font-serif mt-1 text-lg font-bold text-rose-900">Wedding Muhurta</h3>
+                        <div class="event-when">
+                            <button type="button" class="event-date calendar-date" data-calendar-event="wedding" aria-label="Add wedding ceremony to calendar"><span aria-hidden="true">▣</span>Sunday · 06 December 2026</button>
+                            <span class="event-time"><span aria-hidden="true">◷</span>11:00 AM – 12:00 PM</span>
+                        </div>
+                        <p class="mt-2 font-serif text-sm font-semibold leading-relaxed text-stone-700">Vishweshwara Sabhagruha<br>Thrasi, Kammara Kodlu, Kundapura</p>
                     </div>
-                    <div>
-                        <label for="attendance" class="mb-1.5 block text-xs font-semibold text-stone-700">Will you be attending?</label>
-                        <select id="attendance" name="attendance" class="field" required>
-                            <option value="" disabled selected>Please choose</option>
-                            <option value="Attending">Attending</option>
-                            <option value="Regretfully Decline">Regretfully Decline</option>
-                        </select>
-                    </div>
-                    <div id="eventGroup">
-                        <label for="event" class="mb-1.5 block text-xs font-semibold text-stone-700">Which event will you attend?</label>
-                        <select id="event" name="event" class="field" required>
-                            <option value="" disabled selected>Please choose an event</option>
-                            <option value="Wedding Only">Wedding Only</option>
-                            <option value="Reception Only">Reception Only</option>
-                            <option value="Wedding & Reception">Wedding & Reception</option>
-                        </select>
-                    </div>
-                    <div id="guestGroup">
-                        <label for="guests" class="mb-1.5 block text-xs font-semibold text-stone-700">Number of guests</label>
-                        <input id="guests" name="guests" type="number" min="0" step="1" required inputmode="numeric" placeholder="Enter number of guests" class="field">
-                    </div>
-                    <div>
-                        <label for="blessing" class="mb-1.5 block text-xs font-semibold text-stone-700">Blessing or message <span class="font-normal text-stone-600">(optional)</span></label>
-                        <textarea id="blessing" name="blessing" rows="3" maxlength="500" placeholder="Share a blessing for the couple..." class="field"></textarea>
-                    </div>
-                    <button id="rsvpSubmit" type="submit" class="primary-btn min-h-12 w-full rounded-xl px-4 py-3 text-sm font-semibold tracking-wide text-white">Send RSVP</button>
-                </form>
+                    <a href="https://maps.app.goo.gl/wqT8o1FiwpDsX62NA" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100 px-3 py-2 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a>
+                </div>
+            </article>
 
-                <div id="rsvpMessage" role="status" aria-live="polite" class="reveal-message success-card mt-4 hidden rounded-2xl p-5 text-center"><span class="mx-auto mb-2 flex h-11 w-11 items-center justify-center rounded-full bg-rose-100 text-xl text-rose-800" aria-hidden="true">♥</span><p class="font-serif text-2xl text-rose-900">Thank you!</p><p id="rsvpMessageText" class="mt-1 text-sm leading-relaxed text-stone-600"></p></div>
-            </section>
+            <article class="reveal-card rounded-2xl border border-rose-100 bg-white/90 p-4 shadow-sm">
+                <div class="flex items-start justify-between gap-3">
+                    <div class="min-w-0">
+                        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Celebrate Together</span>
+                        <h3 class="font-serif mt-1 text-lg font-bold text-rose-900">Wedding Reception</h3>
+                        <div class="event-when">
+                            <button type="button" class="event-date calendar-date" data-calendar-event="reception" aria-label="Add wedding reception to calendar"><span aria-hidden="true">▣</span>Wednesday · 09 December 2026</button>
+                            <span class="event-time"><span aria-hidden="true">◷</span>12:00 PM onwards</span>
+                        </div>
+                        <p class="mt-2 font-serif text-sm font-semibold leading-relaxed text-stone-700">Sri Kamalamma Gurumallappa Kalyana Mantapa<br>Hullahalli Road, Nanjangud</p>
+                    </div>
+                    <a href="https://maps.app.goo.gl/rBhBiobK8w5ijveDA" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100 px-3 py-2 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a>
+                </div>
+            </article>
+        </section>
 
-            <div class="space-y-3"><button id="shareButton" type="button" class="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-emerald-700">Share on WhatsApp</button><button id="copyButton" type="button" class="min-h-11 w-full rounded-xl bg-amber-100/90 px-4 py-2.5 text-sm font-medium text-amber-900 shadow-sm transition hover:bg-amber-200">Copy Invite Message</button></div>
+        <!-- Open Scroll Photo Window 2: Lakeside Moment (100% Crisp Visibility) -->
+        <figure class="reveal-card photo-window aspect-[5/4] w-full">
+            <img src="images/IMG_9787.JPG.jpeg" alt="Ahalya and Yogisha seated by the water" class="h-full w-full object-cover object-[center_78%]">
+            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-5 text-center">
+                <p class="font-serif text-base italic text-white/95">Counting down the moments with you</p>
+            </figcaption>
+        </figure>
+
+        <!-- Card 3: Kindly RSVP & Share -->
+        <section aria-labelledby="rsvpHeading" class="glass-card rounded-[24px] p-5 sm:rounded-[28px] sm:p-8">
+            <h2 id="rsvpHeading" class="font-serif mb-1 text-center text-2xl font-bold text-rose-900">Kindly RSVP</h2>
+            <p class="mb-5 text-center text-sm leading-relaxed text-stone-600">Please let us know which celebration you can attend.</p>
+            
+            <form id="rsvpForm" class="space-y-4">
+                <div>
+                    <label for="name" class="mb-1.5 block text-xs font-semibold text-stone-700">Your name</label>
+                    <input id="name" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Enter your name" class="field">
+                </div>
+                <div>
+                    <label for="attendance" class="mb-1.5 block text-xs font-semibold text-stone-700">Will you be attending?</label>
+                    <select id="attendance" name="attendance" class="field" required>
+                        <option value="" disabled selected>Please choose</option>
+                        <option value="Attending">Attending</option>
+                        <option value="Regretfully Decline">Regretfully Decline</option>
+                    </select>
+                </div>
+                <div id="eventGroup">
+                    <label for="event" class="mb-1.5 block text-xs font-semibold text-stone-700">Which event will you attend?</label>
+                    <select id="event" name="event" class="field" required>
+                        <option value="" disabled selected>Please choose an event</option>
+                        <option value="Wedding Only">Wedding Only</option>
+                        <option value="Reception Only">Reception Only</option>
+                        <option value="Wedding & Reception">Wedding &amp; Reception</option>
+                    </select>
+                </div>
+                <div id="guestGroup">
+                    <label for="guests" class="mb-1.5 block text-xs font-semibold text-stone-700">Number of guests</label>
+                    <input id="guests" name="guests" type="number" min="0" step="1" required inputmode="numeric" placeholder="Enter number of guests" class="field">
+                </div>
+                <div>
+                    <label for="blessing" class="mb-1.5 block text-xs font-semibold text-stone-700">Blessing or message <span class="font-normal text-stone-500">(optional)</span></label>
+                    <textarea id="blessing" name="blessing" rows="3" maxlength="500" placeholder="Share a blessing for the couple..." class="field"></textarea>
+                </div>
+                <button id="rsvpSubmit" type="submit" class="primary-btn min-h-12 w-full rounded-xl px-4 py-3 text-sm font-semibold tracking-wide text-white">Send RSVP</button>
+            </form>
+
+            <div id="rsvpMessage" role="status" aria-live="polite" class="reveal-message success-card mt-4 hidden rounded-2xl p-5 text-center">
+                <span class="mx-auto mb-2 flex h-11 w-11 items-center justify-center rounded-full bg-rose-100 text-xl text-rose-800" aria-hidden="true">♥</span>
+                <p class="font-serif text-2xl text-rose-900">Thank you!</p>
+                <p id="rsvpMessageText" class="mt-1 text-sm leading-relaxed text-stone-600"></p>
+            </div>
+
+            <div class="mt-6 space-y-3">
+                <button id="shareButton" type="button" class="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-emerald-700">Share on WhatsApp</button>
+                <button id="copyButton" type="button" class="min-h-11 w-full rounded-xl bg-amber-100 px-4 py-2.5 text-sm font-medium text-amber-900 shadow-sm transition hover:bg-amber-200">Copy Invite Message</button>
+            </div>
+
             <footer class="mt-6 text-center"><span class="font-script text-3xl text-rose-700">#AhalyaWedsYogisha</span></footer>
-        </article>
+        </section>
     </main>
 
     <audio id="bgMusic" src="audio/WhatsApp%20Audio%202026-11-19%20at%2021.17.02.mpeg" loop preload="metadata"></audio>
@@ -211,7 +245,7 @@
         document.getElementById('openInvitation').addEventListener('click',async()=>{window.scrollTo({top:0,left:0,behavior:'auto'});cover.classList.add('pointer-events-none','opacity-0');main.classList.remove('pointer-events-none','opacity-0');main.setAttribute('aria-hidden','false');await startMusic();setTimeout(()=>{cover.hidden=true;window.scrollTo({top:0,left:0,behavior:'auto'});},1100);});
         document.getElementById('audioBtn').addEventListener('click',toggleAudio);
 
-        const revealEls=[...document.querySelectorAll('.reveal, .gold-divider, .reveal-card')];
+        const revealEls=[...document.querySelectorAll('.reveal, .gold-divider')];
         if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){revealEls.forEach(el=>el.classList.add('is-visible'));}else{requestAnimationFrame(()=>revealEls.forEach(el=>requestAnimationFrame(()=>el.classList.add('is-visible'))));}
         const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target);}});},{threshold:0.15});
         document.querySelectorAll('.reveal-card').forEach(card=>revealObserver.observe(card));
