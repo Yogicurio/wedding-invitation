@@ -60,27 +60,29 @@
         /* Holographic Frosted Glass Cards with Interactive Spotlight */
         .glass-sheet {
             position:relative;
-            background:linear-gradient(145deg, rgba(255,255,255,0.82), rgba(255,250,251,0.68));
+            background:linear-gradient(145deg, rgba(255,255,255,0.84), rgba(255,250,251,0.72));
             backdrop-filter:blur(20px);
             -webkit-backdrop-filter:blur(20px);
-            border:1px solid rgba(255, 255, 255, 0.9);
+            border:1px solid rgba(255, 255, 255, 0.92);
             box-shadow:
                 0 20px 50px rgba(107,30,53,.09),
                 inset 0 0 0 1px rgba(201,162,85,.32);
             transition:transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease;
-            transform-style:preserve-3d;
         }
-        .glass-sheet::before {
-            content:"";
-            position:absolute;
-            inset:0;
-            border-radius:inherit;
-            pointer-events:none;
-            background:radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 244, 214, 0.42), transparent 65%);
-            opacity:0;
-            transition:opacity .35s ease;
+        @media (hover: hover) and (pointer: fine) {
+            .glass-sheet { transform-style:preserve-3d; }
+            .glass-sheet::before {
+                content:"";
+                position:absolute;
+                inset:0;
+                border-radius:inherit;
+                pointer-events:none;
+                background:radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 244, 214, 0.42), transparent 65%);
+                opacity:0;
+                transition:opacity .35s ease;
+            }
+            .glass-sheet:hover::before { opacity:1; }
         }
-        .glass-sheet:hover::before { opacity:1; }
 
         .temple-arch {
             border-radius:170px 170px 22px 22px;
@@ -208,7 +210,7 @@
     <!-- Ambient Generative Aurora Backdrop -->
     <div aria-hidden="true" class="aurora-canvas"></div>
 
-    <button id="audioBtn" type="button" aria-pressed="false" class="fixed right-4 top-4 z-50 flex min-h-11 items-center gap-2 rounded-full border border-amber-300/80 bg-white/85 px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-900 shadow-lg backdrop-blur-md transition hover:bg-white" aria-label="Unmute music">
+    <button id="audioBtn" type="button" aria-pressed="false" class="fixed right-3 top-3 z-50 flex min-h-9 items-center gap-1.5 rounded-full border border-amber-300/80 bg-white/85 px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-rose-900 shadow-md backdrop-blur-md transition hover:bg-white sm:right-4 sm:top-4 sm:min-h-11 sm:gap-2 sm:px-3.5 sm:py-2 sm:text-[11px] sm:tracking-[0.14em]" aria-label="Unmute music">
         <span id="audioIcon" aria-hidden="true">♫</span><span id="audioText">Unmute</span>
     </button>
 
@@ -240,7 +242,7 @@
     </section>
 
     <!-- Main Scroll -->
-    <main id="mainContent" aria-hidden="true" class="pointer-events-none relative z-20 mx-auto w-full max-w-md space-y-8 px-3.5 py-7 opacity-0 transition-opacity duration-700 sm:px-4 sm:py-12">
+    <main id="mainContent" aria-hidden="true" class="pointer-events-none relative z-20 mx-auto w-full max-w-md space-y-8 px-3.5 pb-8 pt-12 opacity-0 transition-opacity duration-700 sm:px-4 sm:py-12">
 
         <!-- Chapter 1: Arch-Framed Hero -->
         <section class="glass-sheet tilt-card rounded-[28px] p-5 sm:p-8">
@@ -431,17 +433,19 @@
         const revealEls=[...document.querySelectorAll('.reveal, .gold-divider')];
         if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){revealEls.forEach(el=>el.classList.add('is-visible'));}else{requestAnimationFrame(()=>revealEls.forEach(el=>requestAnimationFrame(()=>el.classList.add('is-visible'))));}
 
-        // Interactive Spotlight & Gentle 3D Card Tilt
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        // Interactive Spotlight & Gentle 3D Card Tilt on desktop/fine-pointer devices only
+        const canHoverTilt = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce)').matches === false && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        if (canHoverTilt) {
             document.querySelectorAll('.tilt-card').forEach(card => {
                 card.addEventListener('pointermove', e => {
+                    if (e.pointerType !== 'mouse') return;
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
                     card.style.setProperty('--mx', `${x}px`);
                     card.style.setProperty('--my', `${y}px`);
-                    const rotateY = ((x / rect.width) - 0.5) * 3;
-                    const rotateX = ((y / rect.height) - 0.5) * -3;
+                    const rotateY = ((x / rect.width) - 0.5) * 2;
+                    const rotateX = ((y / rect.height) - 0.5) * -2;
                     card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
                 });
                 card.addEventListener('pointerleave', () => {
