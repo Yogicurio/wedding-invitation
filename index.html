@@ -341,11 +341,13 @@
                                 <button type="button" class="event-date calendar-date" data-calendar-event="reception" aria-label="Add wedding reception to calendar"><span aria-hidden="true">▣</span>Wednesday · 09 December 2026</button>
                                 <span class="event-time"><span aria-hidden="true">◷</span>12:00 PM onwards</span>
                             </div>
-                            <p class="mt-2 font-serif text-sm font-semibold leading-relaxed text-stone-700">Sri Kamalamma Gurumallappa Kalyana Mantapa<br>Hullahalli Road, Nanjangud</p>
+                            <p class="mt-2 font-serif text-sm font-semibold leading-relaxed text-stone-700">Sri Kamalamma Gurumallappa Kalyana Mantapa<br>Hullahalli Road, Nanjanagudu</p>
                         </div>
                         <a href="https://maps.app.goo.gl/rBhBiobK8w5ijveDA" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-full bg-rose-100/90 px-3 py-2 text-[10px] font-medium text-rose-800 transition hover:bg-rose-200">Map ↗</a>
                     </div>
                 </article>
+
+                <p class="text-center text-[11px] text-stone-500">Tap a date pill to save the celebration to your calendar.</p>
             </div>
         </section>
 
@@ -542,7 +544,7 @@
         });
         
         function escapeCalendarText(value){return value.replace(/\\/g,'\\\\').replace(/,/g,'\\,').replace(/;/g,'\\;').replace(/\r?\n/g,'\\n');}
-        function downloadCalendarEvent(eventType){const event=eventType==='wedding'?{uid:'ahalya-yogisha-wedding-20261206',summary:'Wedding Muhurta — Ahalya Mattu Yogisha',start:'DTSTART;TZID=Asia/Kolkata:20261206T110000',end:'DTEND;TZID=Asia/Kolkata:20261206T120000',location:'Vishweshwara Sabhagruha, Thrasi, Kammara Kodlu, Kundapura',filename:'ahalya-yogisha-wedding.ics'}:{uid:'ahalya-yogisha-reception-20261209',summary:'Wedding Reception — Ahalya Mattu Yogisha',start:'DTSTART;VALUE=DATE:20261209',end:'DTEND;VALUE=DATE:20261210',location:'Sri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjangud',filename:'ahalya-yogisha-reception.ics'};const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ahalya and Yogisha//Wedding Invitation//EN','CALSCALE:GREGORIAN','BEGIN:VEVENT','UID:'+event.uid,'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'')+'Z',event.start,event.end,'SUMMARY:'+escapeCalendarText(event.summary),'LOCATION:'+escapeCalendarText(event.location),'DESCRIPTION:'+escapeCalendarText('With the blessings of our families. View the invitation: https://yogicurio.github.io/wedding-invitation/'),'END:VEVENT','END:VCALENDAR'];const blob=new Blob([lines.join('\r\n')+'\r\n'],{type:'text/calendar;charset=utf-8'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download=event.filename;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('Calendar event downloaded. Open it to add to your calendar.');}
+        function downloadCalendarEvent(eventType){const event=eventType==='wedding'?{uid:'ahalya-yogisha-wedding-20261206',summary:'Wedding Muhurta — Ahalya Mattu Yogisha',start:'DTSTART;TZID=Asia/Kolkata:20261206T110000',end:'DTEND;TZID=Asia/Kolkata:20261206T120000',location:'Vishweshwara Sabhagruha, Thrasi, Kammara Kodlu, Kundapura',filename:'ahalya-yogisha-wedding.ics'}:{uid:'ahalya-yogisha-reception-20261209',summary:'Wedding Reception — Ahalya Mattu Yogisha',start:'DTSTART;VALUE=DATE:20261209',end:'DTEND;VALUE=DATE:20261210',location:'Sri Kamalamma Gurumallappa Kalyana Mantapa, Hullahalli Road, Nanjanagudu',filename:'ahalya-yogisha-reception.ics'};const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ahalya and Yogisha//Wedding Invitation//EN','CALSCALE:GREGORIAN','BEGIN:VEVENT','UID:'+event.uid,'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'')+'Z',event.start,event.end,'SUMMARY:'+escapeCalendarText(event.summary),'LOCATION:'+escapeCalendarText(event.location),'DESCRIPTION:'+escapeCalendarText('With the blessings of our families. View the invitation: https://yogicurio.github.io/wedding-invitation/'),'END:VEVENT','END:VCALENDAR'];const blob=new Blob([lines.join('\r\n')+'\r\n'],{type:'text/calendar;charset=utf-8'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download=event.filename;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('Calendar event downloaded. Open it to add to your calendar.');}
         document.querySelectorAll('[data-calendar-event]').forEach(button=>button.addEventListener('click',()=>downloadCalendarEvent(button.dataset.calendarEvent)));
         
         const weddingTime=new Date('2026-12-06T11:00:00+05:30').getTime();
@@ -554,14 +556,29 @@
             document.getElementById('seconds').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
         }
         updateCountdown();setInterval(updateCountdown,1000);
-        
-        function invitationText(){return 'With the blessings of our families, we joyfully invite you to celebrate the wedding of Ahalya Mattu Yogisha.\n\nView the invitation and kindly RSVP:\nhttps://yogicurio.github.io/wedding-invitation/';}
+
+        function invitationText(){
+            return [
+                '✨ *"ನಾ ನಿನಗೆ ನೀ ನನಗೆ ಜೇನಾಗುವ, ರಸದೇವ ಗಂಗೆಯಲಿ ಮೀನಾಗುವ"* — ಕುವೆಂಪು',
+                '',
+                'With the blessings of our families, we joyfully invite you to celebrate the wedding of *Ahalya Mattu Yogisha*.',
+                '',
+                '🪔 *Wedding Muhurta:* Sunday, 06 Dec 2026 · 11:00 AM – 12:00 PM',
+                '📍 Vishweshwara Sabhagruha, Kundapura',
+                '',
+                '💐 *Reception:* Wednesday, 09 Dec 2026 · 12:00 PM onwards',
+                '📍 Sri Kamalamma Gurumallappa Kalyana Mantapa, Nanjanagudu',
+                '',
+                'View our invitation & kindly RSVP:',
+                'https://yogicurio.github.io/wedding-invitation/'
+            ].join('\n');
+        }
         document.getElementById('shareButton').addEventListener('click',()=>window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(invitationText()),'_blank','noopener,noreferrer'));
         document.getElementById('copyButton').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(invitationText());showToast('Invitation copied to clipboard.')}catch{showToast('Clipboard access is unavailable in this browser.')}});
         
         const form=document.getElementById('rsvpForm');const attendance=document.getElementById('attendance');const eventField=document.getElementById('event');const guestsField=document.getElementById('guests');const eventGroup=document.getElementById('eventGroup');const guestGroup=document.getElementById('guestGroup');const rsvpMessage=document.getElementById('rsvpMessage');const rsvpMessageText=document.getElementById('rsvpMessageText');const rsvpSubmit=document.getElementById('rsvpSubmit');
         
-        attendance.addEventListener('change',()=>{const isAttending=attendance.value==='Attending';eventField.disabled=!isAttending;guestsField.disabled=!isAttending;eventField.required=isAttending;guestsField.required=isAttending;if(!isAttending){eventField.value='';guestsField.value='';}eventGroup.classList.toggle('opacity-50',!isAttending);guestGroup.classList.toggle('opacity-50',!isAttending);});
+        attendance.addEventListener('change',()=>{const isAttending=attendance.value==='Attending';eventField.disabled=!isAttending;guestsField.disabled=!isAttending;eventField.required=isAttending;guestsField.required=isAttending;if(isAttending&&!guestsField.value){guestsField.value='1';}if(!isAttending){eventField.value='';guestsField.value='';}eventGroup.classList.toggle('opacity-50',!isAttending);guestGroup.classList.toggle('opacity-50',!isAttending);});
 
         // Google Sheets Integration Script
         form.addEventListener('submit', async event => {
