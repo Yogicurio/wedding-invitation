@@ -41,7 +41,6 @@
         .petal-layer {
             position:fixed;
             inset:0;
-            z-index:15;
             pointer-events:none;
             overflow:hidden;
         }
@@ -240,7 +239,7 @@
     <div aria-hidden="true" class="aurora-canvas"></div>
 
     <!-- Falling Rose & Marigold Petals -->
-    <div id="petalLayer" aria-hidden="true" class="petal-layer"></div>
+    <div id="petalLayer" aria-hidden="true" class="petal-layer z-30"></div>
 
     <button id="audioBtn" type="button" aria-pressed="false" class="fixed right-3 top-3 z-50 flex min-h-9 items-center gap-1.5 rounded-full border border-amber-300/80 bg-white/95 px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-rose-900 shadow-md transition hover:bg-white sm:right-4 sm:top-4 sm:min-h-11 sm:gap-2 sm:px-3.5 sm:py-2 sm:text-[11px] sm:tracking-[0.14em]" aria-label="Unmute music">
         <span id="audioIcon" aria-hidden="true">♫</span><span id="audioText">Unmute</span>
